@@ -54,7 +54,7 @@ namespace APP1.Models.DAL
 
             }
 
-        public int insert_arr_District(List<UsersDistrict> ud)
+        public int insert_arr_region(List<UsersDistrict> ud)
         {
 
             SqlConnection con;
@@ -70,7 +70,7 @@ namespace APP1.Models.DAL
                 throw (ex);
             }
 
-            String cStr = BuildInsertListUsersDistrict(ub);      // helper method to build the insert string
+            String cStr = BuildInsertListUsersDistrict(ud);      // helper method to build the insert string
 
             cmd = CreateCommand(cStr, con);             // create the command
 

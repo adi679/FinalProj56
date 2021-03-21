@@ -57,28 +57,27 @@
 
 
 		function save() {
-
+           
             var regions = [];
+            let item
 			email = localStorage.getItem('email')
 			if (email) { //אם קיים אימייל
 				var data = document.forms[0];
                 count = 0
-                var list_user_districts = {};
-
+                var list_user_districts ;
+                
 				for (i = 0; i < 10; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
 					if (data[i].checked) {
-						//api = "../api/Customer/" + data[i].value + "/" + email + "/1"; // הכנסת תכונה ליוזר מסוים
-						//ajaxCall("Put", api, "", success22, error22) // put is for update title status
+                        alert("data[i].id  :  " + data[i].id);
 
-
-                        let item = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
-                            Id: data[i].id,
-                            UsersDistrict: $(data[i]).val(),
+                        item = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+                            UsersDistrict: data[i].id,
+                            Id: i+1,
                             Email: localStorage.getItem('email')
                         }
-
+                        alert(item);
     
-                        list_user_districts.push(item)
+                      /*  list_user_districts.push(item)*/
 					}
 				
 

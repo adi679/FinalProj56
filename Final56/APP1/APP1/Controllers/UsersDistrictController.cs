@@ -26,7 +26,7 @@ namespace APP1.Controllers
         public int Post(List<UsersDistrict> ud)
         {
             UsersDistrict u = new UsersDistrict();
-           return u.insert_arr_District(ud);
+           return u.Insert_arry_region(ud);
            
         }
 

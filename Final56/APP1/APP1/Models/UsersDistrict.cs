@@ -24,10 +24,12 @@ namespace APP1.Models
         public int Id { get => id; set => id = value; }
         public string Email { get => email; set => email = value; }
         public string District { get => district; set => district = value; }
+
+        public int Insert_arry_region(List<UsersDistrict> ud)
+        {
+            DB_Services db = new DB_Services();
+            return db.insert_arr_region(ud);
+        }
     }
-    public int insert_arr_District(List<UsersDistrict> ud)
-    {
-        DB_Services db = new DB_Services();
-           return db.insert_arr_District(ud);
-    }
+    
 }
