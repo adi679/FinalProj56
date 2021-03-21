@@ -7,7 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.Configuration;
 
-namespace APP1.Models.DAL
+namespace Final56.Models.DAL
 {
     public class DBServices
     {

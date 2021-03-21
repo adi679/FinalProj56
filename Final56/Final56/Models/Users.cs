@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
-namespace APP1.Models
+using Final56.Models.DAL;
+namespace Final56.Models
 {
     public class Users
     {
@@ -40,9 +40,10 @@ namespace APP1.Models
         public DateTime BirthDay { get => birthDay; set => birthDay = value; }
         public string Sex { get => sex; set => sex = value; }
     }
-    public void Insert()
+    public void Insert(Users u)
     {
-        //DBServices dbs = new DBServices();
-        //dbs.Insert(this);
+       
+      DBServices dbs = new DBServices();
+        db
     }
 }

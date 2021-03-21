@@ -219,6 +219,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Controllers\businessesController.cs" />
+    <Content Include="Controllers\CustomerController.cs" />
     <Content Include="Controllers\FavoritesController.cs" />
     <Content Include="Controllers\FileUploadController.cs" />
     <Content Include="Controllers\MessageController.cs" />
@@ -281,7 +282,8 @@
     <Content Include="Pages\1Highlights.html" />
     <Content Include="Pages\1InsertNewCampaign.html" />
     <Content Include="Pages\1LogIn.html" />
-    <Content Include="Pages\1NewCostumerForm - Copy.html" />
+    <Content Include="Pages\1Fav.html" />
+    <Content Include="Pages\NewUserForm.html" />
     <Content Include="Pages\1start.html" />
     <Content Include="Pages\FavLocale.html" />
     <Content Include="Pages\Favorites.html" />

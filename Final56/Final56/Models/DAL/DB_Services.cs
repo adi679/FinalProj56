@@ -208,3 +208,19 @@ namespace APP1.Models.DAL
 
     }
 }
+
+
+private String BuildInsertCustommand(Users user)
+{
+    String command;
+
+    StringBuilder sb = new StringBuilder();
+
+    // use a string builder to create the dynamic string
+    sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}')", Users.FirstName, Users.FastName, Users.Email, Users.Password, Users.Phone, Users.TypeUsers, Users.BirthDay, Users.Sex);
+    String prefix = "INSERT INTO [Users] " + "(FirstName, FastName, Email ,password ,phone, TypeUsers, sex)";
+    command = prefix + sb.ToString();
+
+    return command;
+
+}

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
     <style>
@@ -116,25 +117,22 @@
 
         function submit1()
         {
-                    //let fav = {
-                    //    region = $("#region").val(),
-                    //    state = $("#state").val()
-                    //}
+             alert("in submit")
+      
+            let fav = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+                kindUni: $("#kindUni").val(),
+                size: $("#size").val(),
+                cost: $("#cost").val(),
+                SAT: $("#SAT").val(),
+                division: $("#division").val(),
+                Gender: $("#Gender").val()
+              
+            }
 
-                    //alert(fav);
-                    alert("in submit")
-                    let Fav = {
-                                               
-                        kindUni: $("#kindUni").val(),
-                        size: $("#size").val(),
-                        cost: $("#cost").val(),
-                        SAT: $("#SAT").val(),
-                        Devision: ("#division").val(),
-                        Gender: ("#Gender").val(),
+            alert(fav);
+            console.log(fav)
 
-                    }
 
-            alert(Fav)
 
                     alert("kindUni: " + kindUni + " Size: " + size + " cost: " + cost + " SAT Score: " + SAT + " Div: " + division+ "Gender: "+ Gender )
 
@@ -151,7 +149,7 @@
 
 
                 function showH(val) {
-                    alert(val);
+                 //   alert(val);
                     
 
         }

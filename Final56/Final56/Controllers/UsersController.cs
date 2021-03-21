@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Final56.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 
-namespace APP1.Controllers
+namespace Final56.Controllers
 {
-    public class UsersController : ApiController
+    public class UsersController:ApiController
     {
         // GET api/<controller>
         public IEnumerable<string> Get()
@@ -22,8 +24,10 @@ namespace APP1.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post(Users u)
         {
+            Users u = new Users();
+
         }
 
         // PUT api/<controller>/5
