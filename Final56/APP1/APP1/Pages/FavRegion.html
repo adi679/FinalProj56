@@ -62,23 +62,30 @@
 			email = localStorage.getItem('email')
 			if (email) { //אם קיים אימייל
 				var data = document.forms[0];
-				count = 0
+                count = 0
+                var list_user_districts = {};
+
 				for (i = 0; i < 10; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
 					if (data[i].checked) {
 						//api = "../api/Customer/" + data[i].value + "/" + email + "/1"; // הכנסת תכונה ליוזר מסוים
 						//ajaxCall("Put", api, "", success22, error22) // put is for update title status
-                        regions.push(data[i].id)
-                        
+
+
+                        let item = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+                            Id: data[i].id,
+                            UsersDistrict: $(data[i]).val(),
+                            Email: localStorage.getItem('email')
+                        }
+
+    
+                        list_user_districts.push(item)
 					}
-					else {
-                        count += 1
-						//api = "../api/Customer/" + data[i].value + "/" + email + "/0"; // הסרת תכונה ליוזר מסוים
-						//ajaxCall("Put", api, "", success22, error22)
-					}
+				
 
 
 				}
                 alert("Your regions saved!");
+
                 alert(regions);
 
                //---------- API---------------//
@@ -126,15 +133,15 @@
             <h3><label for="region">בחר מחוז:</label> </h3>
 
             <div class="region">
-                <label> <input type="checkbox" id="1" class="radio" value="1" />New England (CT, ME, MA, NH, RI, VT)  </label><br />
-                <label> <input type="checkbox" id="2" class="radio" value="2" />Mid East (DE, DC, MD, NJ, NY, PA)  </label><br />
-                <label> <input type="checkbox" id="3" class="radio" value="3" />Great Lakes (IL, IN, MI, OH, WI)  </label><br />
-                <label> <input type="checkbox" id="4" class="radio" value="4" />Plains (IA, KS, MN, MO, NE, ND, SD)  </label><br />
-                <label> <input type="checkbox" id="5" class="radio" value="5" />Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)  </label><br />
-                <label> <input type="checkbox" id="6" class="radio" value="6" />Southwest (AZ, NM, OK, TX)  </label><br />
-                <label> <input type="checkbox" id="7" class="radio" value="7" />Rocky Mountains (CO, ID, MT, UT, WY)  </label><br />
-                <label> <input type="checkbox" id="8" class="radio" value="8" />Far West (AK, CA, HI, NV, OR, WA)  </label><br />
-                <label> <input type="checkbox" id="9" class="radio" value="9" />Outlying Areas (AS, FM, GU, MH, MP, PR, PW, VI)  </label><br />
+                <label> <input type="checkbox" id="New England"     class="radio" value="1" />New England (CT, ME, MA, NH, RI, VT)  </label><br />
+                <label> <input type="checkbox" id="Mid East"        class="radio" value="2" />Mid East (DE, DC, MD, NJ, NY, PA)  </label><br />
+                <label> <input type="checkbox" id="Great Lakes"     class="radio" value="3" />Great Lakes (IL, IN, MI, OH, WI)  </label><br />
+                <label> <input type="checkbox" id="Plains"          class="radio" value="4" />Plains (IA, KS, MN, MO, NE, ND, SD)  </label><br />
+                <label> <input type="checkbox" id="Southeast"       class="radio" value="5" />Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)  </label><br />
+                <label> <input type="checkbox" id="Southwest"       class="radio" value="6" />Southwest (AZ, NM, OK, TX)  </label><br />
+                <label> <input type="checkbox" id="Rocky Mountains" class="radio" value="7" />Rocky Mountains (CO, ID, MT, UT, WY)  </label><br />
+                <label> <input type="checkbox" id="Far West"         class="radio" value="8" />Far West (AK, CA, HI, NV, OR, WA)  </label><br />
+                <label> <input type="checkbox" id="Outlying Areas"   class="radio" value="9" />Outlying Areas (AS, FM, GU, MH, MP, PR, PW, VI)  </label><br />
 
             </div>
         </div>

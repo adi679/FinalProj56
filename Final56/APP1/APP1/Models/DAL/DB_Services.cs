@@ -54,10 +54,66 @@ namespace APP1.Models.DAL
 
             }
 
+        public int insert_arr_District(List<UsersDistrict> ud)
+        {
 
+            SqlConnection con;
+            SqlCommand cmd;
 
-        
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
 
+            String cStr = BuildInsertListUsersDistrict(ub);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+        private String BuildInsertListUsersDistrict(List<UsersDistrict> ud)
+        {
+            String command;
+
+            StringBuilder sb = new StringBuilder();
+
+            // use a string builder to create the dynamic string
+            for (int i = 0; i < ud.Count; i++)
+            {
+                sb.AppendFormat("Values('{0}', '{1}', '{2}')", ud[i].Email, ud[i].District, ud[i].Id);
+            }
+            
+            String prefix = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
+            command = prefix + sb.ToString();
+
+            return command;
+
+        }
         private String BuildInsertFavorites(Favorites f)
         {
             String command;
@@ -65,7 +121,7 @@ namespace APP1.Models.DAL
             StringBuilder sb = new StringBuilder();
 
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}')", f.Email, f.UniversitySize, f.UniversityLevel,f.UniversityType, f.PriceMAX, f.Sit, f.Precent);
+            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}')", f.Email, f.UniversitySize, f.UniversityLevel, f.UniversityType, f.PriceMAX, f.Sit, f.Precent);
             String prefix = "INSERT INTO [Favorites] " + "(Email,UniversitySize, UniversityLevel ,UniversityType ,PriceMAX, SIT, Precent)";
             command = prefix + sb.ToString();
 

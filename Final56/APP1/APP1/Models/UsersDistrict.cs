@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APP1.Models.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,5 +8,26 @@ namespace APP1.Models
 {
     public class UsersDistrict
     {
+        int id;
+        string email;
+        string district;
+
+        public UsersDistrict() { }
+
+        public UsersDistrict(int id, string email, string district)
+        {
+            Id = id;
+            Email = email;
+            District = district;
+        }
+
+        public int Id { get => id; set => id = value; }
+        public string Email { get => email; set => email = value; }
+        public string District { get => district; set => district = value; }
+    }
+    public int insert_arr_District(List<UsersDistrict> ud)
+    {
+        DB_Services db = new DB_Services();
+           return db.insert_arr_District(ud);
     }
 }
