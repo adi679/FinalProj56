@@ -7,7 +7,7 @@ namespace APP1.Models
 {
     public class University
     {
-
+        string email;
         string universityName;
         string states;
         string district;
@@ -21,7 +21,12 @@ namespace APP1.Models
         {
 
         }
-        public University(string universityName, string states, string district, string url, int priceMAX, int priceMIN, int universitySize, int universityLevel, int zip)
+        public University(string email, string universityName)
+        {
+            Email = email;
+            UniversityName = universityName;
+        }
+        public University(string email ,string universityName, string states, string district, string url, int priceMAX, int priceMIN, int universitySize, int universityLevel, int zip)
         {
             UniversityName = universityName;
             States = states;
@@ -32,6 +37,7 @@ namespace APP1.Models
             UniversitySize = universitySize;
             UniversityLevel = universityLevel;
             Zip = zip;
+            Email = email;
         }
 
         public string UniversityName { get => universityName; set => universityName = value; }
@@ -43,5 +49,6 @@ namespace APP1.Models
         public int UniversitySize { get => universitySize; set => universitySize = value; }
         public int UniversityLevel { get => universityLevel; set => universityLevel = value; }
         public int Zip { get => zip; set => zip = value; }
+        public string Email { get => email; set => email = value; }
     }
 }

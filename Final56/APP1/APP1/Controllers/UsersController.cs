@@ -1,9 +1,11 @@
-﻿using System;
+﻿using APP1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 
 namespace APP1.Controllers
 {
@@ -16,14 +18,18 @@ namespace APP1.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/Users/{email}/{password}")]
+        public int Get(string email,string password)
         {
-            return "value";
+            Users u = new Users();
+            return u.Login_User(email, password);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+       
+        public int Post(Users u)
         {
+            return u.Insert_New_Users(u);
         }
 
         // PUT api/<controller>/5
