@@ -64,7 +64,7 @@
 			if (email) { //אם קיים אימייל
 				var data = document.forms[0];
                 count = 0
-                var list_user_districts ;
+                var list_user_districts = [] ;
                 
 				for (i = 0; i < 10; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
 					if (data[i].checked) {
@@ -75,15 +75,23 @@
                             Id: i+1,
                             Email: localStorage.getItem('email')
                         }
-                        alert(item);
+                  
     
-                      /*  list_user_districts.push(item)*/
+                       list_user_districts.push(item)
 					}
 				
 
 
-				}
-                alert("Your regions saved!");
+                }
+
+                if (list_user_districts.length != 0)
+                {
+                    let api = "../api/UsersDistrict/list_user_districts" ;
+                    ajaxCall("Post", api, JSON.stringify(list_user_districts), SuccessInsertDistricts, ErrorInsertDistricts)
+                }
+                else {
+                    
+                }
 
                 alert(regions);
 
@@ -107,17 +115,15 @@
 		}
 
 
-		function success22(data) {
-
+        function SuccessInsertDistricts(data) {
+            alert("SuccessInsertDistricts");
 
             }
 
-		function error22() {
+        function ErrorInsertDistricts(data) {
 
-			alert("Sorry something is wrong");
-			flag = 0;
-            window.close()
-            window.open("LogIn.html")
+            alert("ErrorInsertDistricts");
+		
 		}
     </script>
 </head>

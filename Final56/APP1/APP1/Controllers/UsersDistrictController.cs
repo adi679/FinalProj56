@@ -23,6 +23,8 @@ namespace APP1.Controllers
         }
 
         // POST api/<controller>
+        [HttpGet]
+        [Route("api/UsersDistrict/list_user_districts")]
         public int Post(List<UsersDistrict> ud)
         {
             UsersDistrict u = new UsersDistrict();
