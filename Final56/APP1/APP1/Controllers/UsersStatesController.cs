@@ -5,9 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Final56.Controllers
+namespace APP1.Controllers
 {
-    public class UsersDistrictController : ApiController
+    public class UsersStatesController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<string> Get()
