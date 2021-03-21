@@ -77,17 +77,27 @@
         });
 		function login() {
 
-			alert('asdsad');
-			alert('asdsad');
+		
 			email = $("#uname").val();
 			let password = $("#psw").val();
 
 			let api = "../api/Users/" + email + '/' + password;
 
-			ajaxCall("Get", api, "", successlogin, errorlogin)
-			return false;
+            ajaxCall("Get", api,  email +""+ password, successlogin, errorlogin)
+			
 		}
-		function successlogin(data) { alert('successlogin'); }
+		function successlogin(data)
+		{
+            alert(data);
+			if (data == 0)
+				alert("Hello player");
+            if (data==1) {
+                alert("Hello manager");
+			}
+            else {
+                alert("dont found");
+            }
+		}
 
 		function errorlogin(data) { alert('errorlogin') }
 

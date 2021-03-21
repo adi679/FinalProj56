@@ -12,6 +12,68 @@ namespace APP1.Models.DAL
     public class DB_Services
     {
 
+        public int Insert_Favorites(Favorites f)
+        {
+            
+                SqlConnection con;
+                SqlCommand cmd;
+
+                try
+                {
+                    con = connect("DBConnectionString"); // create the connection
+                }
+                catch (Exception ex)
+                {
+                    // write to log
+                    throw (ex);
+                }
+
+                String cStr = BuildInsertFavorites(f);      // helper method to build the insert string
+
+                cmd = CreateCommand(cStr, con);             // create the command
+
+                try
+                {
+                    int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                    return numEffected;
+                }
+                catch (Exception ex)
+                {
+                    // write to log
+                    throw (ex);
+                }
+
+                finally
+                {
+                    if (con != null)
+                    {
+                        // close the db connection
+                        con.Close();
+                    }
+                }
+
+            }
+
+
+
+        
+
+        private String BuildInsertFavorites(Favorites f)
+        {
+            String command;
+
+            StringBuilder sb = new StringBuilder();
+
+            // use a string builder to create the dynamic string
+            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}')", f.Email, f.UniversitySize, f.UniversityLevel,f.UniversityType, f.PriceMAX, f.Sit, f.Precent);
+            String prefix = "INSERT INTO [Favorites] " + "(Email,UniversitySize, UniversityLevel ,UniversityType ,PriceMAX, SIT, Precent)";
+            command = prefix + sb.ToString();
+
+            return command;
+
+        }
+
+
 
         public int Login_User(string email,string password) {
            
@@ -21,7 +83,7 @@ namespace APP1.Models.DAL
                 {
                     con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                    String selectSTR = "SELECT * FROM Users where Users.Email='"+ email + "'Users.password='"+ password+"'";
+                    String selectSTR = "SELECT * FROM Users where Users.Email='"+ email + " ' and Users.password='" + password+"'";
                     SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                     // get a reader
@@ -29,9 +91,9 @@ namespace APP1.Models.DAL
 
                     while (dr.Read())
                     {   // Read till the end of the data into a row
-                            return 1;
+                    return Convert.ToInt32(dr["TypeUsers"]);
                     }
-                    return 0;
+                    return -1;
 
                 }
                 catch (Exception ex)
@@ -63,9 +125,9 @@ namespace APP1.Models.DAL
 
 
 
-        public int Insert_User(Users u)
+        public int Insert_New_Users(Users u)
         {
-            return 1;
+           
             SqlConnection con;
             SqlCommand cmd;
 
