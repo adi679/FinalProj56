@@ -71,15 +71,17 @@
 
         // This function is called in case of a success
         function success(data) {
+            alert("Submitted")
             swal("Submitted to the server!", "Great Job", "success");
-            window.open("Highlights.html");
-            localStorage.setItem('email', $("#mailTB").val())
+          //  window.open("Highlights.html");
+            //localStorage.setItem('email', $("#mailTB").val())
 
 
         }
 
         // This function is called in case of an error
         function error(err) {
+            alert("Error")
             if (err.status == 500)
                 alert("error- this email already exist");
             else
@@ -89,9 +91,10 @@
 
       
         function AddCost() { // הכנסת יוזר חדש
+            alert("in new users");
             let u = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
                 FirstName: $("#nameTB").val(),
-                FastName: $("#FnameTB").val(),
+                LastName: $("#FnameTB").val(),
                 BirthDay: $("#birthday").val(),
                 Phone: $("#phoneTB").val(),
                 Address: $("#AddressTB").val(),
@@ -99,14 +102,14 @@
                 Password: $("#passwordTB").val(),
               //  Position: $("#PositionTB").val(),
                 TypeUsers: $("#user").val(),
-                Sex: $("#sex").val(),
+                Sex: $("#Sex").val(),
               //  Myfile: $("#mailTB").val(),
             }
 
             alert(u);
-            console.log(u)
-            let x = $("#files").get(0).files[0].name
-            ajaxCall("POST", "../api/Users", JSON.stringify(cost), success, error); //נוסיף לשרת את היוזר
+            //console.log(u)
+            //let x = $("#files").get(0).files[0].name
+            ajaxCall("POST", "../api/Users", JSON.stringify(u), success, error); //נוסיף לשרת את היוזר
 
             
             var data = new FormData(); 
@@ -183,7 +186,7 @@
             <div class="form-group">
                 <label for="birthday">Birthday:</label>
                 <input type="date" id="birthday" name="birthday">
-                <input type="submit">
+             
             </div>
             <div class="form-group">
                 <label for="dealerPhone"><span class="red-star">★ </span>Your Phone (using a pattern validator)</label>

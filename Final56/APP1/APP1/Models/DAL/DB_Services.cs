@@ -174,8 +174,8 @@ namespace APP1.Models.DAL
             StringBuilder sb = new StringBuilder();
 
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}')", u.Email.Replace("'", "''"), u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName);
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName) ";
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName,u.TypeUsers);
+            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers) ";
             command = prefix + sb.ToString();
 
             return command;
