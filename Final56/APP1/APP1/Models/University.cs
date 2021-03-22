@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APP1.Models.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,7 @@ namespace APP1.Models
         int universitySize;
         int universityLevel;
         int zip;
+        int id;
         public University()
         {
 
@@ -26,7 +28,7 @@ namespace APP1.Models
             Email = email;
             UniversityName = universityName;
         }
-        public University(string email ,string universityName, string states, string district, string url, int priceMAX, int priceMIN, int universitySize, int universityLevel, int zip)
+        public University(int id,string email ,string universityName, string states, string district, string url, int priceMAX, int priceMIN, int universitySize, int universityLevel, int zip)
         {
             UniversityName = universityName;
             States = states;
@@ -38,6 +40,7 @@ namespace APP1.Models
             UniversityLevel = universityLevel;
             Zip = zip;
             Email = email;
+            Id = id;
         }
 
         public string UniversityName { get => universityName; set => universityName = value; }
@@ -50,5 +53,12 @@ namespace APP1.Models
         public int UniversityLevel { get => universityLevel; set => universityLevel = value; }
         public int Zip { get => zip; set => zip = value; }
         public string Email { get => email; set => email = value; }
+        public int Id { get => id; set => id = value; }
+
+        public void  Insert_University_Email(List<University> IUE)
+        {
+            DB_Services db = new DB_Services();
+                db.Insert_University_Email(IUE);
+        }
     }
 }

@@ -45,5 +45,11 @@ namespace APP1.Models
 
             return dbs.Insert_Favorites(f);
         }
+
+        public Favorites Get_Favorites_By_email(string email) 
+        {
+            DB_Services db = new DB_Services();
+            return db.Get_Favorites_By_email(email);
+        }
     }
 }

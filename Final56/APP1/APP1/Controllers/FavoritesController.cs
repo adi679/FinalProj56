@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APP1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,14 +17,16 @@ namespace APP1.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public string Get(string email)
         {
-            return "value";
+            Favorites f = new Favorites();
+                return f.Get_Favorites_By_email(email);
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post(Favorites f )
         {
+            f.Insert_Favorites(f);
         }
 
         // PUT api/<controller>/5
