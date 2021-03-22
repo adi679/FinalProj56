@@ -20,7 +20,7 @@ namespace APP1.Controllers
         public string Get(string email)
         {
             Favorites f = new Favorites();
-                return f.Get_Favorites_By_email(email);
+            return "asdasd";
         }
 
         // POST api/<controller>

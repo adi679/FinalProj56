@@ -25,7 +25,7 @@ namespace APP1.Controllers
 
         //POST api/<controller>
         [HttpPost]
-        [Route("api/UsersDistrict/list_user_districts")]
+        [Route("api/UsersDistrict")]
         public int Post(List<UsersDistrict> list_user_districts)
         {
             UsersDistrict u = new UsersDistrict();

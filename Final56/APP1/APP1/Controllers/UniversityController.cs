@@ -25,7 +25,8 @@ namespace APP1.Controllers
         // POST api/<controller>
         public void Post(List <University> IUE)
         {
-            u.Insert_University_Email(IUE);
+            //University u
+            //u.Insert_University_Email(IUE);
         }
 
         // PUT api/<controller>/5

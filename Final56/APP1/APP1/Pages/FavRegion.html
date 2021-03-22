@@ -70,7 +70,7 @@
 					if (data[i].checked) {
 
                         item = {
-                            UsersDistrict: data[i].id,
+                            District: data[i].id,
                             Id: i+1,
                             Email: localStorage.getItem('email')
                         }
@@ -86,8 +86,8 @@
                 if (list_user_districts.length != 0)
                 {
                     alert("asd");
-                    let api = "../api/UsersDistrict/" + JSON.stringify(list_user_districts) ;
-                    ajaxCall("Post", api, "", SuccessInsertDistricts, ErrorInsertDistricts)
+                    let api = "../api/UsersDistrict"  ;
+                    ajaxCall("Post", api, JSON.stringify(list_user_districts), SuccessInsertDistricts, ErrorInsertDistricts)
                                        
                 }
                 else {
@@ -117,11 +117,13 @@
 
 
         function SuccessInsertDistricts(data) {
+            console.log(data)
             alert("SuccessInsertDistricts");
 
             }
 
         function ErrorInsertDistricts(data) {
+            console.log(data)
 
             alert("ErrorInsertDistricts");
 		
