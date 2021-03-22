@@ -66,8 +66,9 @@ namespace APP1.Models.DAL
                 sb.AppendFormat("Values('{0}', '{1}', '{2}')", IUE[i].Email, IUE[i].UniversityName, IUE[i].Id);
             }
 
-            String prefix = "INSERT INTO [UsersDistrict] " + "(Email,UniversityName, Id)";
-            command = prefix + sb.ToString();
+            String prefix = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
+            String delete = "DELETE FROM [UsersUniversity] WHERE Email=" + IUE[0].Email+ " ";
+            command = delete +" "+ prefix + sb.ToString();
 
             return command;
 
@@ -212,7 +213,8 @@ namespace APP1.Models.DAL
             }
 
             String prefix = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
-            command = prefix + sb.ToString();
+            String delete = "DELETE FROM [UsersDistrict] WHERE Email=" + ud[0].Email + " ";
+            command = delete + prefix + sb.ToString();
 
             return command;
 
@@ -280,7 +282,8 @@ namespace APP1.Models.DAL
                 sb.AppendFormat("Values('{0}', '{1}', '{2}')", us[i].Email, us[i].States, us[i].Id);
             }
 
-            String prefix = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
+            String prefix = "INSERT INTO [UsersStates] " + "(Email,District, Id)";
+            String delete = "DELETE FROM [UsersStates] WHERE Email=" + us[0].Email + " ";
             command = prefix + sb.ToString();
 
             return command;
