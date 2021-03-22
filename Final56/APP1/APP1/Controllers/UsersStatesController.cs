@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APP1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -34,6 +35,15 @@ namespace APP1.Controllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+        }
+
+        [HttpGet]
+        [Route("api/UsersDistrict/list_user_States")]
+        public int Post(List<UsersStates> us)
+        {
+            UsersStates usersstates = new UsersStates();
+            return usersstates.Insert_arr_states(us);
+
         }
     }
 }

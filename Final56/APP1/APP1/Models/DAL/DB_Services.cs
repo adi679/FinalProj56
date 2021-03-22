@@ -107,13 +107,88 @@ namespace APP1.Models.DAL
             {
                 sb.AppendFormat("Values('{0}', '{1}', '{2}')", ud[i].Email, ud[i].District, ud[i].Id);
             }
-            
+
             String prefix = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
             command = prefix + sb.ToString();
 
             return command;
 
         }
+
+
+
+
+
+
+
+
+
+        public int Insert_arr_states(List<UsersStates> us)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertListUsersStates(us);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+        private String BuildInsertListUsersStates(List<UsersStates> us)
+        {
+            String command;
+
+            StringBuilder sb = new StringBuilder();
+
+            // use a string builder to create the dynamic string
+            for (int i = 0; i < us.Count; i++)
+            {
+                sb.AppendFormat("Values('{0}', '{1}', '{2}')", us[i].Email, us[i].States, us[i].Id);
+            }
+
+            String prefix = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
+            command = prefix + sb.ToString();
+
+            return command;
+
+        }
+
+
+
+
+
+
         private String BuildInsertFavorites(Favorites f)
         {
             String command;

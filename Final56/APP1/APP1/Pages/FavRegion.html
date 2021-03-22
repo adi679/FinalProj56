@@ -68,9 +68,8 @@
                 
 				for (i = 0; i < 10; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
 					if (data[i].checked) {
-                        alert("data[i].id  :  " + data[i].id);
 
-                        item = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+                        item = {
                             UsersDistrict: data[i].id,
                             Id: i+1,
                             Email: localStorage.getItem('email')
@@ -86,8 +85,10 @@
 
                 if (list_user_districts.length != 0)
                 {
-                    let api = "../api/UsersDistrict/list_user_districts" ;
-                    ajaxCall("Post", api, JSON.stringify(list_user_districts), SuccessInsertDistricts, ErrorInsertDistricts)
+                    alert("asd");
+                    let api = "../api/UsersDistrict/" + JSON.stringify(list_user_districts) ;
+                    ajaxCall("Post", api, "", SuccessInsertDistricts, ErrorInsertDistricts)
+                                       
                 }
                 else {
                     

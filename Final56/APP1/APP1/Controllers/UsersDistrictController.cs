@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 
 namespace APP1.Controllers
 {
@@ -22,13 +23,13 @@ namespace APP1.Controllers
             return "value";
         }
 
-        // POST api/<controller>
-        [HttpGet]
+        //POST api/<controller>
+        [HttpPost]
         [Route("api/UsersDistrict/list_user_districts")]
-        public int Post(List<UsersDistrict> ud)
+        public int Post(List<UsersDistrict> list_user_districts)
         {
             UsersDistrict u = new UsersDistrict();
-           return u.Insert_arry_region(ud);
+           return u.Insert_arry_region(list_user_districts);
            
         }
 
@@ -40,6 +41,7 @@ namespace APP1.Controllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+
         }
     }
 }
