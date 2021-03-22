@@ -1,4 +1,9 @@
-﻿update[campaign_2021] SET[campaign_2021].CLICKS = ([campaign_2021].CLICKS) + 1 ,[campaign_2021].remain = ([campaign_2021].remain) - 50 WHERE( [campaign_2021].restid = '16758761' and[campaign_2021].status = 1) 
-update campaign_2021 set status=0 where campaign_2021.remain<50 
-
-select * from 
+﻿BULK INSERT Orders
+FROM 'C:\Users\adi.vaturi\Desktop\Final Proj:\NCAA to DB CSV.csv'
+WITH
+(
+    FIRSTROW = 2, -- as 1st one is header
+    FIELDTERMINATOR = ',',  --CSV field delimiter
+    ROWTERMINATOR = '\n',   --Use to shift the control to next row
+    TABLOCK
+)
