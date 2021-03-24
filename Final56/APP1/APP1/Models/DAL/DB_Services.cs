@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -13,7 +14,7 @@ namespace APP1.Models.DAL
     {
 
 
-        public void Insert_University_Email (List<University> IUE)
+        public void Insert_University_Email(List<University> IUE)
         {
             SqlConnection con;
             SqlCommand cmd;
@@ -35,7 +36,7 @@ namespace APP1.Models.DAL
             try
             {
                 int numEffected = cmd.ExecuteNonQuery(); // execute the command
-                
+
             }
             catch (Exception ex)
             {
@@ -67,18 +68,18 @@ namespace APP1.Models.DAL
             }
 
             String prefix = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
-            String delete = "DELETE FROM [UsersUniversity] WHERE Email=" + IUE[0].Email+ " ";
-            command = delete +" "+ prefix + sb.ToString();
+            String delete = "DELETE FROM [UsersUniversity] WHERE Email=" + IUE[0].Email + " ";
+            command = delete + " " + prefix + sb.ToString();
 
             return command;
 
-        
 
-    }
+
+        }
         public Favorites Get_Favorites_By_email(string email)
         {
             SqlConnection con = null;
-            Favorites MY_Favorites=new Favorites(); ;
+            Favorites MY_Favorites = new Favorites(); ;
 
             try
             {
@@ -118,45 +119,45 @@ namespace APP1.Models.DAL
         }
         public int Insert_Favorites(Favorites f)
         {
-            
-                SqlConnection con;
-                SqlCommand cmd;
 
-                try
-                {
-                    con = connect("DBConnectionString"); // create the connection
-                }
-                catch (Exception ex)
-                {
-                    // write to log
-                    throw (ex);
-                }
+            SqlConnection con;
+            SqlCommand cmd;
 
-                String cStr = BuildInsertFavorites(f);      // helper method to build the insert string
-
-                cmd = CreateCommand(cStr, con);             // create the command
-
-                try
-                {
-                    int numEffected = cmd.ExecuteNonQuery(); // execute the command
-                    return numEffected;
-                }
-                catch (Exception ex)
-                {
-                    // write to log
-                    throw (ex);
-                }
-
-                finally
-                {
-                    if (con != null)
-                    {
-                        // close the db connection
-                        con.Close();
-                    }
-                }
-
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
             }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertFavorites(f);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
 
         public int insert_arr_region(List<UsersDistrict> ud)
         {
@@ -203,25 +204,46 @@ namespace APP1.Models.DAL
         private String BuildInsertListUsersDistrict(List<UsersDistrict> ud)
         {
             String command;
-
+            string tmp;
             StringBuilder sb = new StringBuilder();
-            StringBuilder append = new StringBuilder();
+            string sbud="";
+            StringBuilder append_UsersDistrict = new StringBuilder();
             // use a string builder to create the dynamic string
             for (int i = 0; i < ud.Count; i++)
             {
-                append.Append(sb.AppendFormat("Values('{0}', '{1}', '{2}')", ud[i].Email, ud[i].District, ud[i].Id));
-            }
+                if (i == 0)
+                    sbud = "Values('" + ud[i].Email + "', '" + ud[i].District + "}', '" + ud[i].Id + "')";
+                else
+                {
+                    tmp = ",('" + ud[i].Email + "', '" + ud[i].District + "}', '" + ud[i].Id + "')";
+                    sbud = append(sbud, tmp);
 
-            String prefix = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
-            String delete = "DELETE FROM [UsersDistrict] WHERE Email=" + ud[0].Email + " ";
-            command = delete + prefix + append.ToString();
+                }
+            }
+          
+
+
+                String prefix_UsersDistrict = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
+
+
+        String delete = "DELETE FROM [UsersDistrict] WHERE Email='" + ud[0].Email + "' ";
+        delete = " IF EXISTS (SELECT * FROM [UsersDistrict] WHERE Email = '" + ud[0].Email + "' ) DELETE FROM [UsersDistrict] WHERE Email = '" + ud[0].Email+"'";
+            command = delete+ prefix_UsersDistrict + sbud;
 
             return command;
 
-        }
+    }
 
 
 
+
+        private String append(string str, string app)
+        {
+            string append;
+
+            append= str+ app;
+            return append;
+            }
 
 
 
