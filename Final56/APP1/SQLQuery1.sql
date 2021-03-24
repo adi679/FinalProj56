@@ -1,1 +1,1 @@
-﻿select * from UsersDistrict
+﻿"DELETE FROM [UsersDistrict] WHERE Email=nanathe@queen.com INSERT INTO [UsersDistrict] (Email,District, Id)Values('nanathe@queen.com', 'Mid East', '2')Values('nanathe@queen.com', 'Mid East', '2')Values('nanathe@queen.com', 'Southeast', '5')"

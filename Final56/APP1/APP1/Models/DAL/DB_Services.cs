@@ -205,16 +205,16 @@ namespace APP1.Models.DAL
             String command;
 
             StringBuilder sb = new StringBuilder();
-
+            StringBuilder append = new StringBuilder();
             // use a string builder to create the dynamic string
             for (int i = 0; i < ud.Count; i++)
             {
-                sb.AppendFormat("Values('{0}', '{1}', '{2}')", ud[i].Email, ud[i].District, ud[i].Id);
+                append.Append(sb.AppendFormat("Values('{0}', '{1}', '{2}')", ud[i].Email, ud[i].District, ud[i].Id));
             }
 
             String prefix = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
             String delete = "DELETE FROM [UsersDistrict] WHERE Email=" + ud[0].Email + " ";
-            command = delete + prefix + sb.ToString();
+            command = delete + prefix + append.ToString();
 
             return command;
 
