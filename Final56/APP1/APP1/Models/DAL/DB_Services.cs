@@ -302,8 +302,8 @@ namespace APP1.Models.DAL
             StringBuilder sb = new StringBuilder();
 
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}')", f.Email, f.UniversitySize, f.UniversityLevel, f.UniversityType, f.PriceMAX, f.Sit, f.Precent);
-            String prefix = "INSERT INTO [Favorites] " + "(Email,UniversitySize, UniversityLevel ,UniversityType ,PriceMAX, SIT, Precent)";
+            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", f.Email, f.UniversitySize, f.UniversityLevel, f.UniversityType, f.PriceMAX, f.Sit);
+            String prefix = "INSERT INTO [[UsersFavorites] " + "(Email,UniversitySize, UniversityLevel ,UniversityType ,PriceMAX, SIT)";
             command = prefix + sb.ToString();
 
             return command;

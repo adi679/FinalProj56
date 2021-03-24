@@ -205,7 +205,7 @@
     <Content Include="Pages\LogIn.html" />
     <Content Include="Pages\NewUserForm.html" />
     <Content Include="Pages\Profile.html" />
-    <Content Include="Pages\RegistrationForm.html" />
+    <Content Include="Pages\1RegistrationForm.html" />
     <Content Include="Pages\Results.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />
