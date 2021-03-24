@@ -90,11 +90,19 @@
 		function successlogin(data)
 		{
             alert(data);
-			if (data == 0)
+			if (data == 0) {
 				alert("Hello player");
-            if (data==1) {
-                alert("Hello manager");
+				localStorage.setItem("email", email);
 			}
+            if (data==1) {
+				alert("Hello manager");
+                localStorage.setItem("email", email);
+			}
+
+
+            window.open("FavRegion.html")
+            window.close()
+
             else {
                 alert("dont found");
             }
