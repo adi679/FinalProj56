@@ -14,16 +14,16 @@
         var password
         var api_District 
 
-        var email = localStorage.getItem('email')
+        var email = "adidi@gmail.com";
         alert(email);
         //----District-----//
 
         
-       let api = "../api/UsersDistrict/" + email;
+       let api = "../api/UsersDistrict/1/" + email;
              
         //ajaxCall("Get", api, email + "" + password, successDistrict, errorDistrict)
 
-        ajaxCall("Get", api, email, successDistrict, errorDistrict)
+        ajaxCall("GET", api, email, successDistrict, errorDistrict)
 
         function successDistrict(data) {
             if (data == -1)

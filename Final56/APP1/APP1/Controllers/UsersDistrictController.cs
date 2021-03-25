@@ -19,7 +19,7 @@ namespace APP1.Controllers
 
         // GET api/<controller>/5
         [HttpPost]
-        [Route("api/UsersDistrict/{email}")]
+        [Route("api/UsersDistrict/1/{email}")]
         public int Get(string email)
         {
             UsersDistrict u = new UsersDistrict();
