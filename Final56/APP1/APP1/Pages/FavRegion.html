@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+﻿<<<<<<< Updated upstream
 ﻿
 <html>
 <head>
@@ -64,14 +64,14 @@
             let item
             //email = localStorage.getItem('email')
           
-                var data = document.forms[0];
+                //var data = document.forms[0];
 
-
-                for (i = 0; i < 8; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
-                    if (data[i].checked) {
+            var checkboxes = document.getElementsByTagName("input");
+            for (i = 0; i < checkboxes.length; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
+                if (checkboxes[i].checked) {
 
                         item = {
-                            District: data[i].id,
+                            District: checkboxes[i].id,
                             Id: i + 1,
                             Email: email
                         }
@@ -87,8 +87,9 @@
                 if (list_user_districts.length != 0) {
                     let api = "../api/UsersDistrict";
                     ajaxCall("POST", api, JSON.stringify(list_user_districts), SuccessInsertDistricts, ErrorInsertDistricts)
-
-                } else {
+                    return false;
+                }
+                else {
                     alert('אנא בחר לפחות העדפה אחת');
                     return false;
                 }
@@ -97,20 +98,15 @@
 
             }
         
-		
-
-
+	
         function SuccessInsertDistricts(data) {
-            console.log(data)
-            alert("SuccessInsertDistricts");
+            alert("העדכון צלח");
 
             }
 
         function ErrorInsertDistricts(data) {
-            console.log(data)
+            alert("בעיה חמורה, אנא פנה למנהל המערכת");
 
-            alert("ErrorInsertDistricts");
-		
 		}
     </script>
 </head>
@@ -119,7 +115,7 @@
     <h1 style="color:red">בחירת העדפות</h1>
     <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
 
-    <form>
+    <!--<form>-->
         <div class="highlightsDiv">
 
             <h3><label for="region">בחר מחוז:</label> </h3>
@@ -142,7 +138,7 @@
             </button>
         </div>
 
-    </form>
+    <!--</form>-->
 </body>
 =======
 <!--﻿<!DOCTYPE html>
@@ -276,15 +272,20 @@
             alert("api")
             if (regions == "") {
                 alert("region NOT selected")
-                $.get("https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne", function (data) {                    console.log(data);
-                })
+                $.get("https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne", function (data) {
+                    console.log(data);
+
+                })
             }                          
 
             else {
                                                                                          school.region_id = "+regions+ " &
                 alert(regions) https://api.data.gov/ed/collegescorecard/v1/schools.json?"
-                $.get(        "https://api.data.gov/ed/collegescorecard/v1/schools.json?school.region_id="+regions+ "&fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne", function (data) {
-                    console.log(data);                })
+                $.get(        "https://api.data.gov/ed/collegescorecard/v1/schools.json?school.region_id="+regions+ "&fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne", function (data) {
+
+                    console.log(data);
+
+                })
             }
 
         }

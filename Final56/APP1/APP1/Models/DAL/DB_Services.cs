@@ -205,7 +205,6 @@ namespace APP1.Models.DAL
         {
             String command;
             string tmp;
-            StringBuilder sb = new StringBuilder();
             string sbud="";
             StringBuilder append_UsersDistrict = new StringBuilder();
             // use a string builder to create the dynamic string
@@ -468,9 +467,9 @@ namespace APP1.Models.DAL
         }
 
 
-        public int get_User_district(string email)
+        public List<UsersDistrict> get_User_district(string email)
         {
-
+            List <UsersDistrict>  list_of_user_district = new List <UsersDistrict>();
             SqlConnection con = null;
 
             try
@@ -484,10 +483,18 @@ namespace APP1.Models.DAL
                 SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
 
                 while (dr.Read())
-                {   // Read till the end of the data into a row
-                   // return Convert.ToInt32(dr["TypeUsers"]);
+                {
+                    UsersDistrict ud = new UsersDistrict();
+
+                    ud.District = (string)dr["District"];
+                    ud.Email = (string)dr["Email"];
+                    ud.Id = Convert.ToInt32(dr["Id"]);
+                   
+
+
+                    list_of_user_district.Add(ud);
                 }
-                return -1;
+                return list_of_user_district;
 
             }
             catch (Exception ex)

@@ -11,19 +11,39 @@ namespace APP1.Controllers
 {
     public class UsersDistrictController : ApiController
     {
-        // GET api/<controller>
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
         // GET api/<controller>/5
-        [HttpPost]
-        [Route("api/UsersDistrict/1/{email}")]
-        public int Get(string email)
+        //[HttpPost]
+        //[Route("api/UsersDistrict/1/{email}")]
+        //public int Get(string email)
+        //{
+        //    UsersDistrict u = new UsersDistrict();
+        //    return u.get_User_district(email);
+        //}
+
+
+
+
+
+
+
+        [HttpGet]
+        [Route("api/UsersDistrict/{email}/get_all_District")]
+        public List<UsersDistrict> Get(string email)
         {
             UsersDistrict u = new UsersDistrict();
             return u.get_User_district(email);
+        }
+        [HttpGet]
+        [Route("api/UsersDistrict")]
+        public List <UsersDistrict> Get(List<UsersDistrict> email)
+        {
+            UsersDistrict u = new UsersDistrict();
+            return u.get_User_district(u.Email);
         }
 
         //POST api/<controller>

@@ -32,7 +32,7 @@ namespace APP1.Models
         }
 
 
-        public int get_User_district(string email)
+        public List<UsersDistrict> get_User_district(string email)
         {
             DB_Services db = new DB_Services();
             return db.get_User_district(email);
