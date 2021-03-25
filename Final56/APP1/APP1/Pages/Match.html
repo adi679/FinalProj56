@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script>
+        var api_data;
+        var all_District
+        var show_all_match
+        var District
+        
+        let api = "../api/UsersDistrict/" + email;
+
+        ajaxCall("Get", api, email + "" + password, successDistrict, errorDistrict)
+
+        function successDistrict(data) {
+            if (data == -1)
+                api_District = ',school.region_id =' + region_id + "&fields=id"
+            else {
+                api_District=""
+            }
+            District = data
+
+        }
+
+
+
+
+
+
+
+
+        api = "https://api.data.gov/ed/collegescorecard/v1/schools.json?school.region_id=" + District + "&fields=id,school.name="+stite+",school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
+        api = "https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school." + api_District+",school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne"
+        $.get(api, function (data) {
+            console.log(data);
+            api_data = data;
+            alert('asdasd');
+        })
+
+
+
+
+        UsersDistrictController
+    
+
+
+
+        for (var i = 0; i < api_data.length; i++) {
+            for (var j = 0; j < all_District.length; j++) {
+                if (api_data[i].District == all_District[j])
+                    api_data=
+            }
+            
+        }
+       
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

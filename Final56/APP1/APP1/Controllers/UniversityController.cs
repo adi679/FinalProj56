@@ -17,9 +17,10 @@ namespace APP1.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public int Get(int division)
         {
-            return "value";
+            University un= new University();
+           return un.getDivision(division);
         }
 
         // POST api/<controller>

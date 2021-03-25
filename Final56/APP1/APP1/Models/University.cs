@@ -60,5 +60,14 @@ namespace APP1.Models
             DB_Services db = new DB_Services();
                 db.Insert_University_Email(IUE);
         }
+
+
+
+            public int getDivision(int d)
+        {
+            DB_Services db = new DB_Services();
+            return db.getDivision(d);
+        }
+
     }
 }

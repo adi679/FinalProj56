@@ -203,6 +203,7 @@
     <Content Include="Pages\FavUser.html" />
     <Content Include="Pages\FileUpload_Form.html" />
     <Content Include="Pages\LogIn.html" />
+    <Content Include="Pages\Match.html" />
     <Content Include="Pages\NewUserForm.html" />
     <Content Include="Pages\Profile.html" />
     <Content Include="Pages\1RegistrationForm.html" />
