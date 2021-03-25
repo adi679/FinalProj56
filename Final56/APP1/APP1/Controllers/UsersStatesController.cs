@@ -23,13 +23,13 @@ namespace APP1.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
+   
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(List<UsersStates> lus)
         {
+           lus[0].Insert_arr_states(lus);
+
         }
 
         // DELETE api/<controller>/5
@@ -37,7 +37,7 @@ namespace APP1.Controllers
         {
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/UsersDistrict/list_user_States")]
         public int Post(List<UsersStates> us)
         {
