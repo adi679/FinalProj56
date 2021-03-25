@@ -212,10 +212,10 @@ namespace APP1.Models.DAL
             for (int i = 0; i < ud.Count; i++)
             {
                 if (i == 0)
-                    sbud = "Values('" + ud[i].Email + "', '" + ud[i].District + "}', '" + ud[i].Id + "')";
+                    sbud = "Values('" + ud[i].Email + "', '" + ud[i].District + "', '" + ud[i].Id + "')";
                 else
                 {
-                    tmp = ",('" + ud[i].Email + "', '" + ud[i].District + "}', '" + ud[i].Id + "')";
+                    tmp = ",('" + ud[i].Email + "', '" + ud[i].District + "', '" + ud[i].Id + "')";
                     sbud = append(sbud, tmp);
 
                 }
