@@ -30,6 +30,14 @@ namespace APP1.Models
             DB_Services db = new DB_Services();
             return db.insert_arr_region(ud);
         }
+
+
+        public int get_User_district(string email)
+        {
+            DB_Services db = new DB_Services();
+            return db.get_User_district(email);
+        }
+
     }
     
 }

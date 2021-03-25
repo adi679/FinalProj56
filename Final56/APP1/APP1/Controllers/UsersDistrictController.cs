@@ -18,9 +18,12 @@ namespace APP1.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        [HttpPost]
+        [Route("api/UsersDistrict/{email}")]
+        public int Get(string email)
         {
-            return "value";
+            UsersDistrict u = new UsersDistrict();
+            return u.get_User_district(email);
         }
 
         //POST api/<controller>
