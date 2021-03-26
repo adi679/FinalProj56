@@ -236,14 +236,7 @@ namespace APP1.Models.DAL
 
         }
 
-
-   
-
-   
-
-
-
-
+        //===============================states========================
 
 
         public int Insert_arr_states(List<UsersStates> us)
@@ -325,6 +318,9 @@ namespace APP1.Models.DAL
 
 
 
+
+
+        //===============================Favorites========================
         private String BuildInsertFavorites(Favorites f)
         {
             String command;
@@ -340,8 +336,6 @@ namespace APP1.Models.DAL
 
         }
 
-
-                //===============================Favorites========================
 
         public int Login_User(string email,string password) {
            
