@@ -26,9 +26,9 @@ namespace APP1.Controllers
    
 
         // PUT api/<controller>/5
-        public void Put(List<UsersStates> lus)
+        public int Put(List<UsersStates> lus)
         {
-           lus[0].Insert_arr_states(lus);
+          return lus[0].Insert_arr_states(lus);
 
         }
 
