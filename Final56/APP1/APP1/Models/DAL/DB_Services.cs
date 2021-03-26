@@ -13,7 +13,7 @@ namespace APP1.Models.DAL
     public class DB_Services
     {
 
-
+        //===============================University========================
         public void Insert_University_Email(List<University> IUE)
         {
             SqlConnection con;
@@ -76,6 +76,9 @@ namespace APP1.Models.DAL
 
 
         }
+
+        //===============================Favorites========================
+
         public Favorites Get_Favorites_By_email(string email)
         {
             SqlConnection con = null;
@@ -158,7 +161,7 @@ namespace APP1.Models.DAL
             }
 
         }
-
+        //===============================District/region========================
         public int insert_arr_region(List<UsersDistrict> ud)
         {
 
@@ -236,13 +239,7 @@ namespace APP1.Models.DAL
 
    
 
-    private String append(string str, string app)
-    {
-        string append;
-
-        append = str + app;
-        return append;
-    } 
+   
 
 
 
@@ -344,6 +341,7 @@ namespace APP1.Models.DAL
         }
 
 
+                //===============================Favorites========================
 
         public int Login_User(string email,string password) {
            
@@ -545,6 +543,9 @@ namespace APP1.Models.DAL
             return command;
         }
 
+
+
+        //===============================function========================
         public SqlConnection connect(String conString)
         {
 
@@ -554,6 +555,7 @@ namespace APP1.Models.DAL
             con.Open();
             return con;
         }
+
         private SqlCommand CreateCommand(String CommandSTR, SqlConnection con)
         {
 
@@ -568,6 +570,13 @@ namespace APP1.Models.DAL
             cmd.CommandType = System.Data.CommandType.Text; // the type of the command, can also be stored procedure
 
             return cmd;
+        }
+        private String append(string str, string app)
+        {
+            string append;
+
+            append = str + app;
+            return append;
         }
 
     }

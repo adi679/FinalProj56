@@ -6,36 +6,36 @@ using System.Web;
 
 namespace APP1.Models
 {
-    public class UsersDistrict
+    public class UsersLocale
     {
         int id;
         string email;
-        string district;
+        string locale;
 
-        public UsersDistrict() { }
+        public UsersLocale() { }
 
-        public UsersDistrict(int id, string email, string district)
+        public UsersLocale(int id, string email, string locale)
         {
             Id = id;
             Email = email;
-            District = district;
+            Locale = locale;
         }
 
         public int Id { get => id; set => id = value; }
         public string Email { get => email; set => email = value; }
-        public string District { get => district; set => district = value; }
+        public string Locale { get => locale; set => locale = value; }
 
-        public int Insert_arry_region(List<UsersDistrict> ud)
+        public int Insert_arry_Locale(List<UsersLocale> ul)
         {
             DB_Services db = new DB_Services();
-            return db.insert_arr_region(ud);
+            return db.insert_arr_Locale(ul);
         }
 
 
-        public List<UsersDistrict> get_User_district(string email)
+        public List<UsersDistrict> get_User_Locale(string email)
         {
             DB_Services db = new DB_Services();
-            return db.get_User_district(email);
+            return db.get_User_Locale(email);
         }
 
     }

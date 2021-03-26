@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APP1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,8 +8,16 @@ using System.Web.Http;
 
 namespace APP1.Controllers
 {
-    public class LocaleController : ApiController
+    public class UsersLocaleController : ApiController
     {
+
+        [HttpGet]
+        [Route("api/UsersDistrict/{email}/get_all_Locale")]
+        public List<UsersLocale> Get(string email)
+        {
+            UsersLocale u = new UsersLocale();
+            return u.get_User_Locale(email);
+        }
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
