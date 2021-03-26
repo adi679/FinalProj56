@@ -16,6 +16,17 @@ namespace APP1.Controllers
             return new string[] { "value1", "value2" };
         }
 
+
+
+        [HttpGet]
+        [Route("api/UsersStates/{email}/get_all_States")]
+        public List<UsersStates> Get(string email)
+        {
+            UsersStates u = new UsersStates();
+            return u.get_User_States(email);
+        }
+
+
         // GET api/<controller>/5
         public string Get(int id)
         {

@@ -513,7 +513,101 @@ namespace APP1.Models.DAL
 
         }
 
-        
+        public List<UsersStates> get_User_States(string email)
+        {
+            List <UsersStates>  list_of_user_States = new List <UsersStates>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM UsersStates where UsersStates.Email='" + email + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    UsersStates us = new UsersStates();
+
+                    us.States = (string)dr["States"];
+                    us.Email = (string)dr["Email"];
+                    us.Id = Convert.ToInt32(dr["Id"]);
+                   
+
+
+                    list_of_user_States.Add(us);
+                }
+                return list_of_user_States;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
+        public List<Favorites> get_User_fav(int UniversityLevel)
+        {
+            List<Favorites> list_of_user_fav = new List<Favorites>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM [NCAAUniversities] where NCAAUniversities.Division='" + UniversityLevel + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    Favorites uf = new Favorites();
+
+                    uf.Email = (string)dr["Email"];
+                    uf.Price = Convert.ToInt32(dr["Id"]);
+                    uf.UniversitySize = Convert.ToInt32(dr["Id"]);
+                    uf.UniversityLevel = Convert.ToInt32(dr["Id"]);
+                    uf.PriceMAX = Convert.ToInt32(dr["Id"]);
+                    uf.UniversityType = Convert.ToInt32(dr["Id"]);
+                    uf.Sit = Convert.ToInt32(dr["Id"]);
+                    uf.Precent = Convert.ToInt32(dr["Id"]);
+
+
+                    list_of_user_fav.Add(uf);
+                }
+                return list_of_user_fav;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
 
 
 

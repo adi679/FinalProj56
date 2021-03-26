@@ -16,6 +16,16 @@ namespace APP1.Controllers
             return new string[] { "value1", "value2" };
         }
 
+
+        [HttpGet]
+        [Route("api/Favorites/{UniversityLevel}/get_all_Fav")]
+        public List<Favorites> Get(int UniversityLevel)
+        {
+            Favorites f = new Favorites();
+            return f.get_User_fav(UniversityLevel);
+        }
+
+
         // GET api/<controller>/5
         public string Get(string email)
         {

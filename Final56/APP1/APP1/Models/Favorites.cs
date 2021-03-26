@@ -51,5 +51,11 @@ namespace APP1.Models
             DB_Services db = new DB_Services();
             return db.Get_Favorites_By_email(email);
         }
+
+        public List<Favorites> get_User_fav(int UniversityLevel)
+        {
+            DB_Services db = new DB_Services();
+            return db.get_User_fav(UniversityLevel);
+        }
     }
 }
