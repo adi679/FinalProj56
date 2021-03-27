@@ -13,7 +13,7 @@ namespace APP1.Models.DAL
     public class DB_Services
     {
 
-
+        //===============================University========================
         public void Insert_University_Email(List<University> IUE)
         {
             SqlConnection con;
@@ -76,6 +76,9 @@ namespace APP1.Models.DAL
 
 
         }
+
+        //===============================Favorites========================
+
         public Favorites Get_Favorites_By_email(string email)
         {
             SqlConnection con = null;
@@ -158,7 +161,7 @@ namespace APP1.Models.DAL
             }
 
         }
-
+        //===============================District/region========================
         public int insert_arr_region(List<UsersDistrict> ud)
         {
 
@@ -205,7 +208,7 @@ namespace APP1.Models.DAL
         {
             String command;
             string tmp;
-            string sbud="";
+            string sbud = "";
             StringBuilder append_UsersDistrict = new StringBuilder();
             // use a string builder to create the dynamic string
             for (int i = 0; i < ud.Count; i++)
@@ -219,30 +222,24 @@ namespace APP1.Models.DAL
 
                 }
             }
-          
 
 
-                String prefix_UsersDistrict = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
+
+            String prefix_UsersDistrict = "INSERT INTO [UsersDistrict] " + "(Email,District, Id)";
 
 
-        String delete = "DELETE FROM [UsersDistrict] WHERE Email='" + ud[0].Email + "' ";
-        delete = " IF EXISTS (SELECT * FROM [UsersDistrict] WHERE Email = '" + ud[0].Email + "' ) DELETE FROM [UsersDistrict] WHERE Email = '" + ud[0].Email+"'";
-            command = delete+ prefix_UsersDistrict + sbud;
+            String delete = "DELETE FROM [UsersDistrict] WHERE Email='" + ud[0].Email + "' ";
+            delete = " IF EXISTS (SELECT * FROM [UsersDistrict] WHERE Email = '" + ud[0].Email + "' ) DELETE FROM [UsersDistrict] WHERE Email = '" + ud[0].Email + "'";
+            command = delete + prefix_UsersDistrict + sbud;
 
             return command;
 
-    }
+        }
 
 
+   
 
-
-        private String append(string str, string app)
-        {
-            string append;
-
-            append= str+ app;
-            return append;
-            }
+   
 
 
 
@@ -294,18 +291,30 @@ namespace APP1.Models.DAL
         private String BuildInsertListUsersStates(List<UsersStates> us)
         {
             String command;
-
-            StringBuilder sb = new StringBuilder();
-
+            string tmp;
+            string sbud = "";
+            StringBuilder append_UsersDistrict = new StringBuilder();
             // use a string builder to create the dynamic string
             for (int i = 0; i < us.Count; i++)
             {
-                sb.AppendFormat("Values('{0}', '{1}', '{2}')", us[i].Email, us[i].States, us[i].Id);
+                if (i == 0)
+                    sbud = "Values('" + us[i].Email + "', '" + us[i].States + "', '" + us[i].Id + "')";
+                else
+                {
+                    tmp = ",('" + us[i].Email + "', '" + us[i].States + "', '" + us[i].Id + "')";
+                    sbud = append(sbud, tmp);
+
+                }
             }
 
-            String prefix = "INSERT INTO [UsersStates] " + "(Email,District, Id)";
-            String delete = "DELETE FROM [UsersStates] WHERE Email=" + us[0].Email + " ";
-            command = prefix + sb.ToString();
+
+
+            String prefix_UsersDistrict = "INSERT INTO [UsersStates] " + "(Email,States, Id)";
+
+
+            String delete = "DELETE FROM [UsersStates] WHERE Email='" + us[0].Email + "' ";
+            delete = " IF EXISTS (SELECT * FROM [UsersStates] WHERE Email = '" + us[0].Email + "' ) DELETE FROM [UsersStates] WHERE Email = '" + us[0].Email + "'";
+            command = delete + prefix_UsersDistrict + sbud;
 
             return command;
 
@@ -332,6 +341,7 @@ namespace APP1.Models.DAL
         }
 
 
+                //===============================Favorites========================
 
         public int Login_User(string email,string password) {
            
@@ -627,6 +637,9 @@ namespace APP1.Models.DAL
             return command;
         }
 
+
+
+        //===============================function========================
         public SqlConnection connect(String conString)
         {
 
@@ -636,6 +649,7 @@ namespace APP1.Models.DAL
             con.Open();
             return con;
         }
+
         private SqlCommand CreateCommand(String CommandSTR, SqlConnection con)
         {
 
@@ -650,6 +664,13 @@ namespace APP1.Models.DAL
             cmd.CommandType = System.Data.CommandType.Text; // the type of the command, can also be stored procedure
 
             return cmd;
+        }
+        private String append(string str, string app)
+        {
+            string append;
+
+            append = str + app;
+            return append;
         }
 
     }
