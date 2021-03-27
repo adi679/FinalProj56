@@ -237,13 +237,93 @@ namespace APP1.Models.DAL
         }
 
 
-   
-
-   
 
 
 
+        //===============================Locale========================
+        public int insert_arr_Locale(List<UsersLocale> ul)
+        {
 
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertListUsersLocale(ul);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+        private String BuildInsertListUsersLocale(List<UsersLocale> ul)
+        {
+            String command;
+            string tmp;
+            string sbud = "";
+            StringBuilder append_UsersDistrict = new StringBuilder();
+            // use a string builder to create the dynamic string
+            for (int i = 0; i < ul.Count; i++)
+            {
+                if (i == 0)
+                    sbud = "Values('" + ul[i].Email + "', '" + ul[i].Locale + "', '" + ul[i].Id + "')";
+                else
+                {
+                    tmp = ",('" + ul[i].Email + "', '" + ul[i].Locale + "', '" + ul[i].Id + "')";
+                    sbud = append(sbud, tmp);
+
+                }
+            }
+
+
+
+            String prefix_UsersDistrict = "INSERT INTO [UsersLocale] " + "(Email,Locale, Id)";
+
+
+            String delete = "DELETE FROM [UsersLocale] WHERE Email='" + ul[0].Email + "' ";
+            delete = " IF EXISTS (SELECT * FROM [UsersLocale] WHERE Email = '" + ul[0].Email + "' ) DELETE FROM [UsersLocale] WHERE Email = '" + ul[0].Email + "'";
+            command = delete + prefix_UsersDistrict + sbud;
+
+            return command;
+
+        }
+
+
+
+
+
+
+
+
+
+        //===============================State========================
 
 
         public int Insert_arr_states(List<UsersStates> us)
@@ -325,6 +405,12 @@ namespace APP1.Models.DAL
 
 
 
+
+
+        //===============================Favorites========================
+
+
+
         private String BuildInsertFavorites(Favorites f)
         {
             String command;
@@ -340,8 +426,6 @@ namespace APP1.Models.DAL
 
         }
 
-
-                //===============================Favorites========================
 
         public int Login_User(string email,string password) {
            
@@ -522,6 +606,56 @@ namespace APP1.Models.DAL
 
 
         }
+
+
+
+        public List<UsersLocale> get_User_Locale(string email)
+        {
+            List<UsersLocale> list_of_user_locale = new List<UsersLocale>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM UsersLocale where UsersLocale.Email='" + email + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    UsersLocale ul = new UsersLocale();
+
+                    ul.Locale = (string)dr["Locale"];
+                    ul.Email = (string)dr["Email"];
+                    ul.Id = Convert.ToInt32(dr["Id"]);
+
+
+
+                    list_of_user_locale.Add(ul);
+                }
+                return list_of_user_locale;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
+
 
         public List<UsersStates> get_User_States(string email)
         {
