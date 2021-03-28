@@ -46,16 +46,24 @@ namespace APP1.Models
             return dbs.Insert_Favorites(f);
         }
 
-        public Favorites Get_Favorites_By_email(string email) 
+        //public List<Favorites> Get_Favorites_By_email(string email, int id) 
+        //{
+        //    DB_Services db = new DB_Services();
+        //    return db.Get_Favorites_By_email(email,id);
+        //}
+
+        public List<Favorites> get_User_D(int UniversityLevel)
         {
             DB_Services db = new DB_Services();
-            return db.Get_Favorites_By_email(email);
+            return db.get_User_D(UniversityLevel);
         }
 
-        public List<Favorites> get_User_fav(int UniversityLevel)
+        public List<Favorites> get_all_fav(string email, int cost, int sit, int UniversityType, int UniversitySize, int UniversityLevel)
         {
             DB_Services db = new DB_Services();
-            return db.get_User_fav(UniversityLevel);
+            return db.get_all_fav(email, cost, sit, UniversityType, UniversitySize, UniversityLevel);
         }
+
+        
     }
 }

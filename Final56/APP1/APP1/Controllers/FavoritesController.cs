@@ -18,21 +18,32 @@ namespace APP1.Controllers
 
 
         [HttpGet]
-        [Route("api/Favorites/{UniversityLevel}/get_all_Fav")]
+        [Route("api/Favorites/{UniversityLevel}/get_all_D")]
         public List<Favorites> Get(int UniversityLevel)
         {
             Favorites f = new Favorites();
-            return f.get_User_fav(UniversityLevel);
+            return f.get_User_D(UniversityLevel);
         }
+
+
+        [HttpGet]
+        [Route("api/Favorites/{email}/{cost}/{sit}/{UniversityType}/{UniversitySize}/{UniversityLevel}/get_all_fav")]
+        public List<Favorites> Get(string email, int cost, int sit ,int UniversityType, int UniversitySize, int UniversityLevel)
+        {
+            Favorites f = new Favorites();
+            return f.get_all_fav(email, cost,sit, UniversityType, UniversitySize, UniversityLevel);
+        }
+
+
 
 
         // GET api/<controller>/5
-        public string Get(string email)
-        {
-            Favorites f = new Favorites();
-            return "dds";
-                //f.Get_Favorites_By_email(email);
-        }
+        //למה פםעמיים גט?
+        //public List<Favorites> Get(string email, int id)
+        //{
+        //    Favorites f = new Favorites();
+        //    return f.Get_Favorites_By_email(email,id);
+        //}
 
         // POST api/<controller>
         public void Post(Favorites f )

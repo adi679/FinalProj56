@@ -79,47 +79,47 @@ namespace APP1.Models.DAL
 
         //===============================Favorites========================
 
-        public Favorites Get_Favorites_By_email(string email)
-        {
-            SqlConnection con = null;
-            Favorites MY_Favorites = new Favorites(); ;
+        //public List<Favorites> Get_Favorites_By_email(string email)
+        //{
+        //    SqlConnection con = null;
+        //    Favorites MY_Favorites = new Favorites(); ;
 
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+        //    try
+        //    {
+        //        con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "SELECT * FROM Favorites where Favorites.email=" + email;
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
+        //        String selectSTR = "SELECT * FROM Favorites where Favorites.email=" + email;
+        //        SqlCommand cmd = new SqlCommand(selectSTR, con);
 
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+        //        // get a reader
+        //        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
 
-                while (dr.Read())
-                {   // Read till the end of the data into a row
-                    MY_Favorites.Email = (string)dr["Email"];
-                    MY_Favorites.UniversityType = Convert.ToInt32(dr["UniversityType"]);
-                    MY_Favorites.Precent = Convert.ToInt32(dr["Precent"]);
-                    MY_Favorites.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
-                    MY_Favorites.Sit = Convert.ToInt32(dr["Sit"]);
-                    MY_Favorites.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
-                    MY_Favorites.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
-                }
+        //        while (dr.Read())
+        //        {   // Read till the end of the data into a row
+        //            MY_Favorites.Email = (string)dr["Email"];
+        //            MY_Favorites.UniversityType = Convert.ToInt32(dr["UniversityType"]);
+        //            MY_Favorites.Precent = Convert.ToInt32(dr["Precent"]);
+        //            MY_Favorites.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
+        //            MY_Favorites.Sit = Convert.ToInt32(dr["Sit"]);
+        //            MY_Favorites.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
+        //            MY_Favorites.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
+        //        }
 
-                return MY_Favorites;
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-        }
+        //        return MY_Favorites;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //}
         public int Insert_Favorites(Favorites f)
         {
 
@@ -657,6 +657,60 @@ namespace APP1.Models.DAL
 
 
 
+        public List<Favorites> get_all_fav(string email, int cost, int sit, int UniversityType, int UniversitySize, int UniversityLevel)
+        {
+            List<Favorites> list_of_user_fav = new List<Favorites>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "select * from UsersFavorites where Email='" + email + "' and PriceMax<="+ cost+ " and sit<="+sit + " and UniversityType=" + UniversityType + " and UniversitySize>=" + UniversitySize + " and UniversityLevel=" + UniversityLevel;
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    Favorites f = new Favorites();
+
+                  
+                    f.PriceMAX = Convert.ToInt32(dr["cost"]);
+                    f.Sit = Convert.ToInt32(dr["sit"]);
+                    f.UniversityType = Convert.ToInt32(dr["UniversityType"]);
+                    f.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
+                    f.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
+
+
+
+                    list_of_user_fav.Add(f);
+                }
+                return list_of_user_fav;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
+
+
+
+
+
         public List<UsersStates> get_User_States(string email)
         {
             List <UsersStates>  list_of_user_States = new List <UsersStates>();
@@ -703,7 +757,7 @@ namespace APP1.Models.DAL
 
         }
 
-        public List<Favorites> get_User_fav(int UniversityLevel)
+        public List<Favorites> get_User_D(int UniversityLevel)
         {
             List<Favorites> list_of_user_fav = new List<Favorites>();
             SqlConnection con = null;
@@ -712,7 +766,7 @@ namespace APP1.Models.DAL
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "SELECT * FROM [NCAAUniversities] where NCAAUniversities.Division='" + UniversityLevel + "'";
+                String selectSTR = "select * from NCAAUniversities where Division in("+ UniversityLevel + ")";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
