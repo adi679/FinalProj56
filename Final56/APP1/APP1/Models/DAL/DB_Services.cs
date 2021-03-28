@@ -161,7 +161,9 @@ namespace APP1.Models.DAL
             }
 
         }
+        //======================================================================
         //===============================District/region========================
+        //======================================================================
         public int insert_arr_region(List<UsersDistrict> ud)
         {
 
@@ -203,7 +205,6 @@ namespace APP1.Models.DAL
             }
 
         }
-
         private String BuildInsertListUsersDistrict(List<UsersDistrict> ud)
         {
             String command;
@@ -235,13 +236,10 @@ namespace APP1.Models.DAL
             return command;
 
         }
-
-
-
-
-
+        //======================================================================
         //===============================Locale========================
-        public int insert_arr_Locale(List<UsersLocale> ul)
+        //======================================================================
+        public int Insert_arr_Locale(List<UsersLocale> us)
         {
 
             SqlConnection con;
@@ -257,7 +255,7 @@ namespace APP1.Models.DAL
                 throw (ex);
             }
 
-            String cStr = BuildInsertListUsersLocale(ul);      // helper method to build the insert string
+            String cStr = BuildInsertListUsersLocale(us);      // helper method to build the insert string
 
             cmd = CreateCommand(cStr, con);             // create the command
 
@@ -282,50 +280,122 @@ namespace APP1.Models.DAL
             }
 
         }
-
-        private String BuildInsertListUsersLocale(List<UsersLocale> ul)
+        private String BuildInsertListUsersLocale(List<UsersLocale> us)
         {
             String command;
             string tmp;
             string sbud = "";
             StringBuilder append_UsersDistrict = new StringBuilder();
             // use a string builder to create the dynamic string
-            for (int i = 0; i < ul.Count; i++)
+            for (int i = 0; i < us.Count; i++)
             {
                 if (i == 0)
-                    sbud = "Values('" + ul[i].Email + "', '" + ul[i].Locale + "', '" + ul[i].Id + "')";
+                    sbud = "Values('" + us[i].Email + "', '" + us[i].Locale + "', '" + us[i].Id + "')";
                 else
                 {
-                    tmp = ",('" + ul[i].Email + "', '" + ul[i].Locale + "', '" + ul[i].Id + "')";
+                    tmp = ",('" + us[i].Email + "', '" + us[i].Locale + "', '" + us[i].Id + "')";
                     sbud = append(sbud, tmp);
+                }
+            }
+            String prefix_UsersDistrict = "INSERT INTO [UsersLocale] " + "(Email,Locale, Id)";
+            String delete = "DELETE FROM [UsersLocale] WHERE Email='" + us[0].Email + "' ";
+            delete = " IF EXISTS (SELECT * FROM [UsersLocale] WHERE Email = '" + us[0].Email + "' ) DELETE FROM [UsersLocale] WHERE Email = '" + us[0].Email + "'";
+            command = delete + prefix_UsersDistrict + sbud;
+            return command;
+        }
+        public List<UsersLocale> get_User_Locale(string email)
+        {
+            List<UsersLocale> list_of_user_locale = new List<UsersLocale>();
+            SqlConnection con = null;
 
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM UsersLocale where UsersLocale.Email='" + email + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    UsersLocale ul = new UsersLocale();
+
+                    ul.Locale = (string)dr["Locale"];
+                    ul.Email = (string)dr["Email"];
+                    ul.Id = (string)dr["Id"];
+
+
+
+                    list_of_user_locale.Add(ul);
+                }
+                return list_of_user_locale;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
                 }
             }
 
 
+        }
+        //======================================================================
+        //===============================State========================
+        //======================================================================
+        public List<UsersStates> get_User_States(string email)
+        {
+            List<UsersStates> list_of_user_States = new List<UsersStates>();
+            SqlConnection con = null;
 
-            String prefix_UsersDistrict = "INSERT INTO [UsersLocale] " + "(Email,Locale, Id)";
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM UsersStates where UsersStates.Email='" + email + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    UsersStates us = new UsersStates();
+
+                    us.States = (string)dr["States"];
+                    us.Email = (string)dr["Email"];
+                    us.Id = Convert.ToInt32(dr["Id"]);
 
 
-            String delete = "DELETE FROM [UsersLocale] WHERE Email='" + ul[0].Email + "' ";
-            delete = " IF EXISTS (SELECT * FROM [UsersLocale] WHERE Email = '" + ul[0].Email + "' ) DELETE FROM [UsersLocale] WHERE Email = '" + ul[0].Email + "'";
-            command = delete + prefix_UsersDistrict + sbud;
 
-            return command;
+                    list_of_user_States.Add(us);
+                }
+                return list_of_user_States;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
 
         }
-
-
-
-
-
-
-
-
-
-        //===============================State========================
-
-
         public int Insert_arr_states(List<UsersStates> us)
         {
 
@@ -367,7 +437,6 @@ namespace APP1.Models.DAL
             }
 
         }
-
         private String BuildInsertListUsersStates(List<UsersStates> us)
         {
             String command;
@@ -399,18 +468,9 @@ namespace APP1.Models.DAL
             return command;
 
         }
-
-
-
-
-
-
-
-
+        //======================================================================
         //===============================Favorites========================
-
-
-
+        //======================================================================
         private String BuildInsertFavorites(Favorites f)
         {
             String command;
@@ -425,8 +485,6 @@ namespace APP1.Models.DAL
             return command;
 
         }
-
-
         public int Login_User(string email, string password)
         {
 
@@ -464,8 +522,6 @@ namespace APP1.Models.DAL
 
 
         }
-
-
         public int getDivision(int d)
         {
 
@@ -503,9 +559,6 @@ namespace APP1.Models.DAL
 
 
         }
-
-
-
         public List<Users> Show_User()
         {
 
@@ -514,11 +567,22 @@ namespace APP1.Models.DAL
             List<Users> allUsers = new List<Users>();
             return allUsers;
         }
+        //======================================================================
+        //===============================Users========================
+        //======================================================================
+        private String BuildInsertCommandUsers(Users u)
+        {
+            String command;
 
+            StringBuilder sb = new StringBuilder();
 
+            // use a string builder to create the dynamic string
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers);
+            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers) ";
+            command = prefix + sb.ToString();
 
-
-
+            return command;
+        }
         public int Insert_New_Users(Users u)
         {
 
@@ -560,8 +624,6 @@ namespace APP1.Models.DAL
             }
 
         }
-
-
         public List<UsersDistrict> get_User_district(string email)
         {
             List<UsersDistrict> list_of_user_district = new List<UsersDistrict>();
@@ -607,57 +669,6 @@ namespace APP1.Models.DAL
 
 
         }
-
-
-
-        public List<UsersLocale> get_User_Locale(string email)
-        {
-            List<UsersLocale> list_of_user_locale = new List<UsersLocale>();
-            SqlConnection con = null;
-
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-
-                String selectSTR = "SELECT * FROM UsersLocale where UsersLocale.Email='" + email + "'";
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
-
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
-                while (dr.Read())
-                {
-                    UsersLocale ul = new UsersLocale();
-
-                    ul.Locale = (string)dr["Locale"];
-                    ul.Email = (string)dr["Email"];
-                    ul.Id = Convert.ToInt32(dr["Id"]);
-
-
-
-                    list_of_user_locale.Add(ul);
-                }
-                return list_of_user_locale;
-
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-
-
-        }
-
-
-
         public List<Favorites> get_all_fav(string email, int cost, int sit, int UniversityType, int UniversitySize, int UniversityLevel)
         {
             List<Favorites> list_of_user_fav = new List<Favorites>();
@@ -706,58 +717,6 @@ namespace APP1.Models.DAL
 
 
         }
-
-
-
-
-
-
-        public List<UsersStates> get_User_States(string email)
-        {
-            List<UsersStates> list_of_user_States = new List<UsersStates>();
-            SqlConnection con = null;
-
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-
-                String selectSTR = "SELECT * FROM UsersStates where UsersStates.Email='" + email + "'";
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
-
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
-                while (dr.Read())
-                {
-                    UsersStates us = new UsersStates();
-
-                    us.States = (string)dr["States"];
-                    us.Email = (string)dr["Email"];
-                    us.Id = Convert.ToInt32(dr["Id"]);
-
-
-
-                    list_of_user_States.Add(us);
-                }
-                return list_of_user_States;
-
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-
-
-        }
-
         public List<Favorites> get_User_D(int UniversityLevel)
         {
             List<Favorites> list_of_user_fav = new List<Favorites>();
@@ -807,28 +766,9 @@ namespace APP1.Models.DAL
 
 
         }
-
-
-
-
-
-        private String BuildInsertCommandUsers(Users u)
-        {
-            String command;
-
-            StringBuilder sb = new StringBuilder();
-
-            // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers);
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers) ";
-            command = prefix + sb.ToString();
-
-            return command;
-        }
-
-
-
+        //======================================================================
         //===============================function========================
+        //======================================================================
         public SqlConnection connect(String conString)
         {
 

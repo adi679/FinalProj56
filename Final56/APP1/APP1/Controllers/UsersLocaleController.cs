@@ -30,9 +30,13 @@ namespace APP1.Controllers
             return "value";
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        [HttpPost]
+        [Route("api/UsersLocale/list_user_Locale")]
+        public int Post(List<UsersLocale> us)
         {
+           
+            return us[0].Insert_arr_Locale(us);
+
         }
 
         // PUT api/<controller>/5

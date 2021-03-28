@@ -59,47 +59,41 @@
        
         function savestates() {
             var item
+            var States
+            var Id
+            var Email
             var email = 'adi@gmail.com'
             var list_Users_States = []
             var checkboxes = document.getElementsByTagName("input");
-         
-            
-            for (i = 1; i < checkboxes.length; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
-                if (checkboxes[i].checked) {
 
+
+         //   
+            for (i = 0; i < checkboxes.length; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
+                if (checkboxes[i].checked) {
                     item = {
-                        States: checkboxes[i].nextSibling.data,
-                        Id: checkboxes[i].id,
+                        Locale: checkboxes[i].nextSibling.data,
+                        Id: checkboxes[i].value,
                         Email: email
                     }
-
-
-                    list_Users_States.push(item)
-                  
+                    list_Users_States.push(item)                 
                 }
-
-
             }
-
             if (list_Users_States.length != 0) {
-                let api = "../api/UsersStates";
-                ajaxCall("Put", api, JSON.stringify(list_Users_States), SuccessInsertStates, ErrorInsertStates)
+                let api = "../api/UsersLocale/list_user_Locale";
+                ajaxCall("Post", api, JSON.stringify(list_Users_States), SuccessInsertStates, ErrorInsertStates)
             }
             else {
                 alert('אנא בחר לפחות העדפה אחת');
                 return false;
-            }
-
-            
+            }            
         }
-
         function SuccessInsertStates() {
-            location.reload();
             alert("Success!");
+            location.reload();
+           
             window.close()
             window.open("FavState.html")
             }
-
         function ErrorInsertStates() {
             location.reload();
 
@@ -107,7 +101,7 @@
 			flag = 0;
             window.close()
             window.open("LogIn.html")
-		}
+        }       
     </script>
 
 
@@ -126,7 +120,7 @@
                 <label> <input type="checkbox" id="12"       class="radio" value="12"          />Mid City</label><br />
                 <label> <input type="checkbox" id="13"       class="radio" value="13"          />Small City</label><br />
                 <label> <input type="checkbox" id="21,22,23" class="radio" value="21,22,23"    />Suburb</label><br />
-                <label> <input type="checkbox" id="31,32,33" class="radio" value="31,32,33 "   />Town</label><br />
+                <label> <input type="checkbox" id="31,32,33" class="radio" value="31,32,33"   />Town</label><br />
                 <label> <input type="checkbox" id="41,42,43" class="radio" value="41,42,43"    />Rural</label><br />
 
 
