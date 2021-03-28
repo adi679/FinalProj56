@@ -7,7 +7,12 @@
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
 
     <script>
+        var MYDistrict   //כל האזורים של משתמש
+        var MYStates     //כל המדניות של משתמש
+        var MYFavorite   //העדפות כלליות של משתמש
+        var MYLocale     //כל סוגי המקומות של משתמש
         var api_data;
+        var api_State
         var all_District
         var show_all_match
         var District
@@ -15,22 +20,9 @@
         var password
         var api_District
         var email = "adi@gmail.com";
-       var UniversityLevel;
+        var UniversityLevel;
 
-
-
-        //----District-----//
-
-        var UsersDistrict = {
-            Id: "1",
-            Email: "asd",
-            District: "saasd"
-          
-        }
         let api_Districts = "../api/UsersDistrict/"+email+"/get_all_District";
-        //email = email.replace('.', '*')
-
-            //ajaxCall("Get", api, email + "" + password, successDistrict, errorDistrict)
 
         ajaxCall("Get", api_Districts, "" , successDistrict, errorDistrict)
 
@@ -64,16 +56,7 @@
 
         //////-----State----//
 
-        var UsersState = {
-            Id: "1",
-            Email: "asd",
-            State: "saasd"
-
-        }
         let api_States = "../api/UsersStates/" + email + "/get_all_States";
-      
-
-
         ajaxCall("Get", api_States, "", successState, errorState)
 
         function errorState(data) {
@@ -206,25 +189,26 @@
 
         function rendResults(data) {
             alert("in rendfav");
-            let str = ''
-            for (var i = 0; i < data.length; i++) {
-                alert(data.results[k])
-                str += "<div style:'position:relative'></br ></div>";
-                //  str += "<div style:'position:relative'>" + data[k].id + "</br ></div>";
-                //       //  str += "<div style:'position:relative'>" + data[k].Email + "</br ></div>";
-                //       //  str += "<div style:'position:relative'>" + data[k].Password + "</br ></div>";
-                //       //  str += "<div style:'position:relative'>" + data[k].Phone + "</br ></div>";
-
-
-                //       //  str += "<img src='../uploadedFiles/" + data[k].Myfile + "'/>";
-                //       //str += '<img src="../uploadedFiles/‏'+‏data[k].Myfile + '"/>';
+            let x = data.results.length
+            let y = data.results[length]
+            let str
+            for (var i = 0; i < data.results.length; i++) {
+                str = "<div style:'position:relative'>======================================</div>";
+                str += "<div style:'position:relative'>school.name: " + data.results[i]["school.name"] +"</br ></div>";
+                str += "<div style:'position:relative'>id: " + data.results[i].id + "</br ></div>";
+                str += "<div style:'position:relative'>locale: " + data.results[i]["school.locale"] + "</br ></div>";
+                str += "<div style:'position:relative'>ownership: " + data.results[i]["school.ownership"] + "</br ></div>";
+                str += "<div style:'position:relative'>region_id: " + data.results[i]["school.region_id"] + "</br ></div>";
+                str += "<div style:'position:relative'>state_fips:" + data.results[i]["school.state_fips"] + "</br ></div>";
+                str += "<div style:'position:relative'>2018.cost.tuition.out_of_state: " + data.results[i]["2018.cost.tuition.out_of_state"] + "</br ></div>";
+                str += "<div style:'position:relative'>2018.student.size: " + data.results[i]["2018.student.size"] + "</br ></div>";
 
                 //       //str += "<div style:'float:left'><img id='img' src='" + httpPostedFile + "' width='50px' height='60px'></div>";
                 //       //str += "</br> img src=" + data[k].Featured_image+ "'>";
                 //       //  str += "<div>  <button onclick='gotofav(this.id)' id='" + rlist[k].name + ' ' + rlist[k].photos_url + "'>  Add to favorites </button> rest name: " + rlist[k].name + "</div>";
 
                 //   }
-                document.getElementById("showfav").innerHTML = str;
+                document.getElementById("showfav").innerHTML += str;
 
             }
 
