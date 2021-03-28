@@ -427,40 +427,41 @@ namespace APP1.Models.DAL
         }
 
 
-        public int Login_User(string email,string password) {
-           
-                SqlConnection con = null;
+        public int Login_User(string email, string password)
+        {
 
-                try
-                {
-                    con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            SqlConnection con = null;
 
-                    String selectSTR = "SELECT * FROM Users where Users.Email='"+ email + " ' and Users.password='" + password+"'";
-                    SqlCommand cmd = new SqlCommand(selectSTR, con);
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                    // get a reader
-                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+                String selectSTR = "SELECT * FROM Users where Users.Email='" + email + " ' and Users.password='" + password + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
 
-                    while (dr.Read())
-                    {   // Read till the end of the data into a row
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {   // Read till the end of the data into a row
                     return Convert.ToInt32(dr["TypeUsers"]);
-                    }
-                    return -1;
+                }
+                return -1;
 
-                }
-                catch (Exception ex)
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
                 {
-                    // write to log
-                    throw (ex);
+                    con.Close();
                 }
-                finally
-                {
-                    if (con != null)
-                    {
-                        con.Close();
-                    }
-                }
-           
+            }
+
 
         }
 
@@ -509,8 +510,8 @@ namespace APP1.Models.DAL
         {
 
 
-             
-                List<Users> allUsers = new List<Users>();
+
+            List<Users> allUsers = new List<Users>();
             return allUsers;
         }
 
@@ -520,7 +521,7 @@ namespace APP1.Models.DAL
 
         public int Insert_New_Users(Users u)
         {
-           
+
             SqlConnection con;
             SqlCommand cmd;
 
@@ -557,13 +558,13 @@ namespace APP1.Models.DAL
                     con.Close();
                 }
             }
-            
+
         }
 
 
         public List<UsersDistrict> get_User_district(string email)
         {
-            List <UsersDistrict>  list_of_user_district = new List <UsersDistrict>();
+            List<UsersDistrict> list_of_user_district = new List<UsersDistrict>();
             SqlConnection con = null;
 
             try
@@ -583,7 +584,7 @@ namespace APP1.Models.DAL
                     ud.District = (string)dr["District"];
                     ud.Email = (string)dr["Email"];
                     ud.Id = Convert.ToInt32(dr["Id"]);
-                   
+
 
 
                     list_of_user_district.Add(ud);
@@ -666,7 +667,7 @@ namespace APP1.Models.DAL
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "select * from UsersFavorites where Email='" + email + "' and PriceMax<="+ cost+ " and sit<="+sit + " and UniversityType=" + UniversityType + " and UniversitySize>=" + UniversitySize + " and UniversityLevel=" + UniversityLevel;
+                String selectSTR = "select * from UsersFavorites where Email='" + email + "' and PriceMax<=" + cost + " and sit<=" + sit + " and UniversityType=" + UniversityType + " and UniversitySize>=" + UniversitySize + " and UniversityLevel=" + UniversityLevel;
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
@@ -676,7 +677,7 @@ namespace APP1.Models.DAL
                 {
                     Favorites f = new Favorites();
 
-                  
+
                     f.PriceMAX = Convert.ToInt32(dr["cost"]);
                     f.Sit = Convert.ToInt32(dr["sit"]);
                     f.UniversityType = Convert.ToInt32(dr["UniversityType"]);
@@ -713,7 +714,7 @@ namespace APP1.Models.DAL
 
         public List<UsersStates> get_User_States(string email)
         {
-            List <UsersStates>  list_of_user_States = new List <UsersStates>();
+            List<UsersStates> list_of_user_States = new List<UsersStates>();
             SqlConnection con = null;
 
             try
@@ -733,7 +734,7 @@ namespace APP1.Models.DAL
                     us.States = (string)dr["States"];
                     us.Email = (string)dr["Email"];
                     us.Id = Convert.ToInt32(dr["Id"]);
-                   
+
 
 
                     list_of_user_States.Add(us);
@@ -766,7 +767,7 @@ namespace APP1.Models.DAL
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "select * from NCAAUniversities where Division in("+ UniversityLevel + ")";
+                String selectSTR = "select * from NCAAUniversities where Division in(" + UniversityLevel + ")";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
@@ -818,7 +819,7 @@ namespace APP1.Models.DAL
             StringBuilder sb = new StringBuilder();
 
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName,u.TypeUsers);
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers);
             String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers) ";
             command = prefix + sb.ToString();
 
