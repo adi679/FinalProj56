@@ -64,77 +64,103 @@
 
         function submit1() {
             alert("in submit")
-            email = "adidi@gmail.com";
+            email = "adi@gmail.com";
 
-             fav = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+
+
+            var fav = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
                 Email: email,
                 UniversityType: $("#kindUni").val(),
                 UniversitySize: $("#size").val(),
-                 PriceMAX: $("#cost").val(),
+                PriceMAX: $("#cost").val(),
                 Sit: $("#SAT").val(),
-                UniversityLevel: $("#division").val(),
-
+                UniversityLevel: $("#division").val()
             }
-            alert("uni is: " + fav.UniversityType);
+
+            alert("uni is: " + fav.UniversityLevel);
 
             alert(fav);
             console.log(fav)
 
-        
 
-           //let api = "../api/Favorites/";
 
-           //ajaxCall("POST", api, JSON.stringify(fav), successFav, errorFav)
-           //        return false;
+            //let api = "../api/Favorites/";
+
+            //ajaxCall("POST", api, JSON.stringify(fav), successFav, errorFav)
+            //        return false;
 
 
             //-------------------------API's---------//
 
-            if (fav.UniversityType == "") {
-                alert("UniversityType NOT selected")
-                $.get("https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne", function (data) {
-                    console.log(data); })}
-            else {
-                alert("UniversityType selected " + fav.UniversityType)
-                api = "https://api.data.gov/ed/collegescorecard/v1/schools.json?school.ownership="+fav.UniversityType+"&fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne"
-                $.get("https://api.data.gov/ed/collegescorecard/v1/schools.json?school.ownership="+fav.UniversityType+"&fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne", function (data) {
-                    console.log(data);
-                })
+
+            //-----UniversityType--------
+
+            //if (fav.UniversityType == "") {
+            //    alert("UniversityType NOT selected")
+            //    $.get("https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne", function (data) {
+            //        console.log(data); })}
+            //else {
+            //    alert("UniversityType selected " + fav.UniversityType)
+            //    api = "https://api.data.gov/ed/collegescorecard/v1/schools.json?school.ownership="+fav.UniversityType+"&fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne"
+            //    $.get("https://api.data.gov/ed/collegescorecard/v1/schools.json?school.ownership="+fav.UniversityType+"&fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne", function (data) {
+            //        console.log(data);
+            //    })
+            //}
+
+       
+
+
+
+            //------division---------
+
+            let api_D = "../api/Favorites/" + fav.UniversityLevel +"/get_all_D";
+            ajaxCall("Get", api_D, fav.UniversityLevel, successD, errorD)
+            
+
+
+        }
+
+
+
+            function errorD(data) {
+                console.log(data);
+                alert("errorD")
             }
+            function successD(data) {
+                console.log(data);
+                alert("division data is: " + data);
 
+                //if (data.length == 0 || data.length == 57)
+                //    api_State = "";
+                //else {
+                //    api_State = "school.state_fips=" + data[0].Id
+                //    for (var i = 1; i < data.length; i++) {
+                //        api_State = api_State + ',' + data[i].Id
+                //    }
+                //    api_State = api_State + '&'
+                //}
 
+         //       api_data = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" + api_State + "fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne"
+
+            //    $.get(api_data, function (data) {
+            //        console.log(data);
+            //        api_data = data;
+            //        alert('State');
+            //    })
+            //}
 
 
             // Devision//
 
-            alert("Div");
+        //    alert("Div");
 
-            let api = "../api/University";
+        //    let api = "../api/University";
 
-            ajaxCall("GET", api, fav.UniversityLevel, successD, errorD)
+        //    ajaxCall("GET", api, fav.UniversityLevel, successD, errorD)
 
-                function successD(data) { alert('successD Data is: ' +data);  }
+        //        function successD(data) { alert('successD Data is: ' +data);  }
 
-        function errorD(data) { alert('errorD') }
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //function errorD(data) { alert('errorD') }
 
 
 
@@ -142,7 +168,7 @@
 
         //function errorFav(data) { alert('errorFav') }
 
-
+            }
 
 
         function save() {
@@ -205,14 +231,9 @@
 
 
 
-
-
        
-
-       
-            }
-
-            </script>
+            
+  </script>
 
 </head>
 <body>
@@ -247,9 +268,9 @@
              <label for="division">Devision:</label>
             <select name="division" id="division" onchange="showH(this.value)">
                 <option value="0">בחר Devision</option>
-                <option id="D1" value="D1">D1</option>
-                <option id="D2" value="D2">D2</option>
-                <option id="both" value="Both">Both</option>
+                <option id="1" value="1">D1</option>
+                <option id="2" value="2">D2</option>
+                <option id="1,2" value="1,2">Both</option>
             </select>
 
             <br /><br />

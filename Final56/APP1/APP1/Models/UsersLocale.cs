@@ -32,7 +32,7 @@ namespace APP1.Models
         }
 
 
-        public List<UsersDistrict> get_User_Locale(string email)
+        public List<UsersLocale> get_User_Locale(string email)
         {
             DB_Services db = new DB_Services();
             return db.get_User_Locale(email);

@@ -31,5 +31,11 @@ namespace APP1.Models
             DB_Services db = new DB_Services();
             return db.Insert_arr_states(us);
         }
+
+        public List<UsersStates> get_User_States(string email)
+        {
+            DB_Services db = new DB_Services();
+            return db.get_User_States(email);
+        }
     }
 }
