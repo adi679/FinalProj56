@@ -39,7 +39,7 @@
             alert("ErrorDistrict")
         }
         function successDistrict(data) {
-            console.log(data);
+           // console.log(data);
             if (data.length == 0 || data.length == 8 )
                 api_District = "";
             else {
@@ -71,9 +71,8 @@
 
         }
         let api_States = "../api/UsersStates/" + email + "/get_all_States";
-        //email = email.replace('.', '*')
+      
 
-        //ajaxCall("Get", api, email + "" + password, successDistrict, errorDistrict)
 
         ajaxCall("Get", api_States, "", successState, errorState)
 
@@ -82,7 +81,7 @@
             alert("ErrorDState")
         }
         function successState(data) {
-            console.log(data);
+           // console.log(data);
             if (data.length == 0 || data.length == 57)
                 api_State = "";
             else {
@@ -98,8 +97,9 @@
 
             $.get(api_data, function (data) {
                 console.log(data);
-                api_data = data;
+               api_data = data;
                 alert('State');
+                rendResults(data);
                 
             })
            
@@ -128,13 +128,13 @@
             alert("ErrorLocale")
         }
         function successLocale(data) {
-            console.log(data);
+          //  console.log(data);
             if (data.length == 0 || data.length == 6)
                 api_Locale = "";
             else {
                 api_Locale = "school.locale=" + data[0].Id
                 for (var i = 1; i < data.length; i++) {
-                    api_Locale = api_Locale + ',' + data[i].Id
+                    arapi_Locale = api_Locale + ',' + data[i].Id
                 }
                 api_Locale = api_Locale + '&'
             }
@@ -204,32 +204,32 @@
 
         //------------rend-------//
 
-         function rendResults(data) {
+        function rendResults(data) {
             alert("in rendfav");
             let str = ''
-            for (var k = 0; k < data.length; k++) {
+            for (var i = 0; i < data.length; i++) {
+                alert(data.results[k])
+                str += "<div style:'position:relative'></br ></div>";
+                //  str += "<div style:'position:relative'>" + data[k].id + "</br ></div>";
+                //       //  str += "<div style:'position:relative'>" + data[k].Email + "</br ></div>";
+                //       //  str += "<div style:'position:relative'>" + data[k].Password + "</br ></div>";
+                //       //  str += "<div style:'position:relative'>" + data[k].Phone + "</br ></div>";
 
-                //   str += "<div style:'position:relative'>" + data[k].Name + "</br ></div>";
-                //  str += "<div style:'position:relative'>" + data[k].Fname + "</br ></div>";
-                //  str += "<div style:'position:relative'>" + data[k].Email + "</br ></div>";
-                //  str += "<div style:'position:relative'>" + data[k].Password + "</br ></div>";
-                //  str += "<div style:'position:relative'>" + data[k].Phone + "</br ></div>";
 
+                //       //  str += "<img src='../uploadedFiles/" + data[k].Myfile + "'/>";
+                //       //str += '<img src="../uploadedFiles/‏'+‏data[k].Myfile + '"/>';
 
-                //  str += "<img src='../uploadedFiles/" + data[k].Myfile + "'/>";
-                //str += '<img src="../uploadedFiles/‏'+‏data[k].Myfile + '"/>';
+                //       //str += "<div style:'float:left'><img id='img' src='" + httpPostedFile + "' width='50px' height='60px'></div>";
+                //       //str += "</br> img src=" + data[k].Featured_image+ "'>";
+                //       //  str += "<div>  <button onclick='gotofav(this.id)' id='" + rlist[k].name + ' ' + rlist[k].photos_url + "'>  Add to favorites </button> rest name: " + rlist[k].name + "</div>";
 
-                //str += "<div style:'float:left'><img id='img' src='" + httpPostedFile + "' width='50px' height='60px'></div>";
-                //str += "</br> img src=" + data[k].Featured_image+ "'>";
-                //  str += "<div>  <button onclick='gotofav(this.id)' id='" + rlist[k].name + ' ' + rlist[k].photos_url + "'>  Add to favorites </button> rest name: " + rlist[k].name + "</div>";
+                //   }
+                document.getElementById("showfav").innerHTML = str;
 
             }
-            document.getElementById("showfav").innerHTML = str;
-
-        }
 
 
-         
+        }   
 
 
     </script>
