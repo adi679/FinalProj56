@@ -204,8 +204,12 @@
             let x = data.results.length
             let y = data.results[length]
             let str
+              
             for (var i = 0; i < data.results.length; i++) {
-                str = "<div style:'position:relative'>======================================</div>";
+                str += "<table style='width: 100 %'>"
+                str += "  <tr> <th>school.name</th><th>School Website</th> <th>id</th> <th>locale</th> <th>ownership</th> <th>region_id</th><th>state_fips</th><th>Tituoin</th> <th>Size</th> <th>SAT Score</th> </tr >";
+                str += "<tr>";
+                str = "<td><div style:'position:relative'>======================================</div></td>";
                 str += "<div style:'position:relative'>school.name: " + data.results[i]["school.name"] +"</br ></div>";
                 str += "<div><a href=" + data.results[i]["school.school_url"] + ">" + data.results[i]["school.school_url"] +": </a></div>";
                // str += "<div style:'position:relative'>school.name: " + data.results[i]["school.school_url"] +"</br ></div>";
@@ -217,15 +221,19 @@
                 str += "<div style:'position:relative'>2018.cost.tuition.out_of_state: " + data.results[i]["2018.cost.tuition.out_of_state"] + "</br ></div>";
                 str += "<div style:'position:relative'>2018.student.size: " + data.results[i]["2018.student.size"] + "</br ></div>";
                 str += "<div style:'position:relative'>2018.admissions.sat_scores.average.overall: " + data.results[i]["2018.admissions.sat_scores.average.overall"] + "</br ></div>";
+                str += "</tr>";
+                str += "</table>"
+                document.getElementById("showfav").innerHTML += str;
 
                 //       //str += "<div style:'float:left'><img id='img' src='" + httpPostedFile + "' width='50px' height='60px'></div>";
                 //       //str += "</br> img src=" + data[k].Featured_image+ "'>";
                 //       //  str += "<div>  <button onclick='gotofav(this.id)' id='" + rlist[k].name + ' ' + rlist[k].photos_url + "'>  Add to favorites </button> rest name: " + rlist[k].name + "</div>";
 
                 //   }
-                document.getElementById("showfav").innerHTML += str;
 
             }
+          
+
 
 
         }   
