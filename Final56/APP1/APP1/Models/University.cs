@@ -69,5 +69,13 @@ namespace APP1.Models
             return db.getDivision(d);
         }
 
+
+        public int getdiv()
+        {
+            DB_Services dbs = new DB_Services();
+
+            return dbs.getdiv();
+        }
+
     }
 }

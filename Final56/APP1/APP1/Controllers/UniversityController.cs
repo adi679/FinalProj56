@@ -11,10 +11,21 @@ namespace APP1.Controllers
     public class UniversityController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
+
+        [HttpGet]
+        [Route("api/University/getdiv")]
+        public int Get()
         {
-            return new string[] { "value1", "value2" };
+            University un = new University();
+            return un.getdiv();
         }
+
+
+
 
         // GET api/<controller>/5
         public int Get(int division)

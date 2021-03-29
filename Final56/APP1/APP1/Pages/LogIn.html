@@ -79,7 +79,7 @@
 
 		
 			email = $("#uname").val();
-			let password = $("#psw").val();
+			 password = $("#psw").val();
 
 			let api = "../api/Users/" + email + '/' + password;
 
@@ -93,19 +93,23 @@
 			if (data == 0) {
 				alert("Hello player");
 				localStorage.setItem("email", email);
+                localStorage.setItem("password", password);
+                window.open("FavRegion.html")
+                window.close()
 			}
             if (data==1) {
 				alert("Hello manager");
                 localStorage.setItem("email", email);
+				localStorage.setItem("password", password);
+
 			}
 
 
-            window.open("FavRegion.html")
-            window.close()
-
             else {
                 alert("dont found");
-            }
+			}
+
+          
 		}
 
 		function errorlogin(data) { alert('errorlogin') }

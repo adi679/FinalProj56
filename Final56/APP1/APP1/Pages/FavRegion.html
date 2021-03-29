@@ -58,13 +58,16 @@
         var list_user_districts = [];
         function save() {
             alert("asdasd");
-            email = "adi@gmail.com";
-            password = "12345";
+            var email = localStorage.getItem('email');
+            var password = localStorage.getItem('password');
             var regions = [];
             let item
             //email = localStorage.getItem('email')
           
                 //var data = document.forms[0];
+
+
+            alert(email + " " + password);
 
             var checkboxes = document.getElementsByTagName("input");
             for (i = 0; i < checkboxes.length; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
