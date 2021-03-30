@@ -1,5 +1,4 @@
-﻿<<<<<<< Updated upstream
-﻿
+﻿﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -48,14 +47,17 @@
     </style>
 
     <script>
-		var flag=1       //1 yes 0 no
+        var flag=1       //1 yes 0 no
         var count=0
         var data
-		var api
-		var email
-		var str = "";
-		var uhigh = [];
+        var api
+        var email
+        var str = "";
+        var uhigh = [];
         var list_user_districts = [];
+
+
+
         function save() {
             alert("asdasd");
             var email = localStorage.getItem('email');
@@ -63,7 +65,7 @@
             var regions = [];
             let item
             //email = localStorage.getItem('email')
-          
+
                 //var data = document.forms[0];
 
 
@@ -90,62 +92,74 @@
                 if (list_user_districts.length != 0) {
                     let api = "../api/UsersDistrict";
                     ajaxCall("POST", api, JSON.stringify(list_user_districts), SuccessInsertDistricts, ErrorInsertDistricts)
-                    return false;
+                   
                 }
                 else {
-                    alert('אנא בחר לפחות העדפה אחת');
-                    return false;
+                   
+                    alert("העדכון צלח");
+                    window.open("FavState.html")
+                    window.close()
                 }
 
-              
+         
+            
 
             }
-        
-	
+
+
         function SuccessInsertDistricts(data) {
             alert("העדכון צלח");
-
+            window.open("FavState.html")
+            window.close()
             }
 
         function ErrorInsertDistricts(data) {
             alert("בעיה חמורה, אנא פנה למנהל המערכת");
 
-		}
+        }
     </script>
 </head>
 <body>
-   
+
     <h1 style="color:red">בחירת העדפות</h1>
     <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
 
-    <!--<form>-->
-        <div class="highlightsDiv">
 
-            <h3><label for="region">בחר/י מחוז:</label> </h3>
 
-            <div class="region">
-                <label> <input type="checkbox" id="New England"     class="radio" value="1" />New England (CT, ME, MA, NH, RI, VT)  </label><br />
-                <label> <input type="checkbox" id="Mid East"        class="radio" value="2" />Mid East (DE, DC, MD, NJ, NY, PA)  </label><br />
-                <label> <input type="checkbox" id="Great Lakes"     class="radio" value="3" />Great Lakes (IL, IN, MI, OH, WI)  </label><br />
-                <label> <input type="checkbox" id="Plains"          class="radio" value="4" />Plains (IA, KS, MN, MO, NE, ND, SD)  </label><br />
-                <label> <input type="checkbox" id="Southeast"       class="radio" value="5" />Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)  </label><br />
-                <label> <input type="checkbox" id="Southwest"       class="radio" value="6" />Southwest (AZ, NM, OK, TX)  </label><br />
-                <label> <input type="checkbox" id="Rocky Mountains" class="radio" value="7" />Rocky Mountains (CO, ID, MT, UT, WY)  </label><br />
-                <label> <input type="checkbox" id="Far West"         class="radio" value="8" />Far West (AK, CA, HI, NV, OR, WA)  </label><br />
 
-            </div>
-        </div>
-        <div>
-            <button type="submit" class="button button1" ONCLICK="save()">
-                Save!
-            </button>
-        </div>
 
-    <!--</form>-->
+
+
+  
+<div class="highlightsDiv">
+
+    <h3><label for="region">בחר/י מחוז:</label> </h3>
+
+    <div class="region">
+        <label> <input type="checkbox" id="New England" class="radio" value="1" />New England (CT, ME, MA, NH, RI, VT)  </label><br />
+        <label> <input type="checkbox" id="Mid East" class="radio" value="2" />Mid East (DE, DC, MD, NJ, NY, PA)  </label><br />
+        <label> <input type="checkbox" id="Great Lakes" class="radio" value="3" />Great Lakes (IL, IN, MI, OH, WI)  </label><br />
+        <label> <input type="checkbox" id="Plains" class="radio" value="4" />Plains (IA, KS, MN, MO, NE, ND, SD)  </label><br />
+        <label> <input type="checkbox" id="Southeast" class="radio" value="5" />Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)  </label><br />
+        <label> <input type="checkbox" id="Southwest" class="radio" value="6" />Southwest (AZ, NM, OK, TX)  </label><br />
+        <label> <input type="checkbox" id="Rocky Mountains" class="radio" value="7" />Rocky Mountains (CO, ID, MT, UT, WY)  </label><br />
+        <label> <input type="checkbox" id="Far West" class="radio" value="8" />Far West (AK, CA, HI, NV, OR, WA)  </label><br />
+
+    </div>
+</div>
+<div>
+    <button type="submit" class="button button1" ONCLICK="save()">
+        Save!
+    </button>
+</div>
+
+
 </body>
-=======
+
+</html>
+
 <!--﻿<!DOCTYPE html>
-<html>
+
 <head>
     <meta charset="utf-8" />
     <title></title>
@@ -193,27 +207,27 @@
     </style>
 
     <script>
-		var flag=1       //1 yes 0 no
+        var flag=1       //1 yes 0 no
         var count=0
         var data
-		var api
-		var email
-		var str = "";
-		var uhigh = [];
+        var api
+        var email
+        var str = "";
+        var uhigh = [];
 
 
         $(document).ready(function () {
             email = "adidi@gmail.com";
-           
+
         });
 
 
 
-		function save() {
+        function save() {
            alert("in Save")
             var regions = [];
             let item
-			//email = localStorage.getItem('email')
+            //email = localStorage.getItem('email')
             if (email) { //אם קיים אימייל
                 var data = document.forms[0];
                 count = 0
@@ -233,9 +247,9 @@
                         regions.push(item.Id);
                         alert(item.Id)
                     }
-                   
+
                 }
-            
+
 
                 alert(list_user_districts);
                 alert(regions)
@@ -246,27 +260,27 @@
                     let api = "../api/UsersDistrict";
                      JSON.stringify(list_user_districts)
                    // ajaxCall("get", api, JSON.stringify(list_user_districts), SuccessInsertDistricts, ErrorInsertDistricts);
-                                       
+
                 }
                 else {
 
                 }
 
-               
 
-               
-                
-				window.open("FavState.html")
-			    window.close()
+
+
+
+                window.open("FavState.html")
+                window.close()
                return false
 
 
                 alert("finish save");
-			}
-			else {
-				alert("Please login");
-				window.close()
-				window.open("LogIn.html")
+            }
+            else {
+                alert("Please login");
+                window.close()
+                window.open("LogIn.html")
             }
 
 
@@ -279,7 +293,7 @@
                     console.log(data);
 
                 })
-            }                          
+            }
 
             else {
                                                                                          school.region_id = "+regions+ " &
@@ -293,7 +307,7 @@
 
         }
 
-       
+
 
         function SuccessInsertDistricts(data) {
             console.log(data)
@@ -305,12 +319,12 @@
             console.log(data)
 
             alert("ErrorInsertDistricts");
-		
-		}
+
+        }
     </script>
 </head>
 <body>
-   
+
     <h1 style="color:red">בחירת העדפות</h1>
     <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
 

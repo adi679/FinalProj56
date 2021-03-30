@@ -120,47 +120,6 @@ namespace APP1.Models.DAL
         //        }
         //    }
         //}
-        public int Insert_Favorites(Favorites f)
-        {
-
-            SqlConnection con;
-            SqlCommand cmd;
-
-            try
-            {
-                con = connect("DBConnectionString"); // create the connection
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-
-            String cStr = BuildInsertFavorites(f);      // helper method to build the insert string
-
-            cmd = CreateCommand(cStr, con);             // create the command
-
-            try
-            {
-                int numEffected = cmd.ExecuteNonQuery(); // execute the command
-                return numEffected;
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-
-            finally
-            {
-                if (con != null)
-                {
-                    // close the db connection
-                    con.Close();
-                }
-            }
-
-        }
         //======================================================================
         //===============================District/region========================
         //======================================================================
@@ -351,6 +310,52 @@ namespace APP1.Models.DAL
         //======================================================================
         //===============================State========================
         //======================================================================
+
+        public List<University> getdiv()
+        {
+            List<University> list_of_div_school = new List<University>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM [NCAAUniversities]";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    University div = new University();
+
+                   div.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
+
+                    list_of_div_school.Add(div);
+                }
+                return list_of_div_school;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
+
+        // getdiv()"SELECT * FROM [NCAAUniversities]";
+
         public List<UsersStates> get_User_States(string email)
         {
             List<UsersStates> list_of_user_States = new List<UsersStates>();
@@ -471,6 +476,48 @@ namespace APP1.Models.DAL
         //======================================================================
         //===============================Favorites========================
         //======================================================================
+        public int Insert_Favorites(Favorites f)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertFavorites(f);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
         private String BuildInsertFavorites(Favorites f)
         {
             String command;
@@ -478,48 +525,15 @@ namespace APP1.Models.DAL
             StringBuilder sb = new StringBuilder();
 
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", f.Email, f.UniversitySize, f.UniversityLevel, f.UniversityType, f.PriceMAX, f.Sit);
-            String prefix = "INSERT INTO [[UsersFavorites] " + "(Email,UniversitySize, UniversityLevel ,UniversityType ,PriceMAX, SIT)";
-            command = prefix + sb.ToString();
+            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", f.Email, f.UniversitySize, f.UniversityLevel, f.UniversityType, f.PriceMAX, f.Sat);
+            String prefix = "INSERT INTO [UsersFavorites] " + "(Email,UniversitySize, UniversityLevel ,UniversityType ,PriceMAX, SAT)";
+
+            prefix = "IF EXISTS(select* from UsersFavorites where email= '" + f.Email + "') begin UPDATE UsersFavorites SET UniversitySize = " + f.UniversitySize + " ,UniversityLevel ='" + f.UniversityLevel + "' ,UniversityType = '" + f.UniversityType + "',PriceMAX =" + f.PriceMAX + ",SAT = " + f.Sat + " WHERE Email = '" + f.Email + "' END else begin " + prefix ; 
+
+
+            command = prefix + sb.ToString() + "end";
 
             return command;
-
-        }
-        public int Login_User(string email, string password)
-        {
-
-            SqlConnection con = null;
-
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-
-                String selectSTR = "SELECT * FROM Users where Users.Email='" + email + " ' and Users.password='" + password + "'";
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
-
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
-                while (dr.Read())
-                {   // Read till the end of the data into a row
-                    return Convert.ToInt32(dr["TypeUsers"]);
-                }
-                return -1;
-
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-
 
         }
         public int getDivision(int d)
@@ -568,10 +582,10 @@ namespace APP1.Models.DAL
             return allUsers;
         }
 
-
-
-
-        public int getdiv()
+        //======================================================================
+        //===============================Users========================
+        //======================================================================
+        public int Login_User(string email, string password)
         {
 
             SqlConnection con = null;
@@ -580,7 +594,7 @@ namespace APP1.Models.DAL
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "SELECT * FROM [NCAAUniversities]";
+                String selectSTR = "SELECT * FROM Users where Users.Email='" + email + " ' and Users.password='" + password + "'";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
@@ -588,7 +602,7 @@ namespace APP1.Models.DAL
 
                 while (dr.Read())
                 {   // Read till the end of the data into a row
-                    // return Convert.ToInt32(dr["TypeUsers"]);
+                    return Convert.ToInt32(dr["TypeUsers"]);
                 }
                 return -1;
 
@@ -609,20 +623,6 @@ namespace APP1.Models.DAL
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-        //======================================================================
-        //===============================Users========================
-        //======================================================================
         private String BuildInsertCommandUsers(Users u)
         {
             String command;
@@ -722,103 +722,101 @@ namespace APP1.Models.DAL
 
 
         }
-        public List<Favorites> get_all_fav(string email, int cost, int sit, int UniversityType, int UniversitySize, int UniversityLevel)
-        {
-            List<Favorites> list_of_user_fav = new List<Favorites>();
-            SqlConnection con = null;
+        //public List<Favorites> get_all_fav(string email, int cost, int sit, int UniversityType, int UniversitySize, int UniversityLevel)
+        //{
+        //    List<Favorites> list_of_user_fav = new List<Favorites>();
+        //    SqlConnection con = null;
 
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+        //    try
+        //    {
+        //        con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "select * from UsersFavorites where Email='" + email + "' and PriceMax<=" + cost + " and sit<=" + sit + " and UniversityType=" + UniversityType + " and UniversitySize>=" + UniversitySize + " and UniversityLevel=" + UniversityLevel;
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
+        //        String selectSTR = "select * from UsersFavorites where Email='" + email + "' and PriceMax<=" + cost + " and sit<=" + sit + " and UniversityType=" + UniversityType + " and UniversitySize>=" + UniversitySize + " and UniversityLevel=" + UniversityLevel;
+        //        SqlCommand cmd = new SqlCommand(selectSTR, con);
 
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+        //        // get a reader
+        //        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
 
-                while (dr.Read())
-                {
-                    Favorites f = new Favorites();
-
-
-                    f.PriceMAX = Convert.ToInt32(dr["cost"]);
-                    f.Sit = Convert.ToInt32(dr["sit"]);
-                    f.UniversityType = Convert.ToInt32(dr["UniversityType"]);
-                    f.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
-                    f.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
+        //        while (dr.Read())
+        //        {
+        //            Favorites f = new Favorites();
 
 
-
-                    list_of_user_fav.Add(f);
-                }
-                return list_of_user_fav;
-
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
+        //            f.PriceMAX = Convert.ToInt32(dr["cost"]);
+        //            f.Sit = Convert.ToInt32(dr["sit"]);
+        //            f.UniversityType = Convert.ToInt32(dr["UniversityType"]);
+        //            f.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
+        //            f.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
 
 
-        }
-        public List<Favorites> get_User_D(int UniversityLevel)
-        {
-            List<Favorites> list_of_user_fav = new List<Favorites>();
-            SqlConnection con = null;
 
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+        //            list_of_user_fav.Add(f);
+        //        }
+        //        return list_of_user_fav;
 
-                String selectSTR = "select * from NCAAUniversities where Division in(" + UniversityLevel + ")";
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
-
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
-                while (dr.Read())
-                {
-                    Favorites uf = new Favorites();
-
-                    uf.Email = (string)dr["Email"];
-                    uf.Price = Convert.ToInt32(dr["Id"]);
-                    uf.UniversitySize = Convert.ToInt32(dr["Id"]);
-                    uf.UniversityLevel = Convert.ToInt32(dr["Id"]);
-                    uf.PriceMAX = Convert.ToInt32(dr["Id"]);
-                    uf.UniversityType = Convert.ToInt32(dr["Id"]);
-                    uf.Sit = Convert.ToInt32(dr["Id"]);
-                    uf.Precent = Convert.ToInt32(dr["Id"]);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
 
 
-                    list_of_user_fav.Add(uf);
-                }
-                return list_of_user_fav;
+        //}
+        //public List<Favorites> get_User_D(int UniversityLevel)
+        //{
+        //    List<Favorites> list_of_user_fav = new List<Favorites>();
+        //    SqlConnection con = null;
 
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
+        //    try
+        //    {
+        //        con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+        //        String selectSTR = "select * from NCAAUniversities where Division in(" + UniversityLevel + ")";
+        //        SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+        //        // get a reader
+        //        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+        //        while (dr.Read())
+        //        {
+        //            Favorites uf = new Favorites();
+
+        //            uf.Email = (string)dr["Email"];
+        //            uf.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
+        //            uf.UniversityLevel = (string)dr["UniversityLevel"];
+        //            uf.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
+        //            uf.UniversityType = (string)dr["UniversityType"];
+        //            uf.Sat = Convert.ToInt32(dr["Sat"]);
 
 
-        }
+        //            list_of_user_fav.Add(uf);
+        //        }
+        //        return list_of_user_fav;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+
+
+        //}
         //======================================================================
         //===============================function========================
         //======================================================================

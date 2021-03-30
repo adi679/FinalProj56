@@ -26,22 +26,22 @@
     </style>
     <script>
 
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = (function (e) {
-                    var file = e.target;
-                    $("<span class=\"pip\">" +
-                        "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-                        "<br/><span class=\"remove\">Remove image</span>" +
-                        "</span>").insertAfter("#" + input_id);
-                    $(".remove").click(function () {
-                        $(this).parent(".pip").remove();
-                    });
-                });
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        //function readURL(input) {
+        //    if (input.files && input.files[0]) {
+        //        var reader = new FileReader();
+        //        reader.onload = (function (e) {
+        //            var file = e.target;
+        //            $("<span class=\"pip\">" +
+        //                "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+        //                "<br/><span class=\"remove\">Remove image</span>" +
+        //                "</span>").insertAfter("#" + input_id);
+        //            $(".remove").click(function () {
+        //                $(this).parent(".pip").remove();
+        //            });
+        //        });
+        //        reader.readAsDataURL(input.files[0]);
+        //    }
+        //}
 
     </script>
 
@@ -73,8 +73,11 @@
         function success(data) {
             alert("Submitted")
             swal("Submitted to the server!", "Great Job", "success");
-          //  window.open("Highlights.html");
-            //localStorage.setItem('email', $("#mailTB").val())
+            localStorage.setItem('email', $("#mailTB").val())
+            localStorage.setItem('password', $("#passwordTB").val())
+            window.open("FavRegion.html");
+            window.close();
+
 
 
         }
@@ -112,29 +115,29 @@
             ajaxCall("POST", "../api/Users", JSON.stringify(u), success, error); //נוסיף לשרת את היוזר
 
             
-            var data = new FormData(); 
-            var files = $("#files").get(0).files;
-            // Add the uploaded file to the form data collection
-            if (files.length > 0) { // הוספת קובץ לטופס
-                for (f = 0; f < files.length; f++) {
-                    data.append("UploadedImage", files[f]); 
-                }
-                // הוספת אימייל לשם של הקובץ
-                data.append("name21312131asd12", $("#mailTB").val()); // append what ever data you want to send along with the files. See how you extract it in the controller.
-            }//name21312131asd12- מגיע לקונטורל של התמונות File upload
+            //var data = new FormData(); 
+            //var files = $("#files").get(0).files;
+            //// Add the uploaded file to the form data collection
+            //if (files.length > 0) { // הוספת קובץ לטופס
+            //    for (f = 0; f < files.length; f++) {
+            //        data.append("UploadedImage", files[f]); 
+            //    }
+            //    // הוספת אימייל לשם של הקובץ
+            //    data.append("name21312131asd12", $("#mailTB").val()); // append what ever data you want to send along with the files. See how you extract it in the controller.
+            //}//name21312131asd12- מגיע לקונטורל של התמונות File upload
 
             // Ajax upload
-            $.ajax({
-                type: "POST",
-                url: "../Api/FileUpload",
-                contentType: false,
-                processData: false,
-                data: data,
-                success: showImages,
-                error: error1
-            });
+            //$.ajax({
+            //    type: "POST",
+            //    url: "../Api/FileUpload",
+            //    contentType: false,
+            //    processData: false,
+            //    data: data,
+            //    success: showImages,
+            //    error: error1
+            //});
           
-            return false;
+            //return false;
 
 
             function showImages(data) {
@@ -220,27 +223,28 @@
             </div>
             <div class="form-group">
                 <label for="user"><span class="red-star">★ </span>User</label><br />
-                <input type="radio" id="user" value="Player">
+                <input type="radio" id="Player" name="userT" value="Player">
                 <label for="Player">Player</label><br>
-                <input type="radio" id="user" value="Owner">
-                <label for="owner">Owner</label><br>
+                <input type="radio" id="Owner" name="userT" value="Owner">
+                <label for="Owner">Owner</label><br>
 
             </div>
             <div class="form-group">
                 <label for="Sex"><span class="red-star">★ </span>Sex</label><br />
-                <input type="radio" id="Sex" value="Male">
-                <label for="Male">Male</label><br>
-                <input type="radio" id="Sex" value="Female">
-                <label for="Female">Female</label><br>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+            
 
             </div>
 
-            <div>
+            <!--<div>
                 <label for="files"><span class="red-star">★ </span>Files</label>
                 <input type="file" id="files" name="files" multiple="multiple" pattern="[A-Za-z0-9]{1,20}" required
                        oninvalid="this.setCustomValidity('should be file')"
                        oninput="this.setCustomValidity('')" />
-            </div>
+            </div>-->
             <br />
 
 

@@ -18,12 +18,12 @@ namespace APP1.Controllers
 
         [HttpGet]
         [Route("api/University/getdiv")]
-        public int Get()
+        public List<University> Get()
         {
             University un = new University();
             return un.getdiv();
         }
-
+     
 
 
 

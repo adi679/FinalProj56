@@ -70,10 +70,11 @@ namespace APP1.Models
         }
 
 
-        public int getdiv()
+        public List<University>  getdiv()
         {
             DB_Services dbs = new DB_Services();
 
+            
             return dbs.getdiv();
         }
 

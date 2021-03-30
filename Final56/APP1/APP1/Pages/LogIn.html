@@ -10,7 +10,7 @@
 		body {
 			font-family: Arial, Helvetica, sans-serif;
 		}
-
+		
 		form {
 			border: 3px solid #f1f1f1;
 		}
@@ -114,6 +114,11 @@
 
 		function errorlogin(data) { alert('errorlogin') }
 
+		function signin() {
+            window.open("NewUserForm.html")
+
+        }
+
 	</script>
 </head>
 <body>
@@ -138,6 +143,7 @@
 		</div>
 
 		<div class="container" style="background-color:#f1f1f1">
+			<button type="button" class="cancelbtn" style="background-color:lightgreen" onclick="signin()">Sign in</button>
 			<button type="button" class="cancelbtn">Cancel</button>
 			<span class="psw">Forgot <a href="#">password?</a></span>
 		</div>

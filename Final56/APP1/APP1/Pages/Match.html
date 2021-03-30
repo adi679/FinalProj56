@@ -5,6 +5,38 @@
     <title></title>
     <script src="../Scripts/ajaxCalls.js"></script>
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <style>
+
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            margin: 0px auto;
+            width: 100%;
+            height: 100%;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+            text-align: center;
+        }
+
+        button {
+            width: 100px;
+            height: 60px;
+            border-color: #4CAF50;
+            color: green;
+            width: 180px;
+        }
+
+            button:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
+    </style>
+
 
     <script>
         var MYDistrict   //כל האזורים של משתמש
@@ -19,8 +51,13 @@
         var email
         var password
         var api_District
-        var email = "adi@gmail.com";
+       // var email = "adi@gmail.com";
         var UniversityLevel;
+        var email;
+
+        //let api_D = "../api/Favorites/" + fav.UniversityLevel + "/get_all_D";
+        //ajaxCall("Get", api_D, fav.UniversityLevel, successD, errorD)
+        alert("email is: " + email);
 
         let api_Districts = "../api/UsersDistrict/"+email+"/get_all_District";
 
@@ -178,7 +215,7 @@
                     }
 
                 }
-                alert("cost_sit" + cost_sit)
+                //alert("cost_sit" + cost_sit)
             })
         }
 
@@ -196,6 +233,7 @@
             function successDiv() {
                 alert("successDiv")
                 console.log(data);
+                // להביא דירוג ורמה לאוניברסיטה
             }
             function errorDiv() { alert("errorDiv")}
           
@@ -203,37 +241,49 @@
 
             let x = data.results.length
             let y = data.results[length]
-            let str
+            let str;
+
+            str += "<table class='table' width='100%'>";
+            str += "<thead><tr>";
+            str += "<th>Schoole name</th>";
+            str += "<th>School Website </th>";
+            str += "<th> School ID </th>";
+            str += "<th> Locale </th>";
+            str += "<th>Ownership</th>";
+            str += "<th> Region </th> ";
+            str += "<th> State </th>";
+            str += "<th> Cost </th>";
+            str += "<th> Size </th>";
+            str += "<th> SAT </th>";
+            str += "</tr></thead>";
+            str += " <tbody>";
               
             for (var i = 0; i < data.results.length; i++) {
-                str += "<table style='width: 100 %'>"
-                str += "  <tr> <th>school.name</th><th>School Website</th> <th>id</th> <th>locale</th> <th>ownership</th> <th>region_id</th><th>state_fips</th><th>Tituoin</th> <th>Size</th> <th>SAT Score</th> </tr >";
+             
+
+            
                 str += "<tr>";
-                str = "<td><div style:'position:relative'>======================================</div></td>";
-                str += "<div style:'position:relative'>school.name: " + data.results[i]["school.name"] +"</br ></div>";
-                str += "<div><a href=" + data.results[i]["school.school_url"] + ">" + data.results[i]["school.school_url"] +": </a></div>";
-               // str += "<div style:'position:relative'>school.name: " + data.results[i]["school.school_url"] +"</br ></div>";
-                str += "<div style:'position:relative'>id: " + data.results[i].id + "</br ></div>";
-                str += "<div style:'position:relative'>locale: " + data.results[i]["school.locale"] + "</br ></div>";
-                str += "<div style:'position:relative'>ownership: " + data.results[i]["school.ownership"] + "</br ></div>";
-                str += "<div style:'position:relative'>region_id: " + data.results[i]["school.region_id"] + "</br ></div>";
-                str += "<div style:'position:relative'>state_fips:" + data.results[i]["school.state_fips"] + "</br ></div>";
-                str += "<div style:'position:relative'>2018.cost.tuition.out_of_state: " + data.results[i]["2018.cost.tuition.out_of_state"] + "</br ></div>";
-                str += "<div style:'position:relative'>2018.student.size: " + data.results[i]["2018.student.size"] + "</br ></div>";
-                str += "<div style:'position:relative'>2018.admissions.sat_scores.average.overall: " + data.results[i]["2018.admissions.sat_scores.average.overall"] + "</br ></div>";
-                str += "</tr>";
-                str += "</table>"
-                document.getElementById("showfav").innerHTML += str;
+                str += "<td>" + data.results[i]["school.name"] + "</td>";
+               // str += "<td> <img src='" + rlist[k].featured_image + "'height='60px'</td>";
+                //str += " <td>" + data.results[i]["school.school_url"] + "</td>";
+                str += "<td><a href=" + data.results[i]["school.school_url"] + ">" + data.results[i]["school.school_url"] + "</a></td>";
+                str += "<td>" + data.results[i].id + "</td>";
+                str += "<td>" + data.results[i]["school.locale"] + "</td>";
+                str += "<td>" + data.results[i]["school.ownership"] + "</td>";
+                str += "<td> " + data.results[i]["school.region_id"] + "</td>";
+                str += "<td> " + data.results[i]["school.state_fips"] + "</td>";
+                str += "<td> " + data.results[i]["2018.cost.tuition.out_of_state"] + "</td>";
+                str += "<td> " + data.results[i]["2018.student.size"] + "</td>";
+                str += "<td> " + data.results[i]["2018.admissions.sat_scores.average.overall"] + "</td>";
+               // str += "<td><button onclick='post_businesses(this.id)' id='" + rlist[k].name + rlist[k].featured_image + "'>  Add to favorites </button></td>";
+               
 
-                //       //str += "<div style:'float:left'><img id='img' src='" + httpPostedFile + "' width='50px' height='60px'></div>";
-                //       //str += "</br> img src=" + data[k].Featured_image+ "'>";
-                //       //  str += "<div>  <button onclick='gotofav(this.id)' id='" + rlist[k].name + ' ' + rlist[k].photos_url + "'>  Add to favorites </button> rest name: " + rlist[k].name + "</div>";
-
-                //   }
+            
 
             }
           
-
+            str += "</tr></tbody></table>";
+            document.getElementById("showfav").innerHTML += str;
 
 
         }   
@@ -243,10 +293,13 @@
    
 </head>
 <body>
-    <div id="showfav">
+    <div class="imgcontainer">
 
-      
+        <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+        <h1 style="color:red"> Match Schools: </h1>
+
 
     </div>
+    <div id="showfav">  </div>
 </body>
 </html>

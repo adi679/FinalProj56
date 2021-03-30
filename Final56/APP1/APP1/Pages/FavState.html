@@ -86,18 +86,19 @@
                 ajaxCall("Put", api, JSON.stringify(list_Users_States), SuccessInsertStates, ErrorInsertStates)
             }
             else {
-                alert('אנא בחר לפחות העדפה אחת');
-                return false;
+                alert("Success!");
+                window.open("FavUser.html")
+                window.close()
             }
 
             
         }
 
         function SuccessInsertStates() {
-            location.reload();
             alert("Success!");
+            window.open("FavUser.html")
             window.close()
-            window.open("FavState.html")
+
             }
 
         function ErrorInsertStates() {

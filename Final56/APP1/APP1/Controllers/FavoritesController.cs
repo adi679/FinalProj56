@@ -17,40 +17,35 @@ namespace APP1.Controllers
         }
 
 
-        [HttpGet]
-        [Route("api/Favorites/{UniversityLevel}/get_all_D")]
-        public List<Favorites> Get(int UniversityLevel)
-        {
-            Favorites f = new Favorites();
-            return f.get_User_D(UniversityLevel);
-        }
-
-
-        [HttpGet]
-        [Route("api/Favorites/{email}/{cost}/{sit}/{UniversityType}/{UniversitySize}/{UniversityLevel}/get_all_fav")]
-        public List<Favorites> Get(string email, int cost, int sit ,int UniversityType, int UniversitySize, int UniversityLevel)
-        {
-            Favorites f = new Favorites();
-            return f.get_all_fav(email, cost,sit, UniversityType, UniversitySize, UniversityLevel);
-        }
-
-
-
-
-        // GET api/<controller>/5
-        //למה פםעמיים גט?
-        //public List<Favorites> Get(string email, int id)
+        //[HttpGet]
+        //[Route("api/Favorites/{UniversityLevel}/get_all_D")]
+        //public List<Favorites> Get(int UniversityLevel)
         //{
         //    Favorites f = new Favorites();
-        //    return f.Get_Favorites_By_email(email,id);
+        //    return f.get_User_D(UniversityLevel);
         //}
 
-        // POST api/<controller>
-        public void Post(Favorites f )
-        {
-            f.Insert_Favorites(f);
-        }
 
+        //[HttpGet]
+        //[Route("api/Favorites/{email}/{cost}/{sit}/{UniversityType}/{UniversitySize}/{UniversityLevel}/get_all_fav")]
+        //public List<Favorites> Get(string email, int cost, int sit ,int UniversityType, int UniversitySize, int UniversityLevel)
+        //{
+        //    Favorites f = new Favorites();
+        //    return f.get_all_fav(email, cost,sit, UniversityType, UniversitySize, UniversityLevel);
+        //}
+
+
+
+
+
+        // POST api/<controller>
+        [HttpPost]
+        [Route("api/Favorites/Post_Favorite/insert/save")]
+        public int Post(Favorites f )
+        {
+           return f.Insert_Favorites(f);
+
+        }
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)
         {

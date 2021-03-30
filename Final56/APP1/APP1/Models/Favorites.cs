@@ -9,34 +9,28 @@ namespace APP1.Models
     public class Favorites
     {
         string email;
-        int price;
         int universitySize;
-        int universityLevel;
+        string universityLevel;
         int priceMAX;
-        int universityType;
-        int sit;
-        int precent;
+        string universityType;
+        int sat;
         public Favorites(){ }
-        public Favorites(string email,int price, int universitySize, int universityLevel, int priceMAX, int universityType, int sit, int precent)
+        public Favorites(string email, int universitySize, string universityLevel, int priceMAX, string universityType, int sat)
         {
             Email = email;
-            Price = price;
             UniversitySize = universitySize;
             UniversityLevel = universityLevel;
             PriceMAX = priceMAX;
             UniversityType = universityType;
-            Sit = sit;
-            Precent = precent;
+            Sat = sat;
             
         }
 
-        public int Price { get => price; set => price = value; }
         public int UniversitySize { get => universitySize; set => universitySize = value; }
-        public int UniversityLevel { get => universityLevel; set => universityLevel = value; }
+        public string UniversityLevel { get => universityLevel; set => universityLevel = value; }
         public int PriceMAX { get => priceMAX; set => priceMAX = value; }
-        public int UniversityType { get => universityType; set => universityType = value; }
-        public int Sit { get => sit; set => sit = value; }
-        public int Precent { get => precent; set => precent = value; }
+        public string UniversityType { get => universityType; set => universityType = value; }
+        public int Sat { get => sat; set => sat = value; }
         public string Email { get => email; set => email = value; }
 
         public int Insert_Favorites(Favorites f)
@@ -52,17 +46,17 @@ namespace APP1.Models
         //    return db.Get_Favorites_By_email(email,id);
         //}
 
-        public List<Favorites> get_User_D(int UniversityLevel)
-        {
-            DB_Services db = new DB_Services();
-            return db.get_User_D(UniversityLevel);
-        }
+        //public List<Favorites> get_User_D(int UniversityLevel)
+        //{
+        //    DB_Services db = new DB_Services();
+        //    return db.get_User_D(UniversityLevel);
+        //}
 
-        public List<Favorites> get_all_fav(string email, int cost, int sit, int UniversityType, int UniversitySize, int UniversityLevel)
-        {
-            DB_Services db = new DB_Services();
-            return db.get_all_fav(email, cost, sit, UniversityType, UniversitySize, UniversityLevel);
-        }
+        //public List<Favorites> get_all_fav(string email, int cost, int sat, int UniversityType, int UniversitySize, int UniversityLevel)
+        //{
+        //    DB_Services db = new DB_Services();
+        //    return db.get_all_fav(email, cost, sat, UniversityType, UniversitySize, UniversityLevel);
+        //}
 
         
     }
