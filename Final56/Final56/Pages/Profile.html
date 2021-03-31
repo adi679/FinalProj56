@@ -1,12 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+	<meta charset="utf-8" />
+	<title></title>
 	<style>
-		*{
-			text-align:center;
+		* {
+			text-align: center;
 		}
+
 		.card {
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 			max-width: 300px;
@@ -43,6 +44,122 @@
 				opacity: 0.7;
 			}
 	</style>
+	<script>
+		//אין סטטוס וממוצע בדאטה בייס
+		$(document).ready(function () {
+
+			api = "../api/Users/0"
+			ajaxCall("GET", "../api/Users/0", "", successCB1campign, errorCB1campign)
+			email = $("#email").val();
+			api = "../api/Users/" + email
+			ajaxCall("GET", api, "", successCB1, errorCB1)
+
+		});
+
+		function successCB1(data) {
+			resto = data;
+			rend(data, 0);
+		}
+
+		function errorCB1() {
+
+			alert("Sorry, please try again");
+		}
+			//function search_user() { //חיפוש שחקן ע"י מנהל
+			//	var email = localStorage.getItem('Email');
+			//	if (Email) {
+			//		//מנהל
+			//		email = Email.replace(".", "dotttt");
+			//		api = "../api/Users/Email/TypeUsers/" + email + "/1";
+			//		ajaxCall("GET", api, "", successemail, errorCB1email)
+
+			//		//שחקן
+
+			//		email = email.replace(".", "dotttt");
+			//		api = "../api/Users/Email/TypeUsers/" + email + "/0";
+			//		ajaxCall("GET", api, "", successemail1, errorCB1email1)
+
+			//	}
+			//	else {
+			//		alert("Please login");
+			//	}
+
+			//}
+
+
+			//function errorCB1email() {
+
+			//	alert("Sorry, please try again");
+			//} function errorCB1email1() {
+
+			//	alert("Sorry, please try again");
+			//}
+			//function successemail(data) {
+			//	resto = data;
+			//	rend(data, 1); //חיפוש מנהל
+			//}
+			//function successemail1(data) {
+			//	resto = data;
+			//	rend(data, 0); //חיפוש שחקן
+			//}
+
+			//function errorCB1campign() {
+
+			//	alert("Sorry, please try again");
+			//}
+
+			//function successCB1campign(data) {
+			//	alert("successCB1campign");
+			//	rend(data, 0);
+			//	resto = data;
+			//}
+
+			//function rend(rlist, type) {
+
+			//	if (rlist == '') {
+
+			//		alert('מצטערים, לא נמצא יוזר');
+			//		document.getElementById("data_organic").innerHTML = ' '
+			//		document.getElementById("data_paid").innerHTML = ''
+			//	}
+			//	else {
+			//		let str = ''
+			//		for (k in rlist) {
+			//			if (type == 0) { // שחקן
+			//				let api = "../api/Users/" + rlist[k].email;
+
+			//				ajaxCall("GET", api, "", countclicks, errorcountclick)
+			//			}
+			//			str += "<table class='table'>";
+			//			str += "<thead><tr>";
+			//			str += "<th>Email</th>";
+			//			str += "<th>FirstName</th>";
+			//			str += "<th>LastName</th>";
+			//			str += "<th>Phone</th>";
+			//			str += "<th>TypeUsers</th>";
+			//			str += "<th>BirthDay</th> ";
+			//			str += "<th>Sex</th>";
+			//			str += "</tr></thead>";
+			//			str += '<tbody  >';
+			//			str += "<tr>";
+			//			str += "<td>" + rlist[k].email + "</td>";
+			//			str += "<td> <img src='" + rlist[k].FirstName + "'height='60px'</td>";
+			//			str += " <td>" + rlist[k].LastName + "</td>";
+			//			str += "<td>" + rlist[k].Phone + "</td>";
+			//			str += "<td>" + rlist[k].type + "</td>";
+			//			str += "<td>" + rlist[k].BirthDay + "</td>";
+			//			str += "<td> " + rlist[k].Sex + "</td>";
+
+
+			//			str += "<td><button onclick='clickss(this.value,this.id)' value='" + rlist[k].email + "' id='" + rlist[k].email + "'>  open page </button></td>";
+			//			str += "</tr></tbody></table>";
+			//		}
+
+
+			//	}
+			//}
+
+	</script>
 </head>
 <body>
 	<div class="img">
