@@ -11,24 +11,25 @@ namespace APP1.Controllers
     public class UsersLocaleController : ApiController
     {
 
+        //[HttpGet]
+        //[Route("api/UsersLocale/get_all_Locales/2")]
+        //public List<UsersLocale> Get(string email)
+        //{
+        //    UsersLocale u = new UsersLocale();
+        //    return u.get_User_Locale(email);
+        //}
+        // GET api/<controller>
         [HttpGet]
-        [Route("api/UsersDistrict/{email}/get_all_Locale")]
+        [Route("api/UsersLocale/{email}/get_all_Locale")]
         public List<UsersLocale> Get(string email)
         {
+           
             UsersLocale u = new UsersLocale();
             return u.get_User_Locale(email);
         }
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
         // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+       
 
         [HttpPost]
         [Route("api/UsersLocale/list_user_Locale")]
@@ -39,14 +40,5 @@ namespace APP1.Controllers
 
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
     }
 }

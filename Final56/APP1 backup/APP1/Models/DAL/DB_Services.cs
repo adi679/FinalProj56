@@ -722,101 +722,54 @@ namespace APP1.Models.DAL
 
 
         }
-        //public List<Favorites> get_all_fav(string email, int cost, int sit, int UniversityType, int UniversitySize, int UniversityLevel)
-        //{
-        //    List<Favorites> list_of_user_fav = new List<Favorites>();
-        //    SqlConnection con = null;
 
-        //    try
-        //    {
-        //        con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+        public Favorites Get_Favorites_By_email(string email)
+        {
+            Favorites uf = new Favorites();
+            SqlConnection con = null;
 
-        //        String selectSTR = "select * from UsersFavorites where Email='" + email + "' and PriceMax<=" + cost + " and sit<=" + sit + " and UniversityType=" + UniversityType + " and UniversitySize>=" + UniversitySize + " and UniversityLevel=" + UniversityLevel;
-        //        SqlCommand cmd = new SqlCommand(selectSTR, con);
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-        //        // get a reader
-        //        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+                String selectSTR = "select * from UsersFavorites where email='"+email+"'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
 
-        //        while (dr.Read())
-        //        {
-        //            Favorites f = new Favorites();
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
 
+                while (dr.Read())
+                {
+                    
 
-        //            f.PriceMAX = Convert.ToInt32(dr["cost"]);
-        //            f.Sit = Convert.ToInt32(dr["sit"]);
-        //            f.UniversityType = Convert.ToInt32(dr["UniversityType"]);
-        //            f.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
-        //            f.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
-
-
-
-        //            list_of_user_fav.Add(f);
-        //        }
-        //        return list_of_user_fav;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            con.Close();
-        //        }
-        //    }
+                    uf.Email = (string)dr["Email"];
+                    uf.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
+                    uf.UniversityLevel = (string)dr["UniversityLevel"];
+                    uf.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
+                    uf.UniversityType = (string)dr["UniversityType"];
+                    uf.Sat = Convert.ToInt32(dr["Sat"]);
 
 
-        //}
-        //public List<Favorites> get_User_D(int UniversityLevel)
-        //{
-        //    List<Favorites> list_of_user_fav = new List<Favorites>();
-        //    SqlConnection con = null;
+                   
+                }
+                return uf;
 
-        //    try
-        //    {
-        //        con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-
-        //        String selectSTR = "select * from NCAAUniversities where Division in(" + UniversityLevel + ")";
-        //        SqlCommand cmd = new SqlCommand(selectSTR, con);
-
-        //        // get a reader
-        //        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
-        //        while (dr.Read())
-        //        {
-        //            Favorites uf = new Favorites();
-
-        //            uf.Email = (string)dr["Email"];
-        //            uf.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
-        //            uf.UniversityLevel = (string)dr["UniversityLevel"];
-        //            uf.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
-        //            uf.UniversityType = (string)dr["UniversityType"];
-        //            uf.Sat = Convert.ToInt32(dr["Sat"]);
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
 
 
-        //            list_of_user_fav.Add(uf);
-        //        }
-        //        return list_of_user_fav;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            con.Close();
-        //        }
-        //    }
-
-
-        //}
+        }
         //======================================================================
         //===============================function========================
         //======================================================================

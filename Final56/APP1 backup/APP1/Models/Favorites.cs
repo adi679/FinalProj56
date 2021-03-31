@@ -40,11 +40,11 @@ namespace APP1.Models
             return dbs.Insert_Favorites(f);
         }
 
-        //public List<Favorites> Get_Favorites_By_email(string email, int id) 
-        //{
-        //    DB_Services db = new DB_Services();
-        //    return db.Get_Favorites_By_email(email,id);
-        //}
+        public Favorites Get_Favorites_By_email(string email)
+        {
+            DB_Services db = new DB_Services();
+            return db.Get_Favorites_By_email(email);
+        }
 
         //public List<Favorites> get_User_D(int UniversityLevel)
         //{
@@ -58,6 +58,6 @@ namespace APP1.Models
         //    return db.get_all_fav(email, cost, sat, UniversityType, UniversitySize, UniversityLevel);
         //}
 
-        
+
     }
 }

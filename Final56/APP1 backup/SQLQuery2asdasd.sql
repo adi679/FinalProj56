@@ -1,0 +1,1 @@
+﻿select * from UsersFavorites where email='adi@gmail.com'

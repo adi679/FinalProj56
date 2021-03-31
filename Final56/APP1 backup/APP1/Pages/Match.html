@@ -39,72 +39,86 @@
 
 
     <script>
+        var Sat
+        var UniversitySize
+        var UniversityType
+        var PriceMax
         var MYDistrict   //כל האזורים של משתמש
         var MYStates     //כל המדניות של משתמש
         var MYFavorite   //העדפות כלליות של משתמש
         var MYLocale     //כל סוגי המקומות של משתמש
         var api_data;
+        var api_head = "https://api.data.gov/ed/collegescorecard/v1/schools.json?";
+        var api_tail = "fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
         var api_State
         var all_District
         var show_all_match
         var District
-        var email = localStorage.getItem("email");
+      //  var email = localStorage.getItem("email");
         var password
         var api_District
-       // var email = "adi@gmail.com";
+       var email = "shay@gmail.com";
         var UniversityLevel;
-
         $(document).ready(function () {
-             alert("email is: " + email);
+            alert("email is: " + email);
+            get_all_uni_data()
+
         });
+        function get_all_uni_data() {
+            let api_Districts = "../api/UsersDistrict/" + email + "/get_all_District";
+            ajaxCall("Get", api_Districts, "", successDistrict, errorDistrict)
+            let api_States = "../api/UsersStates/" + email + "/get_all_States";
+            ajaxCall("Get", api_States, "", successState, errorState)
+            let api_Locale = "../api/UsersLocale/" + email + "/get_all_Locale";
+            ajaxCall("Get", api_Locale, "", successLocale, errorLocale)
+            let api_fav = "../api/Favorites/" + email + "/get_all_Favorites"
+            ajaxCall("Get", api_fav, "", successFavorites, errorFavorites)
+        }
 
-        //let api_D = "../api/Favorites/" + fav.UniversityLevel + "/get_all_D";
-        //ajaxCall("Get", api_D, fav.UniversityLevel, successD, errorD)
+        function csvJSON(csv) {
 
-        let api_Districts = "../api/UsersDistrict/"+email+"/get_all_District";
+            var lines = csv.split("\n");
 
-        ajaxCall("Get", api_Districts, "" , successDistrict, errorDistrict)
+            var result = [];
 
+            var headers = lines[0].split(",");
+
+            for (var i = 1; i < lines.length; i++) {
+                var obj = {};
+                var currentline = lines[i].split(",");
+                for (var j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentline[j];
+                }
+                result.push(obj)
+            }
+            return JSON.stringify(result); //JSON
+        }
         function errorDistrict(data) {
             console.log(data);
             alert("ErrorDistrict")
         }
         function successDistrict(data) {
-           // console.log(data);
-            if (data.length == 0 || data.length == 8 )
+            MYDistrict
+            if (data.length == 0 || data.length == 8)
                 api_District = "";
             else {
-                api_District = "school.region_id="+ data[0].Id
+                api_District = "school.region_id=" + data[0].Id
                 for (var i = 1; i < data.length; i++) {
                     api_District = api_District + ',' + data[i].Id
                 }
                 api_District = api_District + '&'
             }
-            
-            api_data = "https://api.data.gov/ed/collegescorecard/v1/schools.json?"+ api_District +"fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne"
-            //function rendfav(data);
-
-            $.get(api_data, function (data) {
-                console.log(data);
-                api_data = data;
-                rendResults(data);
-
-                alert('District');
-               
-            })
+            MYDistrict = api_District
+           
         }
-
-
+      
         //////-----State----//
 
-        let api_States = "../api/UsersStates/" + email + "/get_all_States";
-        ajaxCall("Get", api_States, "", successState, errorState)
-
         function errorState(data) {
-            console.log(data);
             alert("ErrorDState")
         }
         function successState(data) {
+            MYStates=data
            // console.log(data);
             if (data.length == 0 || data.length == 57)
                 api_State = "";
@@ -115,17 +129,17 @@
                 }
                 api_State = api_State + '&'
             }
+            MYStates = api_State
+            //api_data = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" + api_State + "fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
 
-            api_data = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" + api_State + "fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
 
-
-            $.get(api_data, function (data) {
-                console.log(data);
-               api_data = data;
-                alert('State');
-                rendResults(data);
+            //$.get(api_data, function (data) {
+            //    console.log(data);
+            //   api_data = data;
+            //    alert('State');
+            //    rendResults(data);
                 
-            })
+            //})
            
         }
 
@@ -134,15 +148,12 @@
             ////-----Local----//
 
        
-        let api_Locale = "../api/UsersLocale/" + email + "/get_all_Locales";
-        ajaxCall("Get", api_States, "", successLocale, errorLocale)
+      
 
         function errorLocale(data) {
-            console.log(data);
             alert("ErrorLocale")
         }
         function successLocale(data) {
-          //  console.log(data);
             if (data.length == 0 || data.length == 6)
                 api_Locale = "";
             else {
@@ -152,17 +163,17 @@
                 }
                 api_Locale = api_Locale + '&'
             }
+            MYLocale = api_Locale
+            //api_data = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" + api_Locale + "fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
 
-            api_data = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" + api_Locale + "fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
 
+            //$.get(api_data, function (data) {
+            //    console.log(data);
+            //    api_data = data;
+            //    rendResults(data);
+            //    alert('Locale');
 
-            $.get(api_data, function (data) {
-                console.log(data);
-                api_data = data;
-                rendResults(data);
-                alert('Locale');
-
-            })
+            //})
 
         }
 
@@ -170,31 +181,60 @@
        
         //---------Fav----------//
              
-        let api_fav = "../api/Favorites/" + UsersFav.Email + "/" + UsersFav.PriceMax + "/" + UsersFav.Sat + "/" + UsersFav.UniversityType + "/" + UsersFav.UniversitySize + "/" + UsersFav.UniversityLevel + "/get_all_fav";
-        ajaxCall("Get", api_fav, UsersFav, successAll, errorAll)
+       
         var fav_arr = [];
-        function errorAll(data) {
+        function errorFavorites(data) {
             console.log(data);
             alert("ErrorAll")
         }
-        function successAll(data) {
-           api_All = "https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
-           
-            alert("in success");
-            $.get(api_All, function (data) {
-                console.log(data);
-                api_All = data;
+        function successFavorites(data) {
 
-                for (var i = 1; i < data.results.length; i++) {
+            if (data.PriceMax)
+                PriceMax = data.PriceMax
+            else
+                PriceMax = '';
+
+
+            if (data.UniversityType)
+                UniversityType = "school.ownership="+data.UniversityType+'&'
+            else {
+                UniversityType = ''
+                }
+              
+       
+            if (data.Sat)
+                Sat = data.Sat
+            else
+                Sat = '';
+            UniversitySize
+            if (data.UniversitySize)
+                UniversitySize = data.UniversitySize
+            else
+                UniversitySize = '';
+
+            MYLocale = api_Locale
+
+            MYFavorite = data
+
+
+
+           //api_All = "https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
+           
+           // alert("in success");
+           // $.get(api_All, function (data) {
+           //     console.log(data);
+           //     api_All = data;
+
+           //     for (var i = 1; i < data.results.length; i++) {
                     
 
-                    if (data.results[i]["2018.cost.tuition.out_of_state"] <= UsersFav.PriceMax || data.results[i]["2018.cost.tuition.out_of_state"] == null && data.results[i]["2018.admissions.sat_scores.average.overall"] <= UsersFav.Sat && data.results[i]["school.ownership"] == UsersFav.UniversityType && data.results[i]["2018.student.size"] <= UsersFav.UniversitySize){
-                        fav_arr.push(data.results[i]);
-                    }
+           //         if (data.results[i]["2018.cost.tuition.out_of_state"] <= UsersFav.PriceMax || data.results[i]["2018.cost.tuition.out_of_state"] == null && data.results[i]["2018.admissions.sat_scores.average.overall"] <= UsersFav.Sat && data.results[i]["school.ownership"] == UsersFav.UniversityType && data.results[i]["2018.student.size"] <= UsersFav.UniversitySize){
+           //             fav_arr.push(data.results[i]);
+           //         }
 
-                }
+           //     }
              
-            })
+           // })
         }
 
 
@@ -202,69 +242,77 @@
 
         //------------rend-------//
 
-        function rendResults(data) {
-            alert("in rendfav");
-            let api_Div = "../api/University/getdiv"
-            // NCAA Data fron DB
-            ajaxCall("Get", api_Div, "", successDiv, errorDiv)
+        //function rendResults(data) {
+        //    alert("in rendfav");
+        //    let api_Div = "../api/University/getdiv"
+        //    // NCAA Data fron DB
+        //    ajaxCall("Get", api_Div, "", successDiv, errorDiv)
 
-            function successDiv() {
-                alert("successDiv")
-                console.log(data);
-                // להביא דירוג ורמה לאוניברסיטה
-            }
-            function errorDiv() { alert("errorDiv")}
+        //    function successDiv() {
+        //        alert("successDiv")
+        //        console.log(data);
+        //        // להביא דירוג ורמה לאוניברסיטה
+        //    }
+        //    function errorDiv() { alert("errorDiv")}
           
 
+        function rend() {
+       //לעשות פוס עד שGETS
+           
+            api_All = api_head + MYDistrict + MYStates + MYLocale + UniversityType+ api_tail;
 
-            let x = data.results.length
-            let y = data.results[length]
-            let str;
+            //api_All = "https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
+            $.get(api_All, function (data) {
+                     console.log(data);
+                    api_All = data;
+                let x = data.results.length
+                let y = data.results[length]
+                let str;
+                str += "<table class='table' width='100%'>";
+                str += "<thead><tr>";
+                str += "<th>Schoole name</th>";
+                str += "<th>School Website </th>";
+                str += "<th> School ID </th>";
+                str += "<th> Locale </th>";
+                str += "<th>Ownership</th>";
+                str += "<th> Region </th> ";
+                str += "<th> State </th>";
+                str += "<th> Cost </th>";
+                str += "<th> Size </th>";
+                str += "<th> SAT </th>";
+                str += "</tr></thead>";
+                str += " <tbody>";
 
-            str += "<table class='table' width='100%'>";
-            str += "<thead><tr>";
-            str += "<th>Schoole name</th>";
-            str += "<th>School Website </th>";
-            str += "<th> School ID </th>";
-            str += "<th> Locale </th>";
-            str += "<th>Ownership</th>";
-            str += "<th> Region </th> ";
-            str += "<th> State </th>";
-            str += "<th> Cost </th>";
-            str += "<th> Size </th>";
-            str += "<th> SAT </th>";
-            str += "</tr></thead>";
-            str += " <tbody>";
-              
-            for (var i = 0; i < data.results.length; i++) {
-             
+                for (var i = 0; i < data.results.length; i++) {
+                    if (data.results[i]["2018.cost.tuition.out_of_state"] < PriceMax || PriceMax == '' || data.results[i]["2018.cost.tuition.out_of_state"] == '') {
+                        if (data.results[i]["2018.admissions.sat_scores.average.overall"] < Sat || Sat == '' || data.results[i]["2018.admissions.sat_scores.average.overall"] == '') {
+                            if (data.results[i]["2018.student.size"] < UniversitySize || UniversitySize == '' || data.results[i]["2018.student.size"] == '') {
 
+                                str += "<tr>";
+                                str += "<td>" + data.results[i]["school.name"] + "</td>";
+                                // str += "<td> <img src='" + rlist[k].featured_image + "'height='60px'</td>";
+                                //str += " <td>" + data.results[i]["school.school_url"] + "</td>";
+                                str += "<td><a href=" + data.results[i]["school.school_url"] + ">" + data.results[i]["school.school_url"] + "</a></td>";
+                                str += "<td>" + data.results[i].id + "</td>";
+                                str += "<td>" + data.results[i]["school.locale"] + "</td>";
+                                str += "<td>" + data.results[i]["school.ownership"] + "</td>";
+                                str += "<td> " + data.results[i]["school.region_id"] + "</td>";
+                                str += "<td> " + data.results[i]["school.state_fips"] + "</td>";
+                                str += "<td> " + data.results[i]["2018.cost.tuition.out_of_state"] + "</td>";
+                                str += "<td> " + data.results[i]["2018.student.size"] + "</td>";
+                                str += "<td> " + data.results[i]["2018.admissions.sat_scores.average.overall"] + "</td>";
+                                // str += "<td><button onclick='post_businesses(this.id)' id='" + rlist[k].name + rlist[k].featured_image + "'>  Add to favorites </button></td>";
+                            }
+                        }
+                    }
+                }
+                            str += "</tr></tbody></table>";
+                            document.getElementById("showfav").innerHTML += str;
+                        
+            })
             
-                str += "<tr>";
-                str += "<td>" + data.results[i]["school.name"] + "</td>";
-               // str += "<td> <img src='" + rlist[k].featured_image + "'height='60px'</td>";
-                //str += " <td>" + data.results[i]["school.school_url"] + "</td>";
-                str += "<td><a href=" + data.results[i]["school.school_url"] + ">" + data.results[i]["school.school_url"] + "</a></td>";
-                str += "<td>" + data.results[i].id + "</td>";
-                str += "<td>" + data.results[i]["school.locale"] + "</td>";
-                str += "<td>" + data.results[i]["school.ownership"] + "</td>";
-                str += "<td> " + data.results[i]["school.region_id"] + "</td>";
-                str += "<td> " + data.results[i]["school.state_fips"] + "</td>";
-                str += "<td> " + data.results[i]["2018.cost.tuition.out_of_state"] + "</td>";
-                str += "<td> " + data.results[i]["2018.student.size"] + "</td>";
-                str += "<td> " + data.results[i]["2018.admissions.sat_scores.average.overall"] + "</td>";
-               // str += "<td><button onclick='post_businesses(this.id)' id='" + rlist[k].name + rlist[k].featured_image + "'>  Add to favorites </button></td>";
-               
-
-            
-
-            }
-          
-            str += "</tr></tbody></table>";
-            document.getElementById("showfav").innerHTML += str;
-
-
-        }   
+}
+        
 
 
     </script>
@@ -278,6 +326,7 @@
 
 
     </div>
+    <div><button onclick="rend()">rand</button></div>
     <div id="showfav">  </div>
 </body>
 </html>
