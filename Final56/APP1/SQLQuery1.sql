@@ -1,1 +1,1 @@
-﻿insert into UsersLocale (Locale,Id) VALUES ()
+﻿select * from UsersLocale

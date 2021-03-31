@@ -11,9 +11,12 @@ namespace APP1.Controllers
     public class FavoritesController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("api/Favorites/get_all_Favorites")]
+        public Favorites Get(string email)
         {
-            return new string[] { "value1", "value2" };
+            Favorites f = new Favorites();
+            return f.Get_Favorites_By_email(email);
         }
 
 

@@ -32,7 +32,7 @@ namespace APP1.Controllers
 
 
         [HttpGet]
-        [Route("api/UsersDistrict/{email}/get_all_District")]
+        [Route("api/UsersDistrict/get_all_District")]
         public List<UsersDistrict> Get(string email)
         {
             UsersDistrict u = new UsersDistrict();
