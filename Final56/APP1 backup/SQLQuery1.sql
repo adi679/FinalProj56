@@ -1,1 +1,1 @@
-﻿select * from UsersDistrict
+﻿select * from UsersFavorites

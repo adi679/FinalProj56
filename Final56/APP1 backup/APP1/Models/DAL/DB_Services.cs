@@ -330,7 +330,7 @@ namespace APP1.Models.DAL
                 {
                     University div = new University();
 
-                   div.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
+                   div.UniversityLevel = (string)dr["UniversityLevel"];
 
                     list_of_div_school.Add(div);
                 }

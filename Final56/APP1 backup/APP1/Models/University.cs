@@ -16,7 +16,7 @@ namespace APP1.Models
         int priceMAX ;
         int priceMIN;
         int universitySize;
-        int universityLevel;
+        string universityLevel;
         int zip;
         int id;
         public University()
@@ -28,7 +28,7 @@ namespace APP1.Models
             Email = email;
             UniversityName = universityName;
         }
-        public University(int id,string email ,string universityName, string states, string district, string url, int priceMAX, int priceMIN, int universitySize, int universityLevel, int zip)
+        public University(int id,string email ,string universityName, string states, string district, string url, int priceMAX, int priceMIN, int universitySize, string universityLevel, int zip)
         {
             UniversityName = universityName;
             States = states;
@@ -50,7 +50,7 @@ namespace APP1.Models
         public int PriceMAX { get => priceMAX; set => priceMAX = value; }
         public int PriceMIN { get => priceMIN; set => priceMIN = value; }
         public int UniversitySize { get => universitySize; set => universitySize = value; }
-        public int UniversityLevel { get => universityLevel; set => universityLevel = value; }
+        public string UniversityLevel { get => universityLevel; set => universityLevel = value; }
         public int Zip { get => zip; set => zip = value; }
         public string Email { get => email; set => email = value; }
         public int Id { get => id; set => id = value; }
