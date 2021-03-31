@@ -79,47 +79,47 @@ namespace APP1.Models.DAL
 
         //===============================Favorites========================
 
-        public Favorites Get_Favorites_By_email(string email)
-        {
-            SqlConnection con = null;
-            Favorites MY_Favorites = new Favorites(); ;
+        //public List<Favorites> Get_Favorites_By_email(string email)
+        //{
+        //    SqlConnection con = null;
+        //    Favorites MY_Favorites = new Favorites(); ;
 
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+        //    try
+        //    {
+        //        con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "SELECT * FROM Favorites where Favorites.email=" + email;
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
+        //        String selectSTR = "SELECT * FROM Favorites where Favorites.email=" + email;
+        //        SqlCommand cmd = new SqlCommand(selectSTR, con);
 
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+        //        // get a reader
+        //        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
 
-                while (dr.Read())
-                {   // Read till the end of the data into a row
-                    MY_Favorites.Email = (string)dr["Email"];
-                    MY_Favorites.UniversityType = (string)dr["UniversityType"];
-                    MY_Favorites.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
-                    MY_Favorites.Sat = Convert.ToInt32(dr["Sat"]);
-                    MY_Favorites.UniversityLevel = (string)dr["UniversityLevel"];
-                    MY_Favorites.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
-                    
-                }
-                return MY_Favorites;
+        //        while (dr.Read())
+        //        {   // Read till the end of the data into a row
+        //            MY_Favorites.Email = (string)dr["Email"];
+        //            MY_Favorites.UniversityType = Convert.ToInt32(dr["UniversityType"]);
+        //            MY_Favorites.Precent = Convert.ToInt32(dr["Precent"]);
+        //            MY_Favorites.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
+        //            MY_Favorites.Sit = Convert.ToInt32(dr["Sit"]);
+        //            MY_Favorites.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
+        //            MY_Favorites.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-        }
+        //        return MY_Favorites;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //}
         //======================================================================
         //===============================District/region========================
         //======================================================================

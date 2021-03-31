@@ -32,7 +32,7 @@ namespace APP1.Controllers
 
 
         [HttpGet]
-        [Route("api/UsersDistrict/get_all_District")]
+        [Route("api/UsersDistrict/{email}/get_all_District")]
         public List<UsersDistrict> Get(string email)
         {
             UsersDistrict u = new UsersDistrict();
@@ -48,7 +48,7 @@ namespace APP1.Controllers
 
         //POST api/<controller>
         [HttpPost]
-        [Route("api/UsersDistrict")]
+        [Route("api/UsersDistrict/1")]
         public int Post(List<UsersDistrict> list_user_districts)
         {
             UsersDistrict u = new UsersDistrict();
