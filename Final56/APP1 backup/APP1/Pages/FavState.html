@@ -67,7 +67,7 @@
          
             
             for (i = 1; i < checkboxes.length; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
-                if (checkboxes[i].checked) {
+                if (checkboxes[i].checked || checkboxes[0].checked) {
 
                     item = {
                         States: checkboxes[i].nextSibling.data,
@@ -104,11 +104,8 @@
             }
 
         function ErrorInsertStates() {
-            location.reload();
-
 			alert("Sorry something is wrong");
 			flag = 0;
-            window.close()
             window.open("LogIn.html")
 		}
     </script>
@@ -125,6 +122,7 @@
             <h3><label for="region">בחר/י מדינה:</label> </h3>
 
             <div class="state">
+                <label> <input type="checkbox" id="0" class="radio" value="0" />all</label><br />
                 <label> <input type="checkbox" id="1" class="radio" value="1" />Alabama</label><br />
                 <label> <input type="checkbox" id="2" class="radio" value="2" />Alaska</label><br />
                 <label> <input type="checkbox" id="4" class="radio" value="4" />Arizona</label><br />

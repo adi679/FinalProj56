@@ -94,14 +94,15 @@
 				alert("Hello player");
 				localStorage.setItem("email", email);
                 localStorage.setItem("password", password);
-                window.open("FavRegion.html")
+                window.open("FavLocale.html")
                 window.close()
 			}
             if (data==1) {
 				alert("Hello manager");
                 localStorage.setItem("email", email);
 				localStorage.setItem("password", password);
-
+                window.open("FavLocale.html")
+                window.close();
 			}
 
 
@@ -114,8 +115,8 @@
 
 		function errorlogin(data) { alert('errorlogin') }
 
-		function signin() {
-            window.open("NewUserForm.html")
+        function signin() {
+          
 
         }
 

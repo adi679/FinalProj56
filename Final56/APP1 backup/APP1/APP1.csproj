@@ -199,7 +199,7 @@
     <Content Include="Pages\1NewCostumerForm - Copy.html" />
     <Content Include="Pages\1start.html" />
     <Content Include="Pages\1FavLocale.html" />
-    <Content Include="Pages\Favorites.html" />
+    <Content Include="Pages\1Favorites.html" />
     <Content Include="Pages\FavRegion.html" />
     <Content Include="Pages\FavLocale.html" />
     <Content Include="Pages\FavState.html" />
@@ -210,7 +210,7 @@
     <Content Include="Pages\NewUserForm.html" />
     <Content Include="Pages\Profile.html" />
     <Content Include="Pages\1RegistrationForm.html" />
-    <Content Include="Pages\Results.html" />
+    <Content Include="Pages\1Results.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
