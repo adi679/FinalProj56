@@ -1,53 +1,31 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-	<style>
-		body{
-			text-align:center;			
-		
-		}
-		table {
-			font-family: arial, sans-serif;
-			border-collapse: collapse;
-			width: 100%;
-			
-			
-		}
+	<title></title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../Scripts/ajaxCalls.js"></script>
 
-		td, th {
-			border: 1px solid #dddddd;
-			text-align: center;
-			padding: 8px;
-		}
 
-		tr:nth-child(even) {
-			background-color: aliceblue;
-		}
-		.imgcontainer {
-			text-align: center;
-			margin: 24px 0 12px 0;
-		}
-		#save-file {
-			background-color: lightblue;
-			border: none;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-		}
-	
+	<style type="text/css">
 
+		img {
+			height: 100px;
+		}
 	</style>
+
 	<script>
+
 		$(document).ready(function () {
 
 			$('#buttonUpload').on('click', function () {
 				var data = new FormData();
 				var files = $("#files").get(0).files;
+				var email = localStorage.getItem('email');
 
 				// Add the uploaded file to the form data collection
 				if (files.length > 0) {
@@ -60,11 +38,11 @@
 				// Ajax upload
 				$.ajax({
 					type: "POST",
-					url: "../Api/UsersFile",
+					url: "../Api/UsersFile/" + email,
 					contentType: false,
 					processData: false,
 					data: data,
-					success: showFile,
+					success: showImages,
 					error: error
 				});
 
@@ -74,52 +52,36 @@
 		});
 
 
-		function showFile(data) {
+		function showImages(data) {
 			console.log(data);
+
+			var imgStr = "";
+
+			if (Array.isArray(data)) {
+
+				for (var i = 0; i < data.length; i++) {
+					imgStr += "<img src='../" + data[i] + "'/>";
+				}
+
+			}
+
+			else {
+				imgStr = "<img src='../" + data + "'/>";
+			}
+
+			document.getElementById("ph").innerHTML = imgStr;
 		}
 
 		function error(data) {
-			alert("error");
 			console.log(data);
 		}
 
-
-
-		//$(document).ready(function () {
-		//	$("#savefile").click(AddFile)
-		//});
-		//var email = localStorage.getItem('email');
-		//function AddFile() {
-		//	let api = "../api/UsersFile/" + email;
-		//	ajaxCall("GET", api, "", success1, errorr1)
-		//	swal("Submitted to the server!", "Great Job", "success");
-		//	return false;
-		//}
-		//function success1(data) {
-		//	alert("success! campaign for rest: " + i + " with budget:  " + b + " is Active ")
-		//}
-		//// This function is called in case of an error
-		//function errorr1(err) {
-		//	alert("Sorry, please try again");
-		//}
-
-				//$(document).ready(function () { //חיווט של הכפתורים
-				//	$("#save-file").click(savefile)
-				//});
-				//var email = localStorage.getItem('email');
-				//function savefile() {
-				//	api = "../api/UsersFile/Email"
-				//	ajaxCall("GET", "../api/UsersFile/Email", "", successCB1campign, errorCB1campign)
-				//	email = $("#email").val();
-				//	api = "../api/UsersFile/" + email
-				//	ajaxCall("POST", api, "", successCB1, errorCB1)
-				//}
 	</script>
+
 </head>
 <body>
 
-	
-	<form action="/action_page.php">
+	<form method="post" enctype="multipart/form-data" id="formUpload">
 		<div class="imgcontainer">
 			<img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
 		</div>
@@ -132,16 +94,16 @@
 				<th>אקדמי</th>
 			</tr>
 			<tr>
-				<td><input type="file" id="myFile" name="filename"></td>
-				<td> <input type="file" id="myFile" name="filename"> סרט ביצועים </td>
-				<td><input type="file" id="myFile" name="filename">  טופס Toefl   </td>
+				<td><input type="file" id="files" name="files"></td>
+				<td> <input type="file" id="files" name="files"> סרט ביצועים </td>
+				<td><input type="file" id="files" name="files">  טופס Toefl   </td>
 			</tr>
 			<tr>
 
 
-				<td><input type="file" id="myFile" name="filename"></td>
-				<td><input type="file" id="myFile" name="filename">תמונה------</td>
-				<td><input type="file" id="myFile" name="filename">ויזה לארה"ב </td>
+				<td><input type="file" id="files" name="files"></td>
+				<td><input type="file" id="files" name="files">תמונה------</td>
+				<td><input type="file" id="files" name="files">ויזה לארה"ב </td>
 			</tr>
 			<tr>
 				<td><input type="file" id="myFile" name="filename"></td>
@@ -150,23 +112,21 @@
 
 			</tr>
 			<tr>
-				<td><input type="file" id="myFile" name="filename"></td>
-				<td><input type="file" id="myFile" name="filename">אחר- מקצועי</td>
-				<td><input type="file" id="myFile" name="filename">תעודת זהות </td>
+				<td><input type="file" id="files" name="files"></td>
+				<td><input type="file" id="files" name="files">אחר- מקצועי</td>
+				<td><input type="file" id="files" name="files">תעודת זהות </td>
 
 			</tr>
 			<tr>
-				<td><input type="file" id="myFile" name="filename"></td>
-				<td><input type="file" id="myFile" name="filename">אחר- מקצועי</td>
-				<td><input type="file" id="myFile" name="filename">אחר- אקדמי   </td>
+				<td><input type="file" id="files" name="files"></td>
+				<td><input type="file" id="files" name="files">אחר- מקצועי</td>
+				<td><input type="file" id="files" name="files">אחר- אקדמי   </td>
 
 			</tr>
 
 		</table>
-		<button id="save-file">שמור את הקבצים שלך</button>
-		<!--<input type="submit">-->
-
+		<button id="buttonUpload">שמור את הקבצים שלך</button>
 	</form>
-
+	<div id="ph"></div>
 </body>
 </html>
