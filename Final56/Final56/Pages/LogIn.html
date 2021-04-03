@@ -72,76 +72,34 @@
 		}
 	</style>
 	<script>
-		$(document).ready(function () {
+        $(document).ready(function () {
 
-		});
+        });
+		function login() {
 
-		var email = "";
-		function signin() { //תפיסת ערכים של הכפתורים
+		
 			email = $("#uname").val();
-			let password = $("#upass").val();
+			let password = $("#psw").val();
 
 			let api = "../api/Users/" + email + '/' + password;
 
-			ajaxCall("Get", api, "", successCB1, errorCB1)
-			return false;
-		}
-
-
-		function successCB1(data) {
-			if (data) {  //אם השם משתמש וסיסמא זהים לנתנוים שבשרת אז נכנסים
-				alert("Login successed")
-				localStorage.setItem('email', email)
-
-				window.location.href = "Profile.html";
-			}
-			else {
-				alert("Your password/email are incorrect ")
-			}
-
-		}
-
-		function errorCB1(err) {
-			alert("Login err")
-			console.log(err.responseText)
-		}
-		function showPass() {
-			var x = document.getElementById("upass");
-			if (x.type === "password") {
-				x.type = "text";
-			} else {
-				x.type = "password";
-			}
-		}
-
-  //      $(document).ready(function () {
-
-  //      });
-		//function login() {
-
-		
-		//	email = $("#uname").val();
-		//	let password = $("#psw").val();
-
-		//	let api = "../api/Users/" + email + '/' + password;
-
-  //          ajaxCall("Get", api,  email +""+ password, successlogin, errorlogin)
+            ajaxCall("Get", api,  email +""+ password, successlogin, errorlogin)
 			
-		//}
-		//function successlogin(data)
-		//{
-  //          alert(data);
-		//	if (data == 0)
-		//		alert("Hello player");
-  //          if (data==1) {
-  //              alert("Hello manager");
-		//	}
-  //          else {
-  //              alert("dont found");
-  //          }
-		//}
+		}
+		function successlogin(data)
+		{
+            alert(data);
+			if (data == 0)
+				alert("Hello player");
+            if (data==1) {
+                alert("Hello manager");
+			}
+            else {
+                alert("dont found");
+            }
+		}
 
-		//function errorlogin(data) { alert('errorlogin') }
+		function errorlogin(data) { alert('errorlogin') }
 
 	</script>
 </head>
@@ -149,48 +107,27 @@
 	<h2>Login Form</h2>
 
 
-	<div class="container">
-		<label for="uname"><b>Username</b></label>
-		<input id="uname" type="text" placeholder="Enter Username" name="uname" required>
-		<label for="psw"><b>Password</b></label>
-		<input id="upass" type="password" placeholder="Enter Password" name="psw" required>
-		<!-- An element to toggle between password visibility -->
-		<input type="checkbox" onclick="showPass()">Show Password
-		<button type="submit" id="login_btn" onclick="signin()">Login</button>
-	</div>
-	<div class="container" style="background-color:#f1f1f1; text-align:center">
+		<div class="imgcontainer">
+			<img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+		</div>
 
-		<button type="button" id="cancel_btn" class="cancelbtn">
-			<a href="start.html">Continue without registration</a>
-		</button>
-		<button type="button" id="signin_btn" class="signinbtn">
-			<a href="NewCostumerForm - Copy.html">Sign In</a>
+		<div class="container">
+			<label for="uname"><b>Username</b></label>
+			<input id="uname" type="text" placeholder="Enter Username" name="uname" required>
 
-		</button>
+			<label for="psw"><b>Password</b></label>
+			<input id="psw" type="password" placeholder="Enter Password" name="psw" required>
 
-	</div>
+			<button onclick="login()">Login</button>
+			<label>
+				<input type="checkbox" checked="checked" name="remember"> Remember me
+			</label>
+		</div>
 
-	<!--<div class="imgcontainer">
-		<img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
-	</div>
-
-	<div class="container">
-		<label for="uname"><b>Username</b></label>
-		<input id="uname" type="text" placeholder="Enter Username" name="uname" required>
-
-		<label for="psw"><b>Password</b></label>
-		<input id="psw" type="password" placeholder="Enter Password" name="psw" required>
-
-		<button onclick="login()">Login</button>
-		<label>
-			<input type="checkbox" checked="checked" name="remember"> Remember me
-		</label>
-	</div>
-
-	<div class="container" style="background-color:#f1f1f1">
-		<button type="button" class="cancelbtn">Cancel</button>
-		<span class="psw">Forgot <a href="#">password?</a></span>
-	</div>-->
-
+		<div class="container" style="background-color:#f1f1f1">
+			<button type="button" class="cancelbtn">Cancel</button>
+			<span class="psw">Forgot <a href="#">password?</a></span>
+		</div>
+	
 </body>
 </html>
