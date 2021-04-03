@@ -28,4 +28,8 @@ namespace APP1.Models
         public string FileName { get => fileName; set => fileName = value; }
         public int Score { get => score; set => score = value; }
     }
+
+
+
+
 }

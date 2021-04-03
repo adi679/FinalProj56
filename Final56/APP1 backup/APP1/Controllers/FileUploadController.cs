@@ -27,14 +27,14 @@ namespace APP1.Controllers
                     HttpPostedFile httpPostedFile = httpContext.Request.Files[i];
 
                     // this is an example of how you can extract addional values from the Ajax call
-                    string name = httpContext.Request.Form["name21312131asd12"];
+                    string name = httpContext.Request.Form["name"];
 
                     if (httpPostedFile != null)
                     {
                         // Construct file save path  
                         //var fileSavePath = Path.Combine(HostingEnvironment.MapPath(ConfigurationManager.AppSettings["fileUploadFolder"]), httpPostedFile.FileName);
                         string fname = httpPostedFile.FileName.Split('\\').Last();
-                        var fileSavePath = Path.Combine(HostingEnvironment.MapPath("~/uploadedFiles"), name + httpPostedFile.FileName.Split('\\').Last());
+                        var fileSavePath = Path.Combine(HostingEnvironment.MapPath("~/uploadedFiles"), fname);
                         // Save the uploaded file  
                         httpPostedFile.SaveAs(fileSavePath);
                         imageLinks.Add("uploadedFiles/" + fname);
@@ -44,6 +44,10 @@ namespace APP1.Controllers
 
             // Return status code  
             return Request.CreateResponse(HttpStatusCode.Created, imageLinks);
+        
+
         }
+
     }
 }
+

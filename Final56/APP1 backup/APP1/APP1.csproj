@@ -204,6 +204,7 @@
     <Content Include="Pages\FavLocale.html" />
     <Content Include="Pages\FavState.html" />
     <Content Include="Pages\FavUser.html" />
+    <Content Include="Pages\FileUpload_Form - Copy.html" />
     <Content Include="Pages\FileUpload_Form.html" />
     <Content Include="Pages\LogIn.html" />
     <Content Include="Pages\Match.html" />
