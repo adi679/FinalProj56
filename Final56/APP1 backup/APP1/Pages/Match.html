@@ -314,8 +314,7 @@
             $.get(api_All, function (data) {
                 console.log(data);
                 api_All = data;
-
-                let x = data.results.length
+           let x = data.results.length
                 let y = data.results[length]
                 let str;
                 str += "<table class='table' width='100%'>";
@@ -404,11 +403,8 @@
                         Email: email
                     }
 
-
-                   wishlist.push(item)
+                    wishlist.push(item)
                    
-              
-
 
                 }
 
@@ -416,10 +412,6 @@
             }
             let api_WishList = "../api/University";
             ajaxCall("POST", api_WishList, JSON.stringify(wishlist), successWishlist, errorWishlist)
-
-          
-          
-            
 
         }
 
@@ -433,8 +425,59 @@
         }
 
 
+                //function datatable() {
+                //    try {
+                //        tbl = $('#ShowDataTable').DataTable({
+                //            data: data,
+                //            pageLength: 6,
+                //            columns: [
+                //                {
+                //                    render: function (data, type, row, meta) {
 
-        
+                //                        let dataUni = "data-UniId='" + row.Id + "'";
+                //                        ids = row.Id;
+                //                        //  editBtn = "<button type='button'  class = 'editBtn btn btn-success'  " + data + " id='" + ids + "' onclick='editBtn_Function(id)'> Edit </button>";
+                //                        //deleteBtn = "<button type='button' class = 'deleteBtn btn btn-danger' " + data + " id='" + ids + "' onclick='del(id)'> Delete </button>";
+                //                        // return editBtn + deleteBtn;
+                //                    }
+                //                },
+                //                { data: "Name" },
+                //                {
+                //                    data: function (data) {
+                //                        return data.school;
+
+                //                    }
+                //            //},
+                //            //{
+                //            //    data: function (data) {
+                //            //        return data.url
+
+                //            //    }
+                //            //},
+                //            //{ data: "Clicks" },
+                //            //{ data: "Views" },
+                //            //{
+                //            //    data: function (jsonDate) {
+                //            //        if (jsonDate.Status == 1) {
+                //            //            return "active"
+
+                //            //        }
+                //            //        else
+                //            //            return "inactive"
+
+                //            //    }
+                //            //},
+                //        ],
+                //        });
+
+                //    }
+                //    catch (err) {
+                //        alert(err);
+                //    }
+
+                //}
+
+
 
 
     </script>
@@ -454,6 +497,22 @@
     <div id="showfav">  </div>
     <div id="api">  </div>
 
-  
+
+    <!--<table id="ShowDataTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>   </th>
+                <th>Campid</th>
+                <th>Budget</th>
+                <th>Remain</th>
+                <th>Clicks</th>
+                <th>Views</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+    </table>-->
+
+
 </body>
 </html>

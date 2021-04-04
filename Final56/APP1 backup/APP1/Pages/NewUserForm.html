@@ -67,16 +67,18 @@
         }
 
 
-
+        
 
         // This function is called in case of a success
         function success(data) {
+
+
+            
             alert("Submitted")
             swal("Submitted to the server!", "Great Job", "success");
             localStorage.setItem('email', $("#mailTB").val())
             localStorage.setItem('password', $("#passwordTB").val())
             window.open("FavRegion.html");
-            window.close();
 
 
 
@@ -154,9 +156,19 @@
 
 
         function f1() {
-            AddCost();
-            return false; // the return false will prevent the form from being submitted
+
+            var psw1 = document.getElementById("passwordTB").value
+            var psw2 = document.getElementById("password2TB").value
+            if (psw1 == psw2) {
+
+                alert("Password matches")
+                AddCost();
+                return false; // the return false will prevent the form from being submitted
             // hence the page will not reload
+
+            }
+        else alert("Passwords are not matched!")
+          
         }
 
        
@@ -189,7 +201,7 @@
             <div class="form-group">
                 <label for="birthday">Birthday:</label>
                 <input type="date" id="birthday" name="birthday">
-             
+
             </div>
             <div class="form-group">
                 <label for="dealerPhone"><span class="red-star">★ </span>Your Phone (using a pattern validator)</label>
@@ -216,6 +228,14 @@
                        oninput="this.setCustomValidity('')" />
             </div>
             <div class="form-group">
+                <label for="passwordTB"><span class="red-star" required>★ </span>Repeat Password</label>
+                <input type="text" class="form-control" id="password2TB" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required placeholder="Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                       oninvalid="this.setCustomValidity('Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters')"
+                       oninput="this.setCustomValidity('')" />
+            </div>
+
+
+            <div class="form-group">
                 <label for="PositionTB"><span class="red-star" required>★ </span>Position</label>
                 <input type="text" class="form-control" id="PositionTB" required
                        oninvalid="this.setCustomValidity('Enter Your position')"
@@ -229,22 +249,22 @@
                 <label for="Owner">Owner</label><br>
 
             </div>
-            <div class="form-group"  >
-                <label for="Sex"><span class="red-star"required >★ </span>Sex</label><br />
+            <div class="form-group">
+                <label for="Sex"><span class="red-star" required>★ </span>Sex</label><br />
                 <input type="radio" id="male" name="gender" value="male">
                 <label for="male">Male</label><br>
                 <input type="radio" id="female" name="gender" value="female">
                 <label for="female">Female</label><br>
-            
+
 
             </div>
 
             <!--<div>
-                <label for="files"><span class="red-star">★ </span>Files</label>
-                <input type="file" id="files" name="files" multiple="multiple" pattern="[A-Za-z0-9]{1,20}" required
-                       oninvalid="this.setCustomValidity('should be file')"
-                       oninput="this.setCustomValidity('')" />
-            </div>-->
+        <label for="files"><span class="red-star">★ </span>Files</label>
+        <input type="file" id="files" name="files" multiple="multiple" pattern="[A-Za-z0-9]{1,20}" required
+               oninvalid="this.setCustomValidity('should be file')"
+               oninput="this.setCustomValidity('')" />
+    </div>-->
             <br />
 
 
