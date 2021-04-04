@@ -214,6 +214,7 @@
     <Content Include="Pages\1RegistrationForm.html" />
     <Content Include="Pages\1Results.html" />
     <Content Include="Pages\Profile_Show.html" />
+    <Content Include="Pages\WishList.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

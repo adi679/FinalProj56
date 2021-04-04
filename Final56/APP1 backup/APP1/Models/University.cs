@@ -78,6 +78,16 @@ namespace APP1.Models
             return dbs.getdiv();
         }
 
+        public List<University> getWish(string email)
+        {
+            DB_Services dbs = new DB_Services();
+
+
+            return dbs.getWish(email);
+        }
+
+
+
 
 
         public int SaveWishList(List <University>  u)
