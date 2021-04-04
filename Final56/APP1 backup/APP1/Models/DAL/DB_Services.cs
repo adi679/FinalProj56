@@ -311,8 +311,6 @@ namespace APP1.Models.DAL
         //===============================State========================
         //======================================================================
 
-
-
         public List<University> getR()
         {
             List<University> list_of_div_school = new List<University>();
@@ -354,19 +352,6 @@ namespace APP1.Models.DAL
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
         public List<University> getdiv()
         {
             List<University> list_of_div_school = new List<University>();
@@ -641,6 +626,55 @@ namespace APP1.Models.DAL
         //======================================================================
         //===============================Users========================
         //======================================================================
+
+        public List<Users> Show_Users()
+        {
+            List<Users> list_of_user= new List<Users>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM Users";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    Users ul = new Users();
+                    ul.FirstName = (string)dr["FirstName"];
+                    ul.Email = (string)dr["Email"];
+                    ul.TypeUsers = Convert.ToInt32(dr["TypeUsers"]);
+                    ul.Sex = (string)dr["sex"];
+                    ul.LastName = (string)dr["LastName"];
+                    ul.Phone = (string)dr["Phone"];
+                    ul.Position = (string)dr["Position"];
+                    ul.BirthDay= (DateTime)dr["birthDay"];
+                 
+                    list_of_user.Add(ul);
+                }
+                Users ule = new Users();
+                return list_of_user;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
         public int Login_User(string email, string password)
         {
 

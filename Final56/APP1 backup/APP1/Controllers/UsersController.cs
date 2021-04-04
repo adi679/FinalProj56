@@ -26,8 +26,8 @@ namespace APP1.Controllers
             return u.Login_User(email, password);
         }
         [HttpGet]
-        [Route("api/Users/users_show")]
-        public List <Users> Get()
+        [Route("api/Users/{users_show}/Show_all_users")]
+        public List <Users> Get(string users_show)
         {
             Users u = new Users();
             return u.Show_Users();
