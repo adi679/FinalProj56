@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/jquery-3.4.1.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+          //  email = localStorage.getItem("email");
+            email = "adi@gmail.com";
+            alert(email)
+            let api_wishlist = "../api/University/" + email + "/get_wishlist";
+            ajaxCall("Get", api_wishlist, email , successShow, errorShow)
+
+        });
+
+        var str = '';
+        function successShow(data) {
+            console.log(data);
+            alert("successShow");
+            str += "<table class='table' >";
+            str += "<thead><tr>";
+            str += "<th style='color:red'>Schools names</th>";
+             str += " <tbody>";
+
+
+            for (var i = 0; i < data.length; i++) {
+                str += "<tr>";
+                str += "<td>" + data[i].UniversityName + "</td>";
+            }
+
+            str += "</tr></tbody></table>";
+            document.getElementById("ph").innerHTML += str;
+        }
+
+
+        
+
+        function errorShow() {
+            alert("errorShow");
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+
+    <h1 style="color:red">WishList ❤️</h1>
+    <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+
+    <div id="ph"> </div>
+   
+</body>
+</html>

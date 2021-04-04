@@ -865,6 +865,59 @@ namespace APP1.Models.DAL
         //======================================================================
 
 
+        public List<University> getWish(string email)
+        {
+            List<University> wishlist = new List<University>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "select * from UsersUniversity where email='"+ email+"'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    University ul = new University();
+                    ul.UniversityName = (string)dr["UniversityName"];
+                    ul.Id = Convert.ToInt32(dr["id"]);
+                    
+                    wishlist.Add(ul);
+                }
+                University ule = new University();
+                return wishlist;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         public int SaveWishList(List <University> u)
         {

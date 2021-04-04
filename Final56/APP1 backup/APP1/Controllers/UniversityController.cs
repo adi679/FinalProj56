@@ -32,6 +32,21 @@ namespace APP1.Controllers
             return un.getR();
         }
 
+
+        [HttpGet]
+        [Route("api/University/{email}/get_wishlist")]
+        public List<University> GetWish(string email)
+        {
+            University un = new University();
+            return un.getWish(email);
+        }
+
+
+
+
+
+
+
         [HttpPost]
         [Route("api/University")]
         public int Post(List<University> wishlist)
