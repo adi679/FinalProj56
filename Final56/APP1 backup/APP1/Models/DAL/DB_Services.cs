@@ -636,7 +636,7 @@ namespace APP1.Models.DAL
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "SELECT * FROM Users";
+                String selectSTR = "SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email ";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
@@ -654,6 +654,21 @@ namespace APP1.Models.DAL
                     ul.Position = (string)dr["Position"];
                     ul.BirthDay = (DateTime)dr["birthDay"];
                     ul.Register = (DateTime)dr["Register"];
+                    ul.Address = (string)dr["Address"];
+                    ul.Password = (string)dr["Password"];
+                    if (dr["Status"] == null)
+                    {
+                        ul.Status = (string)dr["Status"];
+
+                    }
+                    if (dr["Id"] == null)
+                    {
+                        ul.StatusId = Convert.ToInt32(dr["Id"]);
+                    }
+
+                
+
+                    
 
                     list_of_user.Add(ul);
                 }
@@ -886,7 +901,6 @@ namespace APP1.Models.DAL
                     University ul = new University();
                     ul.UniversityName = (string)dr["UniversityName"];
                     ul.Id = Convert.ToInt32(dr["id"]);
-                    
                     wishlist.Add(ul);
                 }
                 University ule = new University();

@@ -18,11 +18,15 @@ namespace APP1.Models
         string sex;
         string position;
         DateTime register;
+        string address;
+        string status;
+        int statusId;
+
         public Users()
         {
 
         }
-        public Users(DateTime register, string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex)
+        public Users(string status, int statusId,string address , DateTime register, string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex)
         {
             Email = email;
             Password = password;
@@ -34,6 +38,9 @@ namespace APP1.Models
             Sex = sex;
             Position = position;
             Register = register;
+            Address = address;
+            Status = status;
+            StatusId = statusId;
         }
 
         public string Email { get => email; set => email = value; }
@@ -46,6 +53,9 @@ namespace APP1.Models
         public string Sex { get => sex; set => sex = value; }
         public string Position { get => position; set => position = value; }
         public DateTime Register { get => register; set => register = value; }
+        public string Address { get => address; set => address = value; }
+        public string Status { get => status; set => status = value; }
+        public int StatusId { get => statusId; set => statusId = value; }
 
         public int Insert_New_Users(Users u)
         {
