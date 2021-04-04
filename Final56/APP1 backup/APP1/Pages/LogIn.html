@@ -74,7 +74,10 @@
 	<script>
         $(document).ready(function () {
 
-        });
+		});
+		function signup() {
+            window.location.href = "NewUserForm.html";
+        }
 		function login() {
 
 		
@@ -144,7 +147,7 @@
 		</div>
 
 		<div class="container" style="background-color:#f1f1f1">
-			<button type="button" class="cancelbtn" style="background-color:lightgreen" onclick="signin()">Sign in</button>
+			<button type="button" class="cancelbtn" style="background-color:lightgreen" onclick="signup()">Sign up</button>
 			<button type="button" class="cancelbtn">Cancel</button>
 			<span class="psw">Forgot <a href="#">password?</a></span>
 		</div>
