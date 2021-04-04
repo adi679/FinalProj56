@@ -17,11 +17,12 @@ namespace APP1.Models
         DateTime birthDay;
         string sex;
         string position;
+        DateTime register;
         public Users()
         {
 
         }
-        public Users(string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex)
+        public Users(DateTime register, string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex)
         {
             Email = email;
             Password = password;
@@ -32,6 +33,7 @@ namespace APP1.Models
             BirthDay = birthDay;
             Sex = sex;
             Position = position;
+            Register = register;
         }
 
         public string Email { get => email; set => email = value; }
@@ -43,6 +45,7 @@ namespace APP1.Models
         public DateTime BirthDay { get => birthDay; set => birthDay = value; }
         public string Sex { get => sex; set => sex = value; }
         public string Position { get => position; set => position = value; }
+        public DateTime Register { get => register; set => register = value; }
 
         public int Insert_New_Users(Users u)
         {

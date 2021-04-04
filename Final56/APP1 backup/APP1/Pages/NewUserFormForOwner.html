@@ -105,13 +105,11 @@
                 Email: $("#mailTB").val(),
                 Password: $("#passwordTB").val(),
                 Position: $("#PositionTB").val(),
-                TypeUsers: 0,
+                TypeUsers: $("#user").val(),
                 Sex: $("#Sex").val(),
 
-              //  Myfile: $("#mailTB").val(),
             }
 
-            alert(u);
             //console.log(u)
             //let x = $("#files").get(0).files[0].name
             ajaxCall("POST", "../api/Users", JSON.stringify(u), success, error); //נוסיף לשרת את היוזר
@@ -241,14 +239,14 @@
                        oninvalid="this.setCustomValidity('Enter Your position')"
                        oninput="this.setCustomValidity('')" />
             </div>
-            <!--<div class="form-group">
+            <div class="form-group">
                 <label for="user"><span class="red-star" required>★ </span>User</label><br />
                 <input type="radio" id="Player" name="userT" value="Player">
                 <label for="Player">Player</label><br>
                 <input type="radio" id="Owner" name="userT" value="Owner">
                 <label for="Owner">Owner</label><br>
 
-            </div>-->
+            </div>
             <div class="form-group">
                 <label for="Sex"><span class="red-star" required>★ </span>Sex</label><br />
                 <input type="radio" id="male" name="gender" value="male">
