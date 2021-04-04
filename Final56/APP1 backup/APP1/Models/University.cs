@@ -78,5 +78,15 @@ namespace APP1.Models
             return dbs.getdiv();
         }
 
+
+
+        public List<University> getR()
+        {
+            DB_Services dbs = new DB_Services();
+
+
+            return dbs.getR();
+        }
+
     }
 }

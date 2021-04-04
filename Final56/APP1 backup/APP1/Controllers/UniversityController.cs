@@ -23,7 +23,16 @@ namespace APP1.Controllers
             University un = new University();
             return un.getdiv();
         }
-     
+
+        [HttpGet]
+        [Route("api/University/getrank")]
+        public List<University> GetRank()
+        {
+            University un = new University();
+            return un.getR();
+        }
+
+
 
 
 

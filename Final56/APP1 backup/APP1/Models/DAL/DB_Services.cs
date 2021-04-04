@@ -311,6 +311,62 @@ namespace APP1.Models.DAL
         //===============================State========================
         //======================================================================
 
+
+
+        public List<University> getR()
+        {
+            List<University> list_of_div_school = new List<University>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM [NCAAUniversities]";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    University Rank = new University();
+
+                    Rank.UniversityLevel = (string)dr["UniversityLevel"];
+
+                    list_of_div_school.Add(Rank);
+                }
+                return list_of_div_school;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         public List<University> getdiv()
         {
             List<University> list_of_div_school = new List<University>();
