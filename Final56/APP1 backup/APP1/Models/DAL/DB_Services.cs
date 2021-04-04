@@ -652,8 +652,9 @@ namespace APP1.Models.DAL
                     ul.LastName = (string)dr["LastName"];
                     ul.Phone = (string)dr["Phone"];
                     ul.Position = (string)dr["Position"];
-                    ul.BirthDay= (DateTime)dr["birthDay"];
-                 
+                    ul.BirthDay = (DateTime)dr["birthDay"];
+                    ul.Register = (DateTime)dr["Register"];
+
                     list_of_user.Add(ul);
                 }
                 Users ule = new Users();
