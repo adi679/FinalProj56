@@ -20,13 +20,20 @@ namespace APP1.Controllers
         // GET api/<controller>/5
         [HttpGet]
         [Route("api/Users/{email}/{password}")]
-        public int Get(string email,string password)
+        public int Get(string email, string password)
         {
             Users u = new Users();
             return u.Login_User(email, password);
         }
+        [HttpGet]
+        [Route("api/Users/users_show")]
+        public List <Users> Get()
+        {
+            Users u = new Users();
+            return u.Show_Users();
+        }
 
-       
+
         public int Post(Users u)
         {
             return u.Insert_New_Users(u);

@@ -50,14 +50,14 @@ namespace APP1.Models
 
             return dbs.Insert_New_Users(u);
         }
-        //public List<Users> Show_Users()
-        //{
+        public List<Users> Show_Users()
+        {
 
-        //    DB_Services dbs = new DB_Services();
-        //    List<Users> cList = dbs.Show_Users();
-        //    return cList;
+            DB_Services dbs = new DB_Services();
+            List<Users> cList = dbs.Show_Users();
+            return cList;
 
-        //}
+        }
         public int Login_User(string email, string password)
         {
             DB_Services dbs = new DB_Services();
