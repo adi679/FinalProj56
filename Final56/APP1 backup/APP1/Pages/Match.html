@@ -26,9 +26,9 @@
         button {
             width: 100px;
             height: 60px;
-            border-color: #4CAF50;
-            color: green;
+            color: white;
             width: 180px;
+            float: left;
         }
 
             button:hover {
@@ -43,9 +43,13 @@
         var UniversityTypeAPI
         var JSON_ncaa=[]
         var Sat
+        var SatAPI
         var UniversitySize
+        var UniversitySizeAPI
         var UniversityType
+        var UniversityTypeAPI
         var PriceMax
+        var PriceMaxAPI
         var MYDistrict   //כל האזורים של משתמש
         var MYStates     //כל המדניות של משתמש
         var MYFavorite   //העדפות כלליות של משתמש
@@ -58,6 +62,7 @@
         var show_all_match
         var District
         var all_name_csv_universities
+        var wishlist = [];
         
         
       //var email = localStorage.getItem("email");
@@ -327,7 +332,7 @@
                 str += "<th> SAT </th>";
                 str += "<th> Rank </th>";
                 str += "<th> Div </th>";
-                str += "<th> Div </th>";
+                str += "<th> WishList </th>";
                 str += "</tr></thead>";
                 str += " <tbody>";
 
@@ -364,6 +369,8 @@
                         str += "<td> " + "null" + "</td>";
                         str += "<td> " + "null" + "</td>";
                     }
+                  //  str += "<td> " + "<input type='checkboxes' id='" + data.results[i].id + "' name='Wishlist' value='" + data.results[i]["school.name"] +"'>" + "</td>";
+                    str += "<td> " + "<label> <input type='checkbox' id='" + data.results[i].id + "' class='radio' value='"+ data.results[i]["school.name"] +"'/></label>" + "</td>";
 
                     // str += "<td><button onclick='post_businesses(this.id)' id='" + rlist[k].name + rlist[k].featured_image + "'>  Add to favorites </button></td>";
                 }
@@ -384,6 +391,49 @@
             window.open('FavRegion.html');
 
         }
+
+        function Wishlist() {
+            alert("in wishlist");
+            var checkboxes = document.getElementsByTagName("input");
+            for (i = 0; i < checkboxes.length; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
+                if (checkboxes[i].checked) {
+
+                    item = {
+                        Id: checkboxes[i].id,
+                        UniversityName: checkboxes[i].value,
+                        Email: email
+                    }
+
+
+                   wishlist.push(item)
+                   
+              
+
+
+                }
+
+
+            }
+            let api_WishList = "../api/University";
+            ajaxCall("POST", api_WishList, JSON.stringify(wishlist), successWishlist, errorWishlist)
+
+          
+          
+            
+
+        }
+
+
+        function errorWishlist() {
+            alert("errorWishlist")
+        }
+
+        function successWishlist() {
+            alert("successWishlist")
+        }
+
+
+
         
 
 
@@ -398,8 +448,9 @@
 
 
     </div>
-    <div><button onclick="rend()">rand</button></div>
-    <div><button onclick="ChangeFavorites()">Change Favorites</button></div>
+    <div><button onclick="rend()" style="background-color:red; color:white">rand</button></div>
+    <div><button onclick="ChangeFavorites()" style="background-color: Blue; color:white">Change Favorites</button></div>
+    <div><button onclick="Wishlist()" style="background-color: Black; color:white">Add to WishList</button></div>
     <div id="showfav">  </div>
     <div id="api">  </div>
 

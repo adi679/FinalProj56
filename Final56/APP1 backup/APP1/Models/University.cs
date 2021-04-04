@@ -80,6 +80,15 @@ namespace APP1.Models
 
 
 
+        public int SaveWishList(List <University>  u)
+        {
+            DB_Services dbs = new DB_Services();
+
+            return dbs.SaveWishList(u);
+        }
+
+
+
         public List<University> getR()
         {
             DB_Services dbs = new DB_Services();

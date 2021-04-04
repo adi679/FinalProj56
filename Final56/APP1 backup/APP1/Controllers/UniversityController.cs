@@ -32,6 +32,14 @@ namespace APP1.Controllers
             return un.getR();
         }
 
+        [HttpPost]
+        [Route("api/University")]
+        public int Post(List<University> wishlist)
+        {
+            University un = new University();
+
+            return un.SaveWishList(wishlist);
+        }
 
 
 
@@ -44,11 +52,11 @@ namespace APP1.Controllers
         }
 
         // POST api/<controller>
-        public void Post(List <University> IUE)
-        {
-            //University u
-            //u.Insert_University_Email(IUE);
-        }
+        //public void Post(List <University> IUE)
+        //{
+        //    //University u
+        //    //u.Insert_University_Email(IUE);
+        //}
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)

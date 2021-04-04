@@ -829,6 +829,95 @@ namespace APP1.Models.DAL
         //======================================================================
         //===============================function========================
         //======================================================================
+
+
+
+        public int SaveWishList(List <University> u)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertWishList(u);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+
+        private String BuildInsertWishList(List <University> u)
+        {
+            String command;
+            string tmp;
+            string sbud = "";
+            StringBuilder append_UsersDistrict = new StringBuilder();
+            // use a string builder to create the dynamic string
+            for (int i = 0; i < u.Count; i++)
+            {
+                if (i == 0) // הראשון
+                    sbud = "Values('" + u[i].Email + "', '" + u[i].UniversityName + "', '" + u[i].Id + "')";
+                else
+                {
+                    tmp = ",('" + u[i].Email + "', '" + u[i].UniversityName + "', '" + u[i].Id + "')";
+                    sbud = append(sbud, tmp);
+
+                }
+            }
+
+
+
+            String prefix_UsersDistrict = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
+
+
+            String delete = "DELETE FROM [UsersUniversity] WHERE Email='" + u[0].Email + "' ";
+            delete = " IF EXISTS (SELECT * FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "' ) DELETE FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "'";
+            command = delete + prefix_UsersDistrict + sbud;
+
+            return command;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         public SqlConnection connect(String conString)
         {
 

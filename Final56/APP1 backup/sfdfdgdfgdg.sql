@@ -1,1 +1,1 @@
-﻿select * from NCAAUniversities
+﻿select * from UsersUniversity
