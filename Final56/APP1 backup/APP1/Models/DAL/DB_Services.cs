@@ -726,7 +726,7 @@ namespace APP1.Models.DAL
         {
             String command;
 
-            StringBuilder sb = new StringBuilder();// נעדכן סטטוס למועמד ונכניס משתמש חדש ליוזר
+            StringBuilder sb = new StringBuilder();
             string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)"; 
             // use a string builder to create the dynamic string
             sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
@@ -868,80 +868,80 @@ namespace APP1.Models.DAL
 
         //----Files---//
 
-        public int SaveFiles(List<File> f)
-        {
+        //public int SaveFiles(List<File> f)
+        //{
 
-            SqlConnection con;
-            SqlCommand cmd;
+        //    SqlConnection con;
+        //    SqlCommand cmd;
 
-            try
-            {
-                con = connect("DBConnectionString"); // create the connection
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
+        //    try
+        //    {
+        //        con = connect("DBConnectionString"); // create the connection
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
 
-            String cStr = BuildInsertFiles(f);      // helper method to build the insert string
+        //    String cStr = BuildInsertFiles(f);      // helper method to build the insert string
 
-            cmd = CreateCommand(cStr, con);             // create the command
+        //    cmd = CreateCommand(cStr, con);             // create the command
 
-            try
-            {
-                int numEffected = cmd.ExecuteNonQuery(); // execute the command
-                return numEffected;
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
+        //    try
+        //    {
+        //        int numEffected = cmd.ExecuteNonQuery(); // execute the command
+        //        return numEffected;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
 
-            finally
-            {
-                if (con != null)
-                {
-                    // close the db connection
-                    con.Close();
-                }
-            }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            // close the db connection
+        //            con.Close();
+        //        }
+        //    }
 
-        }
+        //}
 
 
-        private String BuildInsertFiles(List<File> f)
-        {
-            String command;
-            string tmp;
-            string sbud = "";
-            StringBuilder append_UsersDistrict = new StringBuilder();
-            // use a string builder to create the dynamic string
-            for (int i = 0; i < f.Count; i++)
-            {
-                if (i == 0) // הראשון
+        //private String BuildInsertFiles(List<File> f)
+        //{
+        //    String command;
+        //    string tmp;
+        //    string sbud = "";
+        //    StringBuilder append_UsersDistrict = new StringBuilder();
+        //    // use a string builder to create the dynamic string
+        //    for (int i = 0; i < f.Count; i++)
+        //    {
+        //        if (i == 0) // הראשון
                
-            sbud = "values('"+ f[i].Email +"', '" +f[i].Filetype + "', "+ f[i].Score + ", '"+ f[i].Remark + "', '"+ f[i].FileName + "')";
-                else
-                {
-                    tmp = ",('" + f[i].Email + "', '" + f[i].Filetype + "', " + f[i].Score + ", '" + f[i].Remark + "', '" + f[i].FileName + "')";
-                    sbud = append(sbud, tmp);
+        //    sbud = "values('"+ f[i].Email +"', '" +f[i].Filetype + "', "+ f[i].Score + ", '"+ f[i].Remark + "', '"+ f[i].FileName + "')";
+        //        else
+        //        {
+        //            tmp = ",('" + f[i].Email + "', '" + f[i].Filetype + "', " + f[i].Score + ", '" + f[i].Remark + "', '" + f[i].FileName + "')";
+        //            sbud = append(sbud, tmp);
 
-                }
-            }
-
-
-
-            String prefix_UsersDistrict = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
+        //        }
+        //    }
 
 
-            String delete = "DELETE FROM [UsersUniversity] WHERE Email='" + u[0].Email + "' ";
-            delete = " IF EXISTS (SELECT * FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "' ) DELETE FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "'";
-            command = delete + prefix_UsersDistrict + sbud;
 
-            return command;
-        }
+        //    String prefix_UsersDistrict = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
+
+
+        //    String delete = "DELETE FROM [UsersUniversity] WHERE Email='" + u[0].Email + "' ";
+        //    delete = " IF EXISTS (SELECT * FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "' ) DELETE FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "'";
+        //    command = delete + prefix_UsersDistrict + sbud;
+
+        //    return command;
+        //}
 
 
 
