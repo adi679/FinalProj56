@@ -69,11 +69,16 @@
 			api = "../api/File"
 			ajaxCall("GET", "../api/File", "", successCB1campign, errorCB1campign)
 
-			score = $("#score").val();
-			remark = $("#remark").val();
-			email = $("#email").val();
-            api = "../api/FileUpload/" + email + '/' + score + '/' + remark
-			ajaxCall("POST", api, "", successCB1, errorCB1);
+		    //var	score
+		//	var remark
+			var email = localStorage.getItem('email')
+			let fileU = {
+                Score: $("#score").val(),
+                Remark:  $("#remark").val(),
+				Email: email
+            }
+			api = "../api/FileUpload/savefile/" + email + '/' + fileU;
+            ajaxCall("POST", api, JSON.stringify(fileU), successCB1, errorCB1);
 
 		}
 		function successCB1() {
@@ -124,7 +129,7 @@
 				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 				<td> <input type="file" id="files" name="files">  סרט ביצועים <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 
-				<td><input type="file" id="files" name="files">  טופס Toefl    <br /><input type="text" id="score" name="score">	<label for="score">    ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label><input type="text" id="email" name="email">	<label for="email">email </label></td>
+				<td><input type="file" id="files" name="files">  טופס TOFEL    <br /><input type="text" id="score" name="score">	<label for="score">    ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 			</tr>
 			<tr>
 

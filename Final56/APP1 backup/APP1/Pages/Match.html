@@ -7,6 +7,10 @@
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <style>
 
+        #header{
+            background-color:red;
+
+        }
 
         table, th, td {
             border: 1px solid black;
@@ -35,6 +39,13 @@
                 background-color: #4CAF50;
                 color: white;
             }
+
+
+        
+        
+
+
+
     </style>
 
 
@@ -281,10 +292,10 @@
              // let x = data.results.length
                 //let y = data.results[length]
                 let str;
-               str += "<table class='table' width='100%'>";
+               str += "<table class='table' class='header'>";
                 str += "<thead><tr>";
-                str += "<th>School name</th>";
-                str += "<th>School Website </th>";
+                str += "<th class='cell'>School name</th>";
+                str += "<th class='cell'>School Website </th>";
                 str += "<th> School ID </th>";
                 str += "<th> Locale </th>";
                 str += "<th>Ownership</th>";

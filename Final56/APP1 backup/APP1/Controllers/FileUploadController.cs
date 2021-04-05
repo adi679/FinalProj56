@@ -46,6 +46,18 @@ namespace APP1.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, imageLinks);
         }
     }
+
+
+    //[HttpGet]
+    //[Route("api/FileUpload/savefile/{email}/{fileU}")]
+    //public int Post(FileUpload f)
+    //{
+    //    return f.Insert_New_Users(f);
+    //}
+
+
+
+
 }
 
 

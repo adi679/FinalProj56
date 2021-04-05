@@ -191,6 +191,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="MatchCSS.css" />
     <Content Include="Pages\1DataTableCampaign.html" />
     <Content Include="Pages\1Fav.html" />
     <Content Include="Pages\1Highlights.html" />
