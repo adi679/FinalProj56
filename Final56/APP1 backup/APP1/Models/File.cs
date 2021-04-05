@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APP1.Models.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,6 +28,13 @@ namespace APP1.Models
         public string Remark { get => remark; set => remark = value; }
         public string FileName { get => fileName; set => fileName = value; }
         public int Score { get => score; set => score = value; }
+    }
+
+    public int SaveFiles(List<File> f)
+    {
+        DB_Services dbs = new DB_Services();
+
+        return dbs.SaveFiles(f);
     }
 
 

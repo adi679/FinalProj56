@@ -65,27 +65,36 @@
 
 
 		function search() {
-			var filepath = $("#file").value
-			alert("file is: "+ filepath);
-            api = "../api/FileUpload"
-            ajaxCall("GET", "../api/FileUpload", "", successCB1campign, errorCB1campign)
+			alert("in search")
+			//var filepath = $("#file").value
+			//alert("file is: "+ filepath);
+            //api = "../api/FileUpload"
+            //ajaxCall("GET", "../api/FileUpload", "", successCB1campign, errorCB1campign)
 
 		    //var	score
 		//	var remark
+			var score
+			var remark
+            var FileType
 			var email = localStorage.getItem('email')
 			let fileU = {
-                Score: $("#score").val(),
+                Score: document.getElementById("score").value,
                 Remark:  $("#remark").val(),
-				Email: email
-            }
-			api = "../api/FileUpload/savefile/" + email + '/' + fileU;
+				Email: email,
+				Filename: "Path",
+                FileType: document.getElementById("files")
+
+			}
+			alert(fileU.FileType)
+            alert(fileU.Score)
+			api = "../api/FileUpload/savefile/" + fileU;
             ajaxCall("POST", api, JSON.stringify(fileU), successCB1, errorCB1);
 
 		}
-        function successCB1campign() {
+        function successCB1() {
 			alert("success")
 		}
-        function errorCB1campign() {
+        function errorCB1() {
 			alert("error")
 		}
 		function showImages(data) {
@@ -130,7 +139,7 @@
 				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 				<td> <input type="file" id="files" name="files">  סרט ביצועים <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 
-				<td><input type="file" id="files" name="files">  טופס TOFEL    <br /><input type="text" id="score" name="score">	<label for="score">ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="files"  value="TOFEL" name="files">  טופס TOFEL    <br /><input type="text" id="score" name="score">	<label for="score">ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 			</tr>
 			<tr>
 

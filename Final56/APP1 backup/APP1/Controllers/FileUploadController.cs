@@ -48,12 +48,18 @@ namespace APP1.Controllers
     }
 
 
-    //[HttpGet]
-    //[Route("api/FileUpload/savefile/{email}/{fileU}")]
-    //public int Post(FileUpload f)
-    //{
-    //    return f.Insert_New_Users(f);
-    //}
+
+
+    [HttpPost]
+    [Route("api/api/FileUpload/savefile")]
+    public int Post(List<File> fileU)
+    {
+        File f = new File();
+
+        return f.SaveFiles(fileU);
+    }
+
+
 
 
 
