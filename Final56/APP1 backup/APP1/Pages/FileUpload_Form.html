@@ -72,8 +72,8 @@
 			score = $("#score").val();
 			remark = $("#remark").val();
 			email = $("#email").val();
-			api = "../api/File/" + email + '/' + score + '/' + remark
-			ajaxCall("POST", api, "", successCB1, errorCB1)
+            api = "../api/FileUpload/" + email + '/' + score + '/' + remark
+			ajaxCall("POST", api, "", successCB1, errorCB1);
 
 		}
 		function successCB1() {
