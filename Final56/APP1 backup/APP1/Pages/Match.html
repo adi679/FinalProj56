@@ -5,11 +5,79 @@
     <title></title>
     <script src="../Scripts/ajaxCalls.js"></script>
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
 
-        #header{
-            background-color:red;
 
+
+
+
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: red;
+                    color: white;
+                }
+
+
+
+
+
+     /**//**//**/
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: black;
+                color: white;
+            }
+        #header {
+            background-color: red;
         }
 
         table, th, td {
@@ -39,17 +107,13 @@
                 background-color: #4CAF50;
                 color: white;
             }
-
-
-        
-        
     </style>
 
 
     <script>
         var flag
         var UniversityTypeAPI
-        var JSON_ncaa=[]
+        var JSON_ncaa = []
         var Sat
         var SatAPI
         var UniversitySize
@@ -73,22 +137,22 @@
         var wishlist = [];
         var name1 = [];
         var name = '';
-        
-        
-      var email = localStorage.getItem("email");
+
+
+        var email = localStorage.getItem("email");
 
         var password
         var api_District
-     // var email = "adi@gmail.com";
+        // var email = "adi@gmail.com";
         var UniversityLevel;
 
 
         $(document).ready(function () {
 
             name1 = email.split('@');
-            name = "<h2 style='border: 2px'> Hello " +name1[0]+ "</h2>";
+            name = "<h2 style='border: 2px'> Hello " + name1[0] + "</h2>";
             document.getElementById("intro").innerHTML = name;
-        //    alert("email is: " + email);
+            //    alert("email is: " + email);
             get_all_uni_data()
 
 
@@ -96,7 +160,7 @@
 
         //-----CSV----//
         function get_all_uni_data() {
-          
+
             $.ajax({
                 type: "GET",
                 url: "../NCAA/NCAA.csv",
@@ -107,7 +171,7 @@
                     var result = [];
 
                     // NOTE: If your columns contain commas in their values, you'll need
-                    // to deal with those before doing the next step 
+                    // to deal with those before doing the next step
                     // (you might convert them to &&& or something, then covert them back later)
                     // jsfiddle showing the issue https://jsfiddle.net/
                     var headers = lines[0].split(",");
@@ -124,7 +188,7 @@
                         JSON_ncaa.push(obj);
 
                     }
-                    all_name_csv_universities = 'school.name='+JSON_ncaa[0].Full_School_Name + ',' + JSON_ncaa[0].School
+                    all_name_csv_universities = 'school.name=' + JSON_ncaa[0].Full_School_Name + ',' + JSON_ncaa[0].School
                     for (var i = 1; i < JSON_ncaa.length; i++) {
                         if (JSON_ncaa[i].Full_School_Name) {
                             all_name_csv_universities += ',' + JSON_ncaa[i].Full_School_Name;
@@ -133,15 +197,15 @@
                         if (JSON_ncaa[i].School) {
                             all_name_csv_universities += ',' + JSON_ncaa[i].School
                         }
-                     
-                       
+
+
                     }
                     all_name_csv_universities += '&';
                 }
             });
             var filename = "../NCAA/NCAA.csv"
             var request = new XMLHttpRequest();
-            file = request.open('GET', filename, true); 
+            file = request.open('GET', filename, true);
             let api_Districts = "../api/UsersDistrict/" + email + "/get_all_District";
             ajaxCall("Get", api_Districts, "", successDistrict, errorDistrict)
             let api_States = "../api/UsersStates/" + email + "/get_all_States";
@@ -171,7 +235,7 @@
         }
 
 
-    //----Region, State, Locale----//
+        //----Region, State, Locale----//
         function errorDistrict(data) {
             console.log(data);
             alert("ErrorDistrict")
@@ -188,15 +252,15 @@
                 api_District = api_District + '&'
             }
             MYDistrict = api_District
-           
+
         }
-      
+
         function errorState(data) {
             alert("ErrorDState")
         }
         function successState(data) {
-            MYStates=data
-           // console.log(data);
+            MYStates = data
+            // console.log(data);
             if (data.length == 0 || data.length == 57)
                 api_State = "";
             else {
@@ -228,7 +292,7 @@
 
         //----Favotires----//
 
-          function errorFavorites(data) {
+        function errorFavorites(data) {
             console.log(data);
             alert("ErrorAll")
         }
@@ -251,15 +315,15 @@
             }
             else {
                 UniversityTypeAPI = ''
-                }
-              
-       
+            }
+
+
             if (data.Sat) {
 
                 Sat = data.Sat
                 SatAPI = "2018.admissions.sat_scores.average.overall__range=0.." + data.Sat + '&';
             }
-   else
+            else
                 SatAPI = '';
 
             if (data.UniversitySize) {
@@ -267,8 +331,8 @@
                 UniversitySize = data.UniversitySize
                 UniversitySizeAPI = "2018.student.size__range=0.." + data.UniversitySize + '&';
             }
-              else
-            UniversitySizeAPI = '';
+            else
+                UniversitySizeAPI = '';
 
 
             MYFavorite = data
@@ -276,20 +340,14 @@
 
         }
 
-       
+
         function rend() {
-            //לעשות פוס עד שGETS
-        //    alert("asd");
-            api_All = api_head + MYDistrict + MYStates + MYLocale + UniversityTypeAPI + PriceMaxAPI + UniversitySizeAPI + SatAPI +  api_tail;
-            //api_All = "https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
-            //רנדור תוצאות
+            api_All = api_head + MYDistrict + MYStates + MYLocale + UniversityTypeAPI + PriceMaxAPI + UniversitySizeAPI + SatAPI + api_tail;
             $.get(api_All, function (data) {
                 console.log(data);
                 api_All = data;
-             // let x = data.results.length
-                //let y = data.results[length]
-                let str;
-               str += "<table class='table' class='header'>";
+                let str='';
+                str += "<table id='customers' class='table' class='header'>";
                 str += "<thead><tr>";
                 str += "<th class='cell'>School name</th>";
                 str += "<th class='cell'>School Website </th>";
@@ -308,7 +366,7 @@
                 str += " <tbody>";
 
                 for (var i = 0; i < data.results.length; i++) {
-                 
+
                     str += "<tr>";
                     str += "<td>" + data.results[i]["school.name"] + "</td>";
                     str += "<td><a href=" + data.results[i]["school.school_url"] + ">" + data.results[i]["school.school_url"] + "</a></td>";
@@ -320,29 +378,26 @@
                     str += "<td> " + data.results[i]["2018.cost.tuition.out_of_state"] + "$</td>";
                     str += "<td> " + data.results[i]["2018.student.size"] + "</td>";
                     str += "<td> " + data.results[i]["2018.admissions.sat_scores.average.overall"] + "</td>";
-                    flag=0
+                    flag = 0
                     for (var j = 0; j < JSON_ncaa.length; j++) {
-                        if (JSON_ncaa[j].Full_School_Name == data.results[i]["school.name"] || JSON_ncaa[j].School == data.results[i]["school.name"])
-                        {
-                            flag=1
-                        str += "<td> " + JSON_ncaa[j]["Adj. RPI"] + "</td>";
+                        if (JSON_ncaa[j].Full_School_Name == data.results[i]["school.name"] || JSON_ncaa[j].School == data.results[i]["school.name"]) {
+                            flag = 1
+                            str += "<td> " + JSON_ncaa[j]["Adj. RPI"] + "</td>";
                             str += "<td> " + JSON_ncaa[j].Division + "</td>";
                             j = JSON_ncaa.length;
-                    }
+                        }
                     }
                     if (flag == 0) {
                         str += "<td> " + "null" + "</td>";
                         str += "<td> " + "null" + "</td>";
                     }
-                    str += "<td> " + "<label> <input type='checkbox' id='" + data.results[i].id + "' class='radio' value='"+ data.results[i]["school.name"] +"'/></label>" + "</td>";
-
+                    str += "<td> " + "<label> <input type='checkbox' id='" + data.results[i].id + "' class='radio' value='" + data.results[i]["school.name"] + "'/></label>" + "</td>";
                 }
-
-                 str += "</tr></tbody></table>";
+                str += "</tr></tbody></table>";
                 document.getElementById("showfav").innerHTML += str;
-                   })
-            }
-        
+            })
+        }
+
 
         function ChangeFavorites() {
 
@@ -363,7 +418,7 @@
                     }
 
                     wishlist.push(item)
-                   
+
 
                 }
 
@@ -384,7 +439,7 @@
         }
 
 
-               
+
 
         function gotowishlist() {
             window.open('WishList.html')
@@ -397,41 +452,40 @@
 
 
     </script>
-   
+
 </head>
 <body>
+  
     <div class="imgcontainer">
 
         <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+        <div class="topnav">
+            <a class="active" href="#home" onclick="rend()">Show Results</a>
+            <a href="#news" onclick="ChangeFavorites()">Change Favorites</a>
+            <a href="#contact" onclick="Wishlist()">Add to WishList</a>
+            <a href="#about" onclick="gotowishlist()">Show WishList</a>
+            <a href="#about" onclick="allprofiles()">All Playres Profiles</a>
+        </div>
         <h1 style="color:red"> Match Schools: </h1>
-        <div id="intro" >     </div>
+        <div id="intro">     </div>
 
 
     </div>
-    <div><button onclick="rend()" style="background-color:red; color:white">Show Results</button></div>
-    <div><button onclick="ChangeFavorites()" style="background-color: red; color:white">Change Favorites</button></div>
-    <div><button onclick="Wishlist()" style="background-color: Black; color:white">Add to WishList</button></div>
-    <div><button onclick="gotowishlist()" style="background-color: darkblue; color:white">Show WishList</button></div>
-    <div><button onclick="allprofiles()" style="background-color: darkblue; color:white">All Playres Profiles</button></div>
-    <div id="showfav">  </div>
-    <div id="api">  </div>
+    <div>
+
+        <!--<div><button onclick="rend()" style="background-color:red; color:white">Show Results</button></div>
+        <div><button onclick="ChangeFavorites()" style="background-color: red; color:white">Change Favorites</button></div>
+        <div><button onclick="Wishlist()" style="background-color: Black; color:white">Add to WishList</button></div>
+        <div><button onclick="gotowishlist()" style="background-color: darkblue; color:white">Show WishList</button></div>
+        <div><button onclick="allprofiles()" style="background-color: darkblue; color:white">All Playres Profiles</button></div>-->
+        <div id="showfav">  </div>
+        <div id="api">  </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
 
-    <!--<table id="ShowDataTable" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>   </th>
-                <th>Campid</th>
-                <th>Budget</th>
-                <th>Remain</th>
-                <th>Clicks</th>
-                <th>Views</th>
-                <th>Status</th>
-            </tr>
-        </thead>
 
-    </table>-->
-
+   
 
 </body>
 </html>

@@ -60,20 +60,15 @@ namespace APP1.Models.DAL
             String command;
 
             StringBuilder sb = new StringBuilder();
-
             // use a string builder to create the dynamic string
             for (int i = 0; i < IUE.Count; i++)
             {
                 sb.AppendFormat("Values('{0}', '{1}', '{2}')", IUE[i].Email, IUE[i].UniversityName, IUE[i].Id);
             }
-
             String prefix = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
             String delete = "DELETE FROM [UsersUniversity] WHERE Email=" + IUE[0].Email + " ";
             command = delete + " " + prefix + sb.ToString();
-
             return command;
-
-
 
         }
 
@@ -662,23 +657,15 @@ namespace APP1.Models.DAL
                     ul.Position = (string)dr["Position"];
                     ul.BirthDay = (DateTime)dr["birthDay"];
                     ul.Register = (DateTime)dr["Register"];
-                    ul.Address = (string)dr["Address"];
-                    ul.Password = (string)dr["Password"];
+                    if ((string)dr["Address"] == null)
+                    {ul.Address = (string)dr["Address"];}
+                    if ((string)dr["Password"] == null)
+                     { ul.Password = (string)dr["Password"];}
                     if (dr["Status"] == null)
-                    {
-                        ul.Status = (string)dr["Status"];
-
-                    }
+                    {  ul.Status = (string)dr["Status"];    }
                     if (dr["Id"] == null)
-                    {
-                        ul.StatusId = Convert.ToInt32(dr["Id"]);
-                    }
-
-                
-
-                    
-
-                    list_of_user.Add(ul);
+                    { ul.StatusId = Convert.ToInt32(dr["Id"]); }            
+                   list_of_user.Add(ul);
                 }
                 Users ule = new Users();
                 return list_of_user;
@@ -696,8 +683,6 @@ namespace APP1.Models.DAL
                     con.Close();
                 }
             }
-
-
         }
         public int Login_User(string email, string password)
         {
@@ -853,18 +838,13 @@ namespace APP1.Models.DAL
                 SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
 
                 while (dr.Read())
-                {
-                    
-
+                {              
                     uf.Email = (string)dr["Email"];
                     uf.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
                     uf.UniversityLevel = (string)dr["UniversityLevel"];
                     uf.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
                     uf.UniversityType = (string)dr["UniversityType"];
-                    uf.Sat = Convert.ToInt32(dr["Sat"]);
-
-
-                   
+                    uf.Sat = Convert.ToInt32(dr["Sat"]);         
                 }
                 return uf;
 
@@ -983,8 +963,6 @@ namespace APP1.Models.DAL
         //======================================================================
         //===============================function========================
         //======================================================================
-
-
         public List<University> getWish(string email)
         {
             List<University> wishlist = new List<University>();
@@ -1026,17 +1004,6 @@ namespace APP1.Models.DAL
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
 
         public int SaveWishList(List <University> u)
         {
@@ -1111,17 +1078,6 @@ namespace APP1.Models.DAL
 
             return command;
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
         public SqlConnection connect(String conString)
