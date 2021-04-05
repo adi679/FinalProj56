@@ -65,9 +65,10 @@
 
 
 		function search() {
-
-			api = "../api/File"
-			ajaxCall("GET", "../api/File", "", successCB1campign, errorCB1campign)
+			var filepath = $("#file").value
+			alert("file is: "+ filepath);
+            api = "../api/FileUpload"
+            ajaxCall("GET", "../api/FileUpload", "", successCB1campign, errorCB1campign)
 
 		    //var	score
 		//	var remark
@@ -81,10 +82,10 @@
             ajaxCall("POST", api, JSON.stringify(fileU), successCB1, errorCB1);
 
 		}
-		function successCB1() {
+        function successCB1campign() {
 			alert("success")
 		}
-		function errorCB1() {
+        function errorCB1campign() {
 			alert("error")
 		}
 		function showImages(data) {
@@ -129,7 +130,7 @@
 				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 				<td> <input type="file" id="files" name="files">  סרט ביצועים <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 
-				<td><input type="file" id="files" name="files">  טופס TOFEL    <br /><input type="text" id="score" name="score">	<label for="score">    ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="files" name="files">  טופס TOFEL    <br /><input type="text" id="score" name="score">	<label for="score">ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 			</tr>
 			<tr>
 
@@ -153,7 +154,7 @@
 				<td><input type="file" id="files" name="files">אחר- אקדמי  <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label> </td>
 			</tr>
 		</table>
-		<button id="buttonUpload">buttonupload</button>
+		<!--<button id="buttonUpload">buttonupload</button>-->
 		<button id="save-file">שמור את הקבצים שלך</button>
 	</form>
 	<div id="ph"></div>
