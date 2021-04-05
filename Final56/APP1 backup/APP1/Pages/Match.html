@@ -203,8 +203,6 @@
                     all_name_csv_universities += '&';
                 }
             });
-
-
             var filename = "../NCAA/NCAA.csv"
             var request = new XMLHttpRequest();
             file = request.open('GET', filename, true);
@@ -408,7 +406,6 @@
         }
 
         function Wishlist() {
-            alert("in wishlist");
             var checkboxes = document.getElementsByTagName("input");
             for (i = 0; i < checkboxes.length; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
                 if (checkboxes[i].checked) {
@@ -420,7 +417,10 @@
                     }
 
                     wishlist.push(item)
+
+
                 }
+
 
             }
             let api_WishList = "../api/University";

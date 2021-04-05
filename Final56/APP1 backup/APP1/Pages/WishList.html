@@ -109,7 +109,7 @@
     <script>
         var arr = '';
         var university_id = '';
-        var str
+        var str=''
         var getid;
         var api_head = "https://api.data.gov/ed/collegescorecard/v1/schools.json?per_page=100&";
         var api_tail = "fields=id,school.name,school.region_id,school.state_fips,school.ownership,school.locale,school.school_url,2018.student.size,2018.cost.tuition.out_of_state,2018.admissions.sat_scores.average.overall&api_key=tcw4YqKbgv55DmuUicwNWeBtGk3XwHzoCf2SbWne";
@@ -217,7 +217,6 @@
                 console.log(data);
                 api_getlist = data;
 
-                alert("successShow2")
                 str += "<table id='customers' class='table' class='header'>";
                 str += "<thead><tr>";
                 str += "<th>School name</th>";
