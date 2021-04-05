@@ -649,17 +649,14 @@ namespace APP1.Models.DAL
                     ul.Position = (string)dr["Position"];
                     ul.BirthDay = (DateTime)dr["birthDay"];
                     ul.Register = (DateTime)dr["Register"];
-                    ul.Address = (string)dr["Address"];
-                    ul.Password = (string)dr["Password"];
+                    if ((string)dr["Address"] == null)
+                    {ul.Address = (string)dr["Address"];}
+                    if ((string)dr["Password"] == null)
+                     { ul.Password = (string)dr["Password"];}
                     if (dr["Status"] == null)
-                    {
-                        ul.Status = (string)dr["Status"];
-
-                    }
+                    {  ul.Status = (string)dr["Status"];    }
                     if (dr["Id"] == null)
-                    {
-                        ul.StatusId = Convert.ToInt32(dr["Id"]);
-                    }            
+                    { ul.StatusId = Convert.ToInt32(dr["Id"]); }            
                    list_of_user.Add(ul);
                 }
                 Users ule = new Users();
