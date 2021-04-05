@@ -311,6 +311,47 @@ namespace APP1.Models.DAL
         //===============================State========================
         //======================================================================
 
+        public List<University> getR()
+        {
+            List<University> list_of_div_school = new List<University>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM [NCAAUniversities]";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    University Rank = new University();
+
+                    Rank.UniversityLevel = (string)dr["UniversityLevel"];
+
+                    list_of_div_school.Add(Rank);
+                }
+                return list_of_div_school;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
         public List<University> getdiv()
         {
             List<University> list_of_div_school = new List<University>();
@@ -585,6 +626,71 @@ namespace APP1.Models.DAL
         //======================================================================
         //===============================Users========================
         //======================================================================
+
+        public List<Users> Show_Users()
+        {
+            List<Users> list_of_user= new List<Users>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email ";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    Users ul = new Users();
+                    ul.FirstName = (string)dr["FirstName"];
+                    ul.Email = (string)dr["Email"];
+                    ul.TypeUsers = Convert.ToInt32(dr["TypeUsers"]);
+                    ul.Sex = (string)dr["sex"];
+                    ul.LastName = (string)dr["LastName"];
+                    ul.Phone = (string)dr["Phone"];
+                    ul.Position = (string)dr["Position"];
+                    ul.BirthDay = (DateTime)dr["birthDay"];
+                    ul.Register = (DateTime)dr["Register"];
+                    ul.Address = (string)dr["Address"];
+                    ul.Password = (string)dr["Password"];
+                    if (dr["Status"] == null)
+                    {
+                        ul.Status = (string)dr["Status"];
+
+                    }
+                    if (dr["Id"] == null)
+                    {
+                        ul.StatusId = Convert.ToInt32(dr["Id"]);
+                    }
+
+                
+
+                    
+
+                    list_of_user.Add(ul);
+                }
+                Users ule = new Users();
+                return list_of_user;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
         public int Login_User(string email, string password)
         {
 
@@ -628,13 +734,13 @@ namespace APP1.Models.DAL
             String command;
 
             StringBuilder sb = new StringBuilder();
-
+            string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)"; 
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers);
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers) ";
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
+            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register) ";
             command = prefix + sb.ToString();
 
-            return command;
+            return command+ status;
         }
         public int Insert_New_Users(Users u)
         {
@@ -773,6 +879,147 @@ namespace APP1.Models.DAL
         //======================================================================
         //===============================function========================
         //======================================================================
+
+
+        public List<University> getWish(string email)
+        {
+            List<University> wishlist = new List<University>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "select * from UsersUniversity where email='"+ email+"'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    University ul = new University();
+                    ul.UniversityName = (string)dr["UniversityName"];
+                    ul.Id = Convert.ToInt32(dr["id"]);
+                    wishlist.Add(ul);
+                }
+                University ule = new University();
+                return wishlist;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public int SaveWishList(List <University> u)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertWishList(u);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+
+        private String BuildInsertWishList(List <University> u)
+        {
+            String command;
+            string tmp;
+            string sbud = "";
+            StringBuilder append_UsersDistrict = new StringBuilder();
+            // use a string builder to create the dynamic string
+            for (int i = 0; i < u.Count; i++)
+            {
+                if (i == 0) // הראשון
+                    sbud = "Values('" + u[i].Email + "', '" + u[i].UniversityName + "', '" + u[i].Id + "')";
+                else
+                {
+                    tmp = ",('" + u[i].Email + "', '" + u[i].UniversityName + "', '" + u[i].Id + "')";
+                    sbud = append(sbud, tmp);
+
+                }
+            }
+
+
+
+            String prefix_UsersDistrict = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
+
+
+            String delete = "DELETE FROM [UsersUniversity] WHERE Email='" + u[0].Email + "' ";
+            delete = " IF EXISTS (SELECT * FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "' ) DELETE FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "'";
+            command = delete + prefix_UsersDistrict + sbud;
+
+            return command;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         public SqlConnection connect(String conString)
         {
 

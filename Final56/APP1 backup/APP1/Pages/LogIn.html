@@ -74,7 +74,10 @@
 	<script>
         $(document).ready(function () {
 
-        });
+		});
+		function signup() {
+            window.location.href = "NewUserForm.html";
+        }
 		function login() {
 
 		
@@ -120,10 +123,16 @@
 
         }
 
+
+		function contact() {
+			window.open("https://www.firsteamusa.com/%D7%A6%D7%95%D7%A8-%D7%A7%D7%A9%D7%A8");
+        }
+
+
+
 	</script>
 </head>
 <body>
-	<h2>Login Form</h2>
 
 
 		<div class="imgcontainer">
@@ -144,8 +153,9 @@
 		</div>
 
 		<div class="container" style="background-color:#f1f1f1">
-			<button type="button" class="cancelbtn" style="background-color:lightgreen" onclick="signin()">Sign in</button>
-			<button type="button" class="cancelbtn">Cancel</button>
+			<button type="button" class="cancelbtn" style="background-color:darkblue" onclick="signup()">Sign up</button>
+			<button type="button" class="cancelbtn"  style="background-color:red">Cancel</button>
+			<button type="button" class="cancelbtn" style="background-color:black" onclick="contact()">Contact Us!</button>
 			<span class="psw">Forgot <a href="#">password?</a></span>
 		</div>
 	

@@ -23,7 +23,39 @@ namespace APP1.Controllers
             University un = new University();
             return un.getdiv();
         }
-     
+
+        [HttpGet]
+        [Route("api/University/getrank")]
+        public List<University> GetRank()
+        {
+            University un = new University();
+            return un.getR();
+        }
+
+
+        [HttpGet]
+        [Route("api/University/{email}/get_wishlist")]
+        public List<University> GetWish(string email)
+        {
+            University un = new University();
+            return un.getWish(email);
+        }
+
+
+
+
+
+
+
+        [HttpPost]
+        [Route("api/University")]
+        public int Post(List<University> wishlist)
+        {
+            University un = new University();
+
+            return un.SaveWishList(wishlist);
+        }
+
 
 
 
@@ -35,11 +67,11 @@ namespace APP1.Controllers
         }
 
         // POST api/<controller>
-        public void Post(List <University> IUE)
-        {
-            //University u
-            //u.Insert_University_Email(IUE);
-        }
+        //public void Post(List <University> IUE)
+        //{
+        //    //University u
+        //    //u.Insert_University_Email(IUE);
+        //}
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)

@@ -210,10 +210,13 @@
     <Content Include="Pages\FileUpload_Form.html" />
     <Content Include="Pages\LogIn.html" />
     <Content Include="Pages\Match.html" />
+    <Content Include="Pages\NewUserFormForOwner.html" />
     <Content Include="Pages\NewUserForm.html" />
     <Content Include="Pages\Profile.html" />
     <Content Include="Pages\1RegistrationForm.html" />
     <Content Include="Pages\1Results.html" />
+    <Content Include="Pages\Profile_Show.html" />
+    <Content Include="Pages\WishList.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\ajaxCallsWithKey.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -253,6 +256,17 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\StyleSheet1.css" />
+<<<<<<< HEAD
+=======
+    <Content Include="Scripts\StyleSheet2.css" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+>>>>>>> eb1b561236a2c86e2c9e5fe12608ed8303ae51dc
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\_ViewStart.cshtml" />
