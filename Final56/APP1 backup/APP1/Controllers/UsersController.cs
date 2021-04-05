@@ -11,19 +11,11 @@ namespace APP1.Controllers
 {
     public class UsersController : ApiController
     {
-        // GET api/<controller>/5
-        public List<Users> Get()
+        // GET api/<controller>
+        public IEnumerable<string> Get()
         {
-            Users user = new Users();
-            List<Users> uList = user.Show();
-            return uList;
-
+            return new string[] { "value1", "value2" };
         }
-        //// GET api/<controller>
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
 
         // GET api/<controller>/5
         [HttpGet]
@@ -42,11 +34,6 @@ namespace APP1.Controllers
         }
 
 
-<<<<<<< HEAD
-        
-       
-=======
->>>>>>> eb1b561236a2c86e2c9e5fe12608ed8303ae51dc
         public int Post(Users u)
         {
             return u.Insert_New_Users(u);

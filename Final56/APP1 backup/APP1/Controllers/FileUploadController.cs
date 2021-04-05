@@ -11,7 +11,8 @@ using System.Web.Http;
 namespace APP1.Controllers
 {
     public class FileUploadController : ApiController
-    {       [HttpPost]
+    {
+        [HttpPost]
         public HttpResponseMessage Post()
         {
             List<string> imageLinks = new List<string>();
@@ -46,3 +47,5 @@ namespace APP1.Controllers
         }
     }
 }
+
+

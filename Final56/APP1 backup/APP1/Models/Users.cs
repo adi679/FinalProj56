@@ -18,22 +18,15 @@ namespace APP1.Models
         string sex;
         string position;
         DateTime register;
-<<<<<<< HEAD
-=======
         string address;
         string status;
         int statusId;
 
->>>>>>> eb1b561236a2c86e2c9e5fe12608ed8303ae51dc
         public Users()
         {
 
         }
-<<<<<<< HEAD
-        public Users(string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex,   string position,  DateTime register)
-=======
         public Users(string status, int statusId,string address , DateTime register, string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex)
->>>>>>> eb1b561236a2c86e2c9e5fe12608ed8303ae51dc
         {
             Email = email;
             Password = password;
@@ -43,16 +36,11 @@ namespace APP1.Models
             TypeUsers = typeUsers;
             BirthDay = birthDay;
             Sex = sex;
-<<<<<<< HEAD
-            Position=position;
-            Register= register;
-=======
             Position = position;
             Register = register;
             Address = address;
             Status = status;
             StatusId = statusId;
->>>>>>> eb1b561236a2c86e2c9e5fe12608ed8303ae51dc
         }
 
         public string Email { get => email; set => email = value; }
@@ -61,17 +49,13 @@ namespace APP1.Models
         public string LastName { get => lastName; set => lastName = value; }
         public string Phone { get => phone; set => phone = value; }
         public int TypeUsers { get => typeUsers; set => typeUsers = value; }
-        public DateTime BirthDay { get => birthDay; set => birthDay = value; }  
+        public DateTime BirthDay { get => birthDay; set => birthDay = value; }
         public string Sex { get => sex; set => sex = value; }
         public string Position { get => position; set => position = value; }
         public DateTime Register { get => register; set => register = value; }
-<<<<<<< HEAD
-
-=======
         public string Address { get => address; set => address = value; }
         public string Status { get => status; set => status = value; }
         public int StatusId { get => statusId; set => statusId = value; }
->>>>>>> eb1b561236a2c86e2c9e5fe12608ed8303ae51dc
 
         public int Insert_New_Users(Users u)
         {
@@ -94,13 +78,5 @@ namespace APP1.Models
             return dbs.Login_User(email, password); ;
 
         }
-
- public List<Users> Show()
-        {
-            DB_Services dbs = new DB_Services();
-            List<Users> cList = dbs.Show();
-            return cList;
-        }
-        
     }
 }
