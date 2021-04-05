@@ -32,73 +32,88 @@
 		}
 	</style>
 	<script>
-	$(document).ready(function () {
+		$(document).ready(function () {
+			$("#save-file").click(search)
+			$('#buttonUpload').on('click', function () {
+				var data = new FormData();
+				var files = $("#files").get(0).files;
+				var email = localStorage.getItem('email');
 
-	$('#buttonUpload').on('click', function () {
-	var data = new FormData();
-	var files = $("#files").get(0).files;
-	var email = localStorage.getItem('email');
+				// Add the uploaded file to the form data collection
+				if (files.length > 0) {
+					for (f = 0; f < files.length; f++) {
+						data.append("UploadedImage", files[f]);
+					}
+					data.append("name", "benny"); // append what ever data you want to send along with the files. See how you extract it in the controller.
+				}
 
-	// Add the uploaded file to the form data collection
-	if (files.length > 0) {
-	for (f = 0; f < files.length; f++) {
-	data.append("UploadedImage", files[f]);
-	}
-	data.append("name", "benny"); // append what ever data you want to send along with the files. See how you extract it in the controller.
-	}
+				// Ajax upload
+				$.ajax({
+					type: "POST",
+					url: "../Api/FileUpload",
+					contentType: false,
+					processData: false,
+					data: data,
+					success: showImages,
+					error: error
+				});
 
-	// Ajax upload
-	$.ajax({
-	type: "POST",
-	url: "../api/FileUpload",
-	contentType: false,
-	processData: false,
-	data: data,
-	success: showImages,
-	error: error
-	});
+				return false;
+			});
 
-	return false;
-	});
-
-	});
+		});
 
 
-	function showImages(data) {
-	console.log(data);
+		function search() {
 
-	var imgStr = "";
+			api = "../api/File"
+			ajaxCall("GET", "../api/File", "", successCB1campign, errorCB1campign)
 
-	if (Array.isArray(data)) {
+			score = $("#score").val();
+			remark = $("#remark").val();
+			email = $("#email").val();
+			api = "../api/File/"+email+'/' + score + '/' + remark
+			ajaxCall("POST", api, "", successCB1, errorCB1)
 
-	for (var i = 0; i < data.length; i++) {
-	imgStr += "<img src='../" + data[i] + "' />";
-	}
+		}
+		function successCB1() {
+			alert("success")
+		}
+		function errorCB1() {
+			alert("error")
+		}
+		function showImages(data) {
+			console.log(data);
 
-	}
+			var imgStr = "";
 
-	else {
-	imgStr = "<img src='../" + data + "' />";
-	}
+			if (Array.isArray(data)) {
 
-	document.getElementById("ph").innerHTML = imgStr;
-	}
+				for (var i = 0; i < data.length; i++) {
+					imgStr += "<img src='../" + data[i] + "'/>";
+				}
 
-	function error(data) {
-	console.log(data);
-	}
+			}
+
+			else {
+				imgStr = "<img src='../" + data + "'/>";
+			}
+
+			document.getElementById("ph").innerHTML = imgStr;
+		}
+
+		function error(data) {
+			console.log(data);
+		}
 
 	</script>
-
 </head>
 <body>
-
 	<form method="post" enctype="multipart/form-data" id="formUpload">
 		<div class="imgcontainer">
 			<img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
 		</div>
 		<h2>לחץ על הכפתור "בחירת קובץ" על מנת להעלות קובץ למערכת</h2>
-
 		<table>
 			<tr>
 				<th>אחר</th>
@@ -106,38 +121,35 @@
 				<th>אקדמי</th>
 			</tr>
 			<tr>
-				<td><input type="file" id="files" name="files"></td>
-				<td> <input type="file" id="files" name="files"> סרט ביצועים </td>
-				<td><input type="file" id="files" name="files">  טופס Toefl   </td>
+				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td> <input type="file" id="files" name="files">  סרט ביצועים <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+
+				<td><input type="file" id="files" name="files">  טופס Toefl    <br /><input type="text" id="score" name="score">	<label for="score">    ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label><input type="text" id="email" name="email">	<label for="email">email </label></td>
 			</tr>
 			<tr>
 
-
-				<td><input type="file" id="files" name="files"></td>
-				<td><input type="file" id="files" name="files">תמונה------</td>
-				<td><input type="file" id="files" name="files">ויזה לארה"ב </td>
+				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="files" name="files">תמונה  <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="files" name="files">ויזה לארה"ב <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 			</tr>
 			<tr>
-				<td><input type="file" id="myFile" name="filename"></td>
-				<td><input type="file" id="myFile" name="filename">אחר- מקצועי</td>
-				<td><input type="file" id="myFile" name="filename">תעודת בגרות </td>
-
+				<td><input type="file" id="myFile" name="filename"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="myFile" name="filename">אחר- מקצועי  <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="myFile" name="filename"> תעודת בגרות   <br /><input type="text" id="score" name="score">	<label for="score">    ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 			</tr>
 			<tr>
-				<td><input type="file" id="files" name="files"></td>
-				<td><input type="file" id="files" name="files">אחר- מקצועי</td>
-				<td><input type="file" id="files" name="files">תעודת זהות </td>
-
+				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="files" name="files">אחר- מקצועי <br /> <input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="files" name="files">תעודת זהות <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
 			</tr>
 			<tr>
-				<td><input type="file" id="files" name="files"></td>
-				<td><input type="file" id="files" name="files">אחר- מקצועי</td>
-				<td><input type="file" id="files" name="files">אחר- אקדמי   </td>
-
+				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="files" name="files">אחר- מקצועי <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
+				<td><input type="file" id="files" name="files">אחר- אקדמי  <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label> </td>
 			</tr>
-
 		</table>
-		<button id="buttonUpload">שמור את הקבצים שלך</button>
+		<button id="buttonUpload">buttonupload</button>
+		<button id="save-file">שמור את הקבצים שלך</button>
 	</form>
 	<div id="ph"></div>
 </body>

@@ -11,11 +11,19 @@ namespace APP1.Controllers
 {
     public class UsersController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        // GET api/<controller>/5
+        public List<Users> Get()
         {
-            return new string[] { "value1", "value2" };
+            Users user = new Users();
+            List<Users> uList = user.Show();
+            return uList;
+
         }
+        //// GET api/<controller>
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET api/<controller>/5
         [HttpGet]
@@ -26,6 +34,7 @@ namespace APP1.Controllers
             return u.Login_User(email, password);
         }
 
+        
        
         public int Post(Users u)
         {

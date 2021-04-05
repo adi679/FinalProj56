@@ -11,8 +11,7 @@ using System.Web.Http;
 namespace APP1.Controllers
 {
     public class FileUploadController : ApiController
-    {
-        [HttpPost]
+    {       [HttpPost]
         public HttpResponseMessage Post()
         {
             List<string> imageLinks = new List<string>();
@@ -27,14 +26,14 @@ namespace APP1.Controllers
                     HttpPostedFile httpPostedFile = httpContext.Request.Files[i];
 
                     // this is an example of how you can extract addional values from the Ajax call
-                    string name = httpContext.Request.Form["name"];
+                    string name = httpContext.Request.Form["name21312131asd12"];
 
                     if (httpPostedFile != null)
                     {
                         // Construct file save path  
                         //var fileSavePath = Path.Combine(HostingEnvironment.MapPath(ConfigurationManager.AppSettings["fileUploadFolder"]), httpPostedFile.FileName);
                         string fname = httpPostedFile.FileName.Split('\\').Last();
-                        var fileSavePath = Path.Combine(HostingEnvironment.MapPath("~/uploadedFiles"), fname);
+                        var fileSavePath = Path.Combine(HostingEnvironment.MapPath("~/uploadedFiles"), name + httpPostedFile.FileName.Split('\\').Last());
                         // Save the uploaded file  
                         httpPostedFile.SaveAs(fileSavePath);
                         imageLinks.Add("uploadedFiles/" + fname);
@@ -44,10 +43,6 @@ namespace APP1.Controllers
 
             // Return status code  
             return Request.CreateResponse(HttpStatusCode.Created, imageLinks);
-        
-
         }
-
     }
 }
-
