@@ -726,7 +726,7 @@ namespace APP1.Models.DAL
         {
             String command;
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();// נעדכן סטטוס למועמד ונכניס משתמש חדש ליוזר
             string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)"; 
             // use a string builder to create the dynamic string
             sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
@@ -768,7 +768,7 @@ namespace APP1.Models.DAL
 
             finally
             {
-                if (con != null)
+                if (con != null) //אם אימייל כבר קיים שגיאה 500
                 {
                     // close the db connection
                     con.Close();
