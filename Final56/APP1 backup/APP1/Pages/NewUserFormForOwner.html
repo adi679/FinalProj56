@@ -110,35 +110,8 @@
 
             }
 
-            //console.log(u)
-            //let x = $("#files").get(0).files[0].name
-            ajaxCall("POST", "../api/Users", JSON.stringify(u), success, error); //נוסיף לשרת את היוזר
-
-            
-            //var data = new FormData(); 
-            //var files = $("#files").get(0).files;
-            //// Add the uploaded file to the form data collection
-            //if (files.length > 0) { // הוספת קובץ לטופס
-            //    for (f = 0; f < files.length; f++) {
-            //        data.append("UploadedImage", files[f]); 
-            //    }
-            //    // הוספת אימייל לשם של הקובץ
-            //    data.append("name21312131asd12", $("#mailTB").val()); // append what ever data you want to send along with the files. See how you extract it in the controller.
-            //}//name21312131asd12- מגיע לקונטורל של התמונות File upload
-
-            // Ajax upload
-            //$.ajax({
-            //    type: "POST",
-            //    url: "../Api/FileUpload",
-            //    contentType: false,
-            //    processData: false,
-            //    data: data,
-            //    success: showImages,
-            //    error: error1
-            //});
           
-            //return false;
-
+            ajaxCall("POST", "../api/Users", JSON.stringify(u), success, error); //נוסיף לשרת את היוזר
 
             function showImages(data) {
                 console.log(data);
@@ -158,7 +131,7 @@
             var psw1 = document.getElementById("passwordTB").value
             var psw2 = document.getElementById("password2TB").value
             if (psw1 == psw2) {
-
+                
                 alert("Password matches")
                 AddCost();
                 return false; // the return false will prevent the form from being submitted
@@ -215,7 +188,7 @@
 
             <div class="form-group">
                 <label for="mailTB"><span class="red-star" required>★ </span>mail</label>
-                <input type="text" class="form-control" id="mailTB" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter the mail" required />
+                <input type="text" class="form-control" id="mailTB" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter the mail. Format should be: XXXX@XXXX." required />
             </div>
 
 
@@ -235,21 +208,21 @@
 
             <div class="form-group">
                 <label for="PositionTB"><span class="red-star" required>★ </span>Position</label>
-                <input type="text" class="form-control" id="PositionTB" required
+                <input type="text" class="form-control" id="PositionTB"  
                        oninvalid="this.setCustomValidity('Enter Your position')"
-                       oninput="this.setCustomValidity('')" />
+                       oninput="this.setCustomValidity('')" required />
             </div>
             <div class="form-group">
                 <label for="user"><span class="red-star" required>★ </span>User</label><br />
-                <input type="radio" id="Player" name="userT" value="Player">
-                <label for="Player">Player</label><br>
+                <input type="radio" id="Player" name="userT" value="Player" required>
+                <label for="Player" >Player</label><br>
                 <input type="radio" id="Owner" name="userT" value="Owner">
-                <label for="Owner">Owner</label><br>
+                <label for="Owner" >Owner</label><br>
 
             </div>
             <div class="form-group">
                 <label for="Sex"><span class="red-star" required>★ </span>Sex</label><br />
-                <input type="radio" id="male" name="gender" value="male">
+                <input type="radio" id="male" name="gender" value="male" required>
                 <label for="male">Male</label><br>
                 <input type="radio" id="female" name="gender" value="female">
                 <label for="female">Female</label><br>
@@ -257,12 +230,7 @@
 
             </div>
 
-            <!--<div>
-        <label for="files"><span class="red-star">★ </span>Files</label>
-        <input type="file" id="files" name="files" multiple="multiple" pattern="[A-Za-z0-9]{1,20}" required
-               oninvalid="this.setCustomValidity('should be file')"
-               oninput="this.setCustomValidity('')" />
-    </div>-->
+    
             <br />
 
 
