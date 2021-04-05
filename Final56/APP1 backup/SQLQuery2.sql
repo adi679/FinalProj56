@@ -1,1 +1,1 @@
-﻿select * from users
+﻿SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email 
