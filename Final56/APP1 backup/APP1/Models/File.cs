@@ -30,12 +30,12 @@ namespace APP1.Models
         public int Score { get => score; set => score = value; }
     }
 
-    public int SaveFiles(List<File> f)
-    {
-        DB_Services dbs = new DB_Services();
+    //public int SaveFiles(List<File> f)
+    //{
+    //    DB_Services dbs = new DB_Services();
 
-        return dbs.SaveFiles(f);
-    }
+    //    return dbs.SaveFiles(f);
+    //}
 
 
 

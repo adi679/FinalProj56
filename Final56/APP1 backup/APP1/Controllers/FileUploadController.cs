@@ -50,14 +50,14 @@ namespace APP1.Controllers
 
 
 
-    [HttpPost]
-    [Route("api/api/FileUpload/savefile")]
-    public int Post(List<File> fileU)
-    {
-        File f = new File();
+    //[HttpPost]
+    //[Route("api/api/FileUpload/savefile")]
+    //public int Post(List<File> fileU)
+    //{
+    //    File f = new File();
 
-        return f.SaveFiles(fileU);
-    }
+    //    return f.SaveFiles(fileU);
+    //}
 
 
 
