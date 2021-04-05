@@ -647,24 +647,31 @@ namespace APP1.Models.DAL
 
                 while (dr.Read())
                 {
+                  
                     Users ul = new Users();
                     ul.FirstName = (string)dr["FirstName"];
                     ul.Email = (string)dr["Email"];
                     ul.TypeUsers = Convert.ToInt32(dr["TypeUsers"]);
                     ul.Sex = (string)dr["sex"];
+                
                     ul.LastName = (string)dr["LastName"];
                     ul.Phone = (string)dr["Phone"];
                     ul.Position = (string)dr["Position"];
                     ul.BirthDay = (DateTime)dr["birthDay"];
                     ul.Register = (DateTime)dr["Register"];
-                    if ((string)dr["Address"] == null)
-                    {ul.Address = (string)dr["Address"];}
-                    if ((string)dr["Password"] == null)
-                     { ul.Password = (string)dr["Password"];}
-                    if (dr["Status"] == null)
-                    {  ul.Status = (string)dr["Status"];    }
-                    if (dr["Id"] == null)
-                    { ul.StatusId = Convert.ToInt32(dr["Id"]); }            
+
+                    if (dr["Address"].GetType() != typeof(DBNull))
+                    ul.Address = (string)dr["Address"];
+
+                    if (dr["Password"].GetType() != typeof(DBNull))
+                      ul.Password = (string)dr["Password"];
+
+                    if (dr["Status"].GetType() != typeof(DBNull))
+                     ul.Status = (string)dr["Status"];    
+
+                    if (dr["Id"].GetType() != typeof(DBNull))
+                     ul.StatusId = Convert.ToInt32(dr["Id"]); 
+                    
                    list_of_user.Add(ul);
                 }
                 Users ule = new Users();
