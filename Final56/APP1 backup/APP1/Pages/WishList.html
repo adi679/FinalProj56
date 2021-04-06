@@ -118,7 +118,7 @@
 
         $(document).ready(function () {
             email = localStorage.getItem("email");
-            email = "adi@gmail.com";
+          //  email = "adi@gmail.com";
             let api_wishlist = "../api/University/" + email + "/get_wishlist";
             ajaxCall("Get", api_wishlist, email, successShow, errorShow)
 

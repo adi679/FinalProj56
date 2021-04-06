@@ -234,6 +234,8 @@
             return JSON.stringify(result); //JSON
         }
 
+        //  הרכבת שאילתא ל api 
+        // לפי העדפות משתמש
 
         //----Region, State, Locale----//
         function errorDistrict(data) {
@@ -299,7 +301,7 @@
         function successFavorites(data) {
 
             if (data.PriceMax) {
-                PriceMax = data.PriceMax
+                PriceMax = data.PriceMax //מה שהמתשמש בחר
                 PriceMaxAPI = "2018.cost.tuition.out_of_state__range=0.." + data.PriceMax + '&';
             }
             else
@@ -308,7 +310,7 @@
 
             if (data.UniversityType) {
 
-                UniversityType = data.UniversityType
+                UniversityType = data.UniversityType //מה שהמתשמש בחר
                 UniversityTypeAPI = "school.ownership=" + data.UniversityType + '&';
 
 
@@ -320,7 +322,7 @@
 
             if (data.Sat) {
 
-                Sat = data.Sat
+                Sat = data.Sat  //מה שהמתשמש בחר
                 SatAPI = "2018.admissions.sat_scores.average.overall__range=0.." + data.Sat + '&';
             }
             else
@@ -328,7 +330,7 @@
 
             if (data.UniversitySize) {
 
-                UniversitySize = data.UniversitySize
+                UniversitySize = data.UniversitySize  //מה שהמתשמש בחר
                 UniversitySizeAPI = "2018.student.size__range=0.." + data.UniversitySize + '&';
             }
             else
@@ -342,9 +344,10 @@
 
 
         function rend() {
+            // סינון api סופי
             api_All = api_head + MYDistrict + MYStates + MYLocale + UniversityTypeAPI + PriceMaxAPI + UniversitySizeAPI + SatAPI + api_tail;
             $.get(api_All, function (data) {
-                console.log(data);
+                console.log(data); 
                 api_All = data;
                 let str='';
                 str += "<table id='customers' class='table' class='header'>";

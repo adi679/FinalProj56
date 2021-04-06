@@ -133,6 +133,7 @@
             if (users[i].Register) {
                 Register = users[i].Register.split('T00:00:00')
             }
+            // רשימת סטטוסים
             status_select = '<select id="cars" name="cars"><option value="0">candidate</option><option value="I20">I20</option>                <option value="בניית פרופיל אישי">בניית פרופיל אישי</option>                <option value="חתימה על NLI, LOI">חתימה על NLI, LOI</option>                <option value="שגרירות">שגרירות</option>                <option value="שיחות עם מאמנים">שיחות עם מאמנים</option>                            </select >'
             date=''
             if (users[i].BirthDay) {        date = users[i].Register.split('T00:00:00')        }
@@ -141,6 +142,7 @@
             document.getElementById("users").innerHTML = str
         }
 
+        
         function Update(i) {
             let u = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
                 FirstName: $("#nameTB").val(),
