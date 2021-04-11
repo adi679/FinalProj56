@@ -33,10 +33,12 @@ namespace APP1.Controllers
             return u.Show_Users();
         }
 
-
+        
+        [HttpPost]
+        [Route("api/Users/update")]
         public int Post(Users u)
         {
-            return u.Insert_New_Users(u);
+            return u.update_New_Users(u);
         }
 
         // PUT api/<controller>/5

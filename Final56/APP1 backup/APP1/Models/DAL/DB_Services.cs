@@ -728,19 +728,74 @@ namespace APP1.Models.DAL
 
 
         }
-
-        private String BuildInsertCommandUsers(Users u)
+        
+        private String BuildupdateCommandUsers(Users u)
         {
             String command;
 
             StringBuilder sb = new StringBuilder();
-            string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)"; 
+            string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
             // use a string builder to create the dynamic string
             sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
             String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register) ";
             command = prefix + sb.ToString();
 
-            return command+ status;
+            return command + status;
+        }
+        private String BuildInsertCommandUsers(Users u)
+        {
+            String command;
+
+            StringBuilder sb = new StringBuilder();
+            string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
+            // use a string builder to create the dynamic string
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
+            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register) ";
+            command = prefix + sb.ToString();
+
+            return command + status;
+        }
+
+        public int update_New_Users(Users u)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildupdateCommandUsers(u);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null) //אם אימייל כבר קיים שגיאה 500
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
         }
         public int Insert_New_Users(Users u)
         {

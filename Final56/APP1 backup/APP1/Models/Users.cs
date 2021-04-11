@@ -56,7 +56,13 @@ namespace APP1.Models
         public string Address { get => address; set => address = value; }
         public string Status { get => status; set => status = value; }
         public int StatusId { get => statusId; set => statusId = value; }
+        
+        public int update_New_Users(Users u)
+        {
+            DB_Services dbs = new DB_Services();
 
+            return dbs.update_New_Users(u);
+        }
         public int Insert_New_Users(Users u)
         {
             DB_Services dbs = new DB_Services();
