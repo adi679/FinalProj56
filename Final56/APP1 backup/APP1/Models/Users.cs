@@ -21,12 +21,13 @@ namespace APP1.Models
         string address;
         string status;
         int statusId;
+        float height;
 
         public Users()
         {
 
         }
-        public Users(string status, int statusId,string address , DateTime register, string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex)
+        public Users(float height, string status, int statusId,string address , DateTime register, string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex)
         {
             Email = email;
             Password = password;
@@ -41,6 +42,7 @@ namespace APP1.Models
             Address = address;
             Status = status;
             StatusId = statusId;
+            Height = height;
         }
 
         public string Email { get => email; set => email = value; }
@@ -56,7 +58,8 @@ namespace APP1.Models
         public string Address { get => address; set => address = value; }
         public string Status { get => status; set => status = value; }
         public int StatusId { get => statusId; set => statusId = value; }
-        
+        public float Height { get => height; set => height = value; }
+
         public int update_New_Users(Users u)
         {
             DB_Services dbs = new DB_Services();

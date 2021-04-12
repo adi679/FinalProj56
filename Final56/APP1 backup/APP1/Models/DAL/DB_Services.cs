@@ -71,50 +71,123 @@ namespace APP1.Models.DAL
             return command;
 
         }
+        public List<University> getWish(string email)
+        {
+            List<University> wishlist = new List<University>();
+            SqlConnection con = null;
 
-        //===============================Favorites========================
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-        //public List<Favorites> Get_Favorites_By_email(string email)
-        //{
-        //    SqlConnection con = null;
-        //    Favorites MY_Favorites = new Favorites(); ;
+                String selectSTR = "select * from UsersUniversity where email='" + email + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
 
-        //    try
-        //    {
-        //        con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
 
-        //        String selectSTR = "SELECT * FROM Favorites where Favorites.email=" + email;
-        //        SqlCommand cmd = new SqlCommand(selectSTR, con);
+                while (dr.Read())
+                {
+                    University ul = new University();
+                    ul.UniversityName = (string)dr["UniversityName"];
+                    ul.Id = Convert.ToInt32(dr["id"]);
+                    wishlist.Add(ul);
+                }
+                University ule = new University();
+                return wishlist;
 
-        //        // get a reader
-        //        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
 
-        //        while (dr.Read())
-        //        {   // Read till the end of the data into a row
-        //            MY_Favorites.Email = (string)dr["Email"];
-        //            MY_Favorites.UniversityType = Convert.ToInt32(dr["UniversityType"]);
-        //            MY_Favorites.Precent = Convert.ToInt32(dr["Precent"]);
-        //            MY_Favorites.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
-        //            MY_Favorites.Sit = Convert.ToInt32(dr["Sit"]);
-        //            MY_Favorites.UniversityLevel = Convert.ToInt32(dr["UniversityLevel"]);
-        //            MY_Favorites.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
-        //        }
 
-        //        return MY_Favorites;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            con.Close();
-        //        }
-        //    }
-        //}
+        }
+
+        public int SaveWishList(List<University> u)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertWishList(u);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+        private String BuildInsertWishList(List<University> u)
+        {
+            String command;
+            string tmp;
+            string sbud = "";
+            StringBuilder append_UsersDistrict = new StringBuilder();
+            // use a string builder to create the dynamic string
+            for (int i = 0; i < u.Count; i++)
+            {
+                if (i == 0) // הראשון
+                    sbud = "Values('" + u[i].Email + "', '" + u[i].UniversityName + "', '" + u[i].Id + "')";
+                else
+                {
+                    tmp = ",('" + u[i].Email + "', '" + u[i].UniversityName + "', '" + u[i].Id + "')";
+                    sbud = append(sbud, tmp);
+
+                }
+            }
+
+
+
+            String prefix_UsersDistrict = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
+
+
+            String delete = "DELETE FROM [UsersUniversity] WHERE Email='" + u[0].Email + "' ";
+            delete = " IF EXISTS (SELECT * FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "' ) DELETE FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "'";
+            command = delete + prefix_UsersDistrict + sbud;
+
+            return command;
+        }
+
+
+
         //======================================================================
         //===============================District/region========================
         //======================================================================
@@ -190,6 +263,52 @@ namespace APP1.Models.DAL
             return command;
 
         }
+        public List<UsersDistrict> get_User_district(string email)
+        {
+            List<UsersDistrict> list_of_user_district = new List<UsersDistrict>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM UsersDistrict where UsersDistrict.Email='" + email + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    UsersDistrict ud = new UsersDistrict();
+
+                    ud.District = (string)dr["District"];
+                    ud.Email = (string)dr["Email"];
+                    ud.Id = Convert.ToInt32(dr["Id"]);
+
+
+
+                    list_of_user_district.Add(ud);
+                }
+                return list_of_user_district;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
         //======================================================================
         //===============================Locale========================
         //======================================================================
@@ -609,21 +728,49 @@ namespace APP1.Models.DAL
 
 
         }
-        public List<Users> Show_User()
+
+        public Favorites Get_Favorites_By_email(string email)
         {
+            Favorites uf = new Favorites();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "select * from UsersFavorites where email='" + email + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    uf.Email = (string)dr["Email"];
+                    uf.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
+                    uf.UniversityLevel = (string)dr["UniversityLevel"];
+                    uf.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
+                    uf.UniversityType = (string)dr["UniversityType"];
+                    uf.Sat = Convert.ToInt32(dr["Sat"]);
+                }
+                return uf;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
 
 
-
-            List<Users> allUsers = new List<Users>();
-            return allUsers;
         }
-
-
-
-
-    
-
-
 
 
         //======================================================================
@@ -653,7 +800,6 @@ namespace APP1.Models.DAL
                     ul.Email = (string)dr["Email"];
                     ul.TypeUsers = Convert.ToInt32(dr["TypeUsers"]);
                     ul.Sex = (string)dr["sex"];
-                
                     ul.LastName = (string)dr["LastName"];
                     ul.Phone = (string)dr["Phone"];
                     ul.Position = (string)dr["Position"];
@@ -667,12 +813,15 @@ namespace APP1.Models.DAL
                       ul.Password = (string)dr["Password"];
 
                     if (dr["Status"].GetType() != typeof(DBNull))
-                     ul.Status = (string)dr["Status"];    
+                     ul.Status = (string)dr["Status"];
 
                     if (dr["Id"].GetType() != typeof(DBNull))
-                     ul.StatusId = Convert.ToInt32(dr["Id"]); 
-                    
-                   list_of_user.Add(ul);
+                        ul.StatusId = Convert.ToInt32(dr["Id"]);
+
+                    if (dr["Height"].GetType() != typeof(DBNull))
+                        ul.Height = (float)dr["Height"];
+
+                    list_of_user.Add(ul);
                 }
                 Users ule = new Users();
                 return list_of_user;
@@ -729,15 +878,15 @@ namespace APP1.Models.DAL
 
         }
         
-        private String BuildupdateCommandUsers(Users u)
+        private String BuildUpdateCommandUsers(Users u)
         {
             String command;
 
             StringBuilder sb = new StringBuilder();
             string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register) ";
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}','{10}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"),u.Height);
+            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height) ";
             command = prefix + sb.ToString();
 
             return command + status;
@@ -749,8 +898,8 @@ namespace APP1.Models.DAL
             StringBuilder sb = new StringBuilder();
             string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register) ";
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}',{10})", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"),u.Height);
+            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height) ";
             command = prefix + sb.ToString();
 
             return command + status;
@@ -772,7 +921,7 @@ namespace APP1.Models.DAL
                 throw (ex);
             }
 
-            String cStr = BuildupdateCommandUsers(u);      // helper method to build the insert string
+            String cStr = BuildUpdateCommandUsers(u);      // helper method to build the insert string
 
             cmd = CreateCommand(cStr, con);             // create the command
 
@@ -838,309 +987,11 @@ namespace APP1.Models.DAL
             }
 
         }
-        public List<UsersDistrict> get_User_district(string email)
-        {
-            List<UsersDistrict> list_of_user_district = new List<UsersDistrict>();
-            SqlConnection con = null;
-
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-
-                String selectSTR = "SELECT * FROM UsersDistrict where UsersDistrict.Email='" + email + "'";
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
-
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
-                while (dr.Read())
-                {
-                    UsersDistrict ud = new UsersDistrict();
-
-                    ud.District = (string)dr["District"];
-                    ud.Email = (string)dr["Email"];
-                    ud.Id = Convert.ToInt32(dr["Id"]);
-
-
-
-                    list_of_user_district.Add(ud);
-                }
-                return list_of_user_district;
-
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-
-
-        }
-
-        public Favorites Get_Favorites_By_email(string email)
-        {
-            Favorites uf = new Favorites();
-            SqlConnection con = null;
-
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-
-                String selectSTR = "select * from UsersFavorites where email='"+email+"'";
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
-
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
-                while (dr.Read())
-                {              
-                    uf.Email = (string)dr["Email"];
-                    uf.UniversitySize = Convert.ToInt32(dr["UniversitySize"]);
-                    uf.UniversityLevel = (string)dr["UniversityLevel"];
-                    uf.PriceMAX = Convert.ToInt32(dr["PriceMAX"]);
-                    uf.UniversityType = (string)dr["UniversityType"];
-                    uf.Sat = Convert.ToInt32(dr["Sat"]);         
-                }
-                return uf;
-
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-
-
-        }
-
-
-        //----Files---//
-
-        //public int SaveFiles(List<File> f)
-        //{
-
-        //    SqlConnection con;
-        //    SqlCommand cmd;
-
-        //    try
-        //    {
-        //        con = connect("DBConnectionString"); // create the connection
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-
-        //    String cStr = BuildInsertFiles(f);      // helper method to build the insert string
-
-        //    cmd = CreateCommand(cStr, con);             // create the command
-
-        //    try
-        //    {
-        //        int numEffected = cmd.ExecuteNonQuery(); // execute the command
-        //        return numEffected;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            // close the db connection
-        //            con.Close();
-        //        }
-        //    }
-
-        //}
-
-
-        //private String BuildInsertFiles(List<File> f)
-        //{
-        //    String command;
-        //    string tmp;
-        //    string sbud = "";
-        //    StringBuilder append_UsersDistrict = new StringBuilder();
-        //    // use a string builder to create the dynamic string
-        //    for (int i = 0; i < f.Count; i++)
-        //    {
-        //        if (i == 0) // הראשון
-               
-        //    sbud = "values('"+ f[i].Email +"', '" +f[i].Filetype + "', "+ f[i].Score + ", '"+ f[i].Remark + "', '"+ f[i].FileName + "')";
-        //        else
-        //        {
-        //            tmp = ",('" + f[i].Email + "', '" + f[i].Filetype + "', " + f[i].Score + ", '" + f[i].Remark + "', '" + f[i].FileName + "')";
-        //            sbud = append(sbud, tmp);
-
-        //        }
-        //    }
-
-
-
-        //    String prefix_UsersDistrict = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
-
-
-        //    String delete = "DELETE FROM [UsersUniversity] WHERE Email='" + u[0].Email + "' ";
-        //    delete = " IF EXISTS (SELECT * FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "' ) DELETE FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "'";
-        //    command = delete + prefix_UsersDistrict + sbud;
-
-        //    return command;
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         //======================================================================
         //===============================function========================
         //======================================================================
-        public List<University> getWish(string email)
-        {
-            List<University> wishlist = new List<University>();
-            SqlConnection con = null;
-
-            try
-            {
-                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-
-                String selectSTR = "select * from UsersUniversity where email='"+ email+"'";
-                SqlCommand cmd = new SqlCommand(selectSTR, con);
-
-                // get a reader
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
-                while (dr.Read())
-                {
-                    University ul = new University();
-                    ul.UniversityName = (string)dr["UniversityName"];
-                    ul.Id = Convert.ToInt32(dr["id"]);
-                    wishlist.Add(ul);
-                }
-                University ule = new University();
-                return wishlist;
-
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-
-
-        }
-
-        public int SaveWishList(List <University> u)
-        {
-
-            SqlConnection con;
-            SqlCommand cmd;
-
-            try
-            {
-                con = connect("DBConnectionString"); // create the connection
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-
-            String cStr = BuildInsertWishList(u);      // helper method to build the insert string
-
-            cmd = CreateCommand(cStr, con);             // create the command
-
-            try
-            {
-                int numEffected = cmd.ExecuteNonQuery(); // execute the command
-                return numEffected;
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-
-            finally
-            {
-                if (con != null)
-                {
-                    // close the db connection
-                    con.Close();
-                }
-            }
-
-        }
-
-
-        private String BuildInsertWishList(List <University> u)
-        {
-            String command;
-            string tmp;
-            string sbud = "";
-            StringBuilder append_UsersDistrict = new StringBuilder();
-            // use a string builder to create the dynamic string
-            for (int i = 0; i < u.Count; i++)
-            {
-                if (i == 0) // הראשון
-                    sbud = "Values('" + u[i].Email + "', '" + u[i].UniversityName + "', '" + u[i].Id + "')";
-                else
-                {
-                    tmp = ",('" + u[i].Email + "', '" + u[i].UniversityName + "', '" + u[i].Id + "')";
-                    sbud = append(sbud, tmp);
-
-                }
-            }
-
-
-
-            String prefix_UsersDistrict = "INSERT INTO [UsersUniversity] " + "(Email,UniversityName, Id)";
-
-
-            String delete = "DELETE FROM [UsersUniversity] WHERE Email='" + u[0].Email + "' ";
-            delete = " IF EXISTS (SELECT * FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "' ) DELETE FROM [UsersUniversity] WHERE Email = '" + u[0].Email + "'";
-            command = delete + prefix_UsersDistrict + sbud;
-
-            return command;
-        }
-
 
         public SqlConnection connect(String conString)
         {
