@@ -898,8 +898,8 @@ namespace APP1.Models.DAL
             StringBuilder sb = new StringBuilder();
             string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}',{10})", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"),u.Height);
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height) ";
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}',{10},'{11}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"),u.Height,u.Address);
+            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height,Address) ";
             command = prefix + sb.ToString();
 
             return command + status;
