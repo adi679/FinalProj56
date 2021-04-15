@@ -211,8 +211,8 @@
 
             <div class="form-group">
                 <label for="HeightTB"><span class="red-star" required>★ </span>Height</label>
-                <input type="number" step="0.01" placeholder="CM" maxlength="3" class="form-control" pattern="[0-9]+([\.][0-9]{0,3})?" id="HeightTB" max="3"
-                       oninvalid="this.setCustomValidity('Enter Your position')"
+                <input type="number" step="0.01" placeholder="CM" maxlength="300" class="form-control" pattern="[0-9]+([\.][0-9]{0,300})?" id="HeightTB" max="3"
+                       oninvalid="this.setCustomValidity('Enter Your Height')"
                        oninput="this.setCustomValidity('')" required />
 
             </div>
@@ -220,24 +220,32 @@
             <div class="form-group">
                 <label for="PositionTB"><span class="red-star" required>★ </span>Position</label>
                 <input type="text" class="form-control" id="PositionTB"
-                       oninvalid="this.setCustomValidity('Enter Your position')"
+                       oninvalid="this.setCustomValidity('Enter Your Position')"
                        oninput="this.setCustomValidity('')" required />
             </div>
 
             <div class="form-group">
                 <label for="user"><span class="red-star" required>★ </span>User</label><br />
-                <input type="radio" id="user" name="userT" value="0" required>
-                <label for="Player">Player</label><br>
-                <input type="radio" id="user" name="userT" value="1" required>
-                <label for="Owner">Owner</label><br>
+                <select id="user" name="leaveCode">
+                    <option value="0">Player</option>
+                    <option value="1">Owner</option>
+
+                </select>
+
+               
 
             </div>
             <div class="form-group">
+
+
                 <label for="Sex"><span class="red-star" required>★ </span>Sex</label><br />
-                <input type="radio" id="sex" name="gender" value="male" required>
-                <label for="male">Male</label><br>
-                <input type="radio" id="sex" name="gender" value="female" required>
-                <label for="female">Female</label><br>
+                <select id="Sex" name="leaveCode">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+
+                </select>
+                
 
 
             </div>
