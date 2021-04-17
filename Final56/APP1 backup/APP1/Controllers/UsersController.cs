@@ -27,7 +27,7 @@ namespace APP1.Controllers
         }
         [HttpGet]
         [Route("api/Users/{users_show}/Show_all_users")]
-        public List <Users> Get(string users_show)
+        public List<Users> Get(string users_show)
         {
             Users u = new Users();
             return u.Show_Users();
