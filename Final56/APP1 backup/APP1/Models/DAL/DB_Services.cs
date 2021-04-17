@@ -819,7 +819,8 @@ namespace APP1.Models.DAL
                         ul.StatusId = Convert.ToInt32(dr["Id"]);
 
                     if (dr["Height"].GetType() != typeof(DBNull))
-                        ul.Height = (float)dr["Height"];
+                        ul.Height = (float)(double)dr["Height"];
+                   
 
                     list_of_user.Add(ul);
                 }
