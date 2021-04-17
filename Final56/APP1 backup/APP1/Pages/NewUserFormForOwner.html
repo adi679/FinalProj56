@@ -51,11 +51,11 @@
         $(document).ready(function () {
             //   $("#dyn").click(dynStaff);
             $("#pForm").submit(f1); // bind the submit event to a function called f1
-
+           
             // activate a custom validation function when the element looses focus.
             //    $("#discountCodeTB").on("blur", checkCode);
         });
-
+     
         function checkCode() {
             if (this.value % 3 != 0) { // an example of validation that the code divides by 3
                 this.validity.valid = false; // must set it to false to prevent the submit to the server
@@ -81,7 +81,7 @@
             localStorage.setItem('password', $("#passwordTB").val())
             window.open("FavRegion.html");
 
-
+            return false; 
 
         }
 
@@ -97,27 +97,31 @@
 
 
         function AddCost() { // הכנסת יוזר חדש
+            var date = $("#birthday").val().split("-")
+
+            alert(date);
+
              var    sex=document.getElementById('sex')
             let u = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
                 FirstName: $("#nameTB").val(),
                 LastName: $("#FnameTB").val(),
-                BirthDay: $("#birthday").val(),
+                BirthDay: $("#birthday").val()  ,
                 Phone: $("#phoneTB").val(),
                 Address: $("#AddressTB").val(),
                 Email: $("#mailTB").val(),
                 Password: $("#passwordTB").val(),
                 Position: $("#PositionTB").val(),
                 TypeUsers: document.getElementById('user').value,
-                Sex: document.getElementById('sex').defaultValue,
+                Sex: document.getElementById('Sex').value,
                 Height: $("#HeightTB").val(),
 
             }
-            console.log(u);
-
+            
             ajaxCall("Put", "../api/Users", JSON.stringify(u), success, error); //נוסיף לשרת את היוזר
 
             function showImages(data) {
                 console.log(data);
+
 
             }
 
@@ -142,7 +146,7 @@
 
             }
             else alert("Passwords are not matched!")
-
+            return false;
         }
 
 
@@ -174,7 +178,7 @@
             </div>
             <div class="form-group">
                 <label for="birthday">Birthday:</label>
-                <input type="date" id="birthday" name="birthday">
+                <input type="date"   placeholder="MM-dd-yyyy" id="birthday" name="birthday">
 
             </div>
             <div class="form-group">
@@ -211,7 +215,7 @@
 
             <div class="form-group">
                 <label for="HeightTB"><span class="red-star" required>★ </span>Height</label>
-                <input type="number" step="0.01" placeholder="CM" maxlength="300" class="form-control" pattern="[0-9]+([\.][0-9]{0,300})?" id="HeightTB" max="3"
+                <input type="number" step="0.01" placeholder="CM"  class="form-control"  id="HeightTB" max="3"
                        oninvalid="this.setCustomValidity('Enter Your Height')"
                        oninput="this.setCustomValidity('')" required />
 
