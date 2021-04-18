@@ -7,6 +7,38 @@
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
     <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: red;
+                    color: white;
+                }
+
+
+
         * {
             font-family: 'Century Gothic';
             color: darkblue;
@@ -22,9 +54,9 @@
         }
 
         button {
-            background-color: #4CAF50; /* Green */
+            background-color: white; /* Green */
             border: none;
-            color: white;
+            color: darkblue;
             padding: 16px 32px;
             text-align: center;
             text-decoration: none;
@@ -33,6 +65,20 @@
             margin: 4px 2px;
             transition-duration: 0.4s;
             cursor: pointer;
+        }
+        .button2 {
+            background-color: white; 
+            border: none;
+            color: darkblue;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            float: left;
         }
 
         .button1 {
@@ -91,65 +137,114 @@
             alert('errorFav')
         }
 
+
+        function gotowishlist() {
+            window.open('WishList.html')
+        }
+
+
+        function allprofiles() {
+            window.open('Profile_Show.html')
+        }
+
+        function ChangeRegion() {
+            window.open('FavRegion.html')
+        }
+
+        function ChangeStae() {
+            window.open('FavState.html')
+        }
+
+        function ChangeLocale() {
+            window.open('FavLocale.html')
+        }
+
+        function ChangeOtherFavorites() {
+            window.open('FavUser.html')
+        }
+
+        function goBack() {
+            window.history.back();
+            window.close()
+        }
         
   </script>
 
 </head>
 <body>
-    <h1 style="color:red">בחירת העדפות</h1>
+    <button class="button2" ONCLICK="goBack()" style="float:left"> Go Back  </button>
+    <br /><br /><br /><br />
+
+
+    <div class="imgcontainer">
+
+        <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo" style="float:left">
+        <br /><br /><br />  <br />
+
+        <div class="topnav">
+            <a class="active" href="#home" onclick="ChangeRegion()">Change Region</a>
+            <a  class="active" href="#news" onclick="ChangeStae()">Change Stae</a>
+            <a  class="active" href="#news" onclick="ChangeLocale()">Change Locale</a>
+            <a   class="active" href="#news" onclick="ChangeOtherFavorites()">Change Other Favorites</a>
+            <a href="#about" onclick="gotowishlist()">Show WishList</a>
+            <a href="#about" onclick="allprofiles()">All Playres Profiles</a>
+        </div>
+    </div>
+
+    <!--<h1 style="color:red">בחירת העדפות</h1>-->
     <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
-      
-        <div class="highlightsDiv">
 
-            <label for="kindUni">סוג אוניברסיטה:</label>
-            <select name="kindUni" id="kindUni" onchange="showH(this.id)">
-                <option value="0">בחר סוג אוניברסיטה</option>
-                <option value="1">Public</option>
-                <option value="2,3">Private</option>
-                <!--<option value="1,2,3">Both</option>-->
+    <div class="highlightsDiv">
 
-            </select>
+        <label for="kindUni" style="color:red">סוג אוניברסיטה:</label>
+        <select name="kindUni" id="kindUni" onchange="showH(this.id)">
+            <option value="0">בחר סוג אוניברסיטה</option>
+            <option value="1">Public</option>
+            <option value="2,3">Private</option>
+            <!--<option value="1,2,3">Both</option>-->
 
-            <br /><br />
+        </select>
 
-            <label for="size">גודל:</label>
-            <input type="text" id="size" name="size" onchange="showH(this.value)"><br><br>
+        <br /><br />
+
+        <label for="size">גודל:</label>
+        <input type="text" id="size" name="size" onchange="showH(this.value)"><br><br>
 
 
-            <label for="cost">מחיר מקסימלי לשנה:</label>
-            <input type="text" id="cost" name="cost" onchange="showH(this.value)"><br><br>
+        <label for="cost">מחיר מקסימלי לשנה:</label>
+        <input type="text" id="cost" name="cost" onchange="showH(this.value)"><br><br>
 
-            <label for="SAT">ציון SAT:</label>
-            <input type="text" id="SAT" name="SAT" onchange="showH(this.value)"><br><br>
+        <label for="SAT">ציון SAT:</label>
+        <input type="text" id="SAT" name="SAT" onchange="showH(this.value)"><br><br>
 
-             <label for="division">Devision:</label>
-            <select name="division" id="division" onchange="showH(this.value)">
-                <option value="0">בחר Devision</option>
-                <option id="1" value="1">D1</option>
-                <option id="2" value="2">D2</option>
-                <option id="1,2" value="1,2">Both</option>
-            </select>
+        <label for="division">Devision:</label>
+        <select name="division" id="division" onchange="showH(this.value)">
+            <option value="0">בחר Devision</option>
+            <option id="1" value="1">D1</option>
+            <option id="2" value="2">D2</option>
+            <option id="1,2" value="1,2">Both</option>
+        </select>
 
-            <br /><br />
-
-               
-
-            <br /><br />
+        <br /><br />
 
 
 
+        <br /><br />
 
-            <br /><br />
 
-        </div>
 
-        <div>
-            <button type="submit" class="button button1" ONCLICK="save()">
 
-                Save!
-            </button>
-           
-        </div>
+        <br /><br />
+
+    </div>
+
+    <div>
+        <button type="submit" class="button button1" ONCLICK="save()">
+
+            Save!
+        </button>
+
+    </div>
 
 </body>
 </html>

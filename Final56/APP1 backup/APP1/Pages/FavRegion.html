@@ -6,6 +6,55 @@
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
     <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: red;
+                    color: white;
+                }
+
+        .button2 {
+            background-color: white;
+            border: none;
+            color: darkblue;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            float: left;
+        }
+             
+
+
+
+
         * {
             font-family: 'Century Gothic';
             color: darkblue;
@@ -150,108 +199,86 @@
             alert("ErrorInsertDistricts");
 
         }
-    </script>
 
 
-    <!--<script>
-        var flag = 1       //1 yes 0 no
-        var count = 0
-        var data
-        var api
-        var email
-        var str = "";
-        var uhigh = [];
-        var list_user_districts = [];
-
-        var email = localStorage.getItem('email');
+        function gotowishlist() {
+            window.open('WishList.html')
+        }
 
 
-        //function save() {
-        //    alert(email);
-        //   // var password = localStorage.getItem('password');
-        //    var regions = [];
-        //    let item;
-        //    //email = localStorage.getItem('email')
+        function allprofiles() {
+            window.open('Profile_Show.html')
+        }
 
-        //        //var data = document.forms[0];
+        function ChangeRegion() {
+            window.open('FavRegion.html')
+        }
 
+        function ChangeStae() {
+            window.open('FavState.html')
+        }
 
-        //    alert(email + " " + password);
+        function ChangeLocale() {
+            window.open('FavLocale.html')
+        }
 
-        //    var checkboxes = document.getElementsByTagName("input");
-        //    for (i = 0; i < checkboxes.length; i++) { //כל פעם שנלחץ לשמור נעבור על כל התכונות ונראה מי 0 מי 1
-        //        if (checkboxes[i].checked) {
+        function ChangeOtherFavorites() {
+            window.open('FavUser.html')
+        }
 
-        //                item = {
-        //                    District: checkboxes[i].id,
-        //                    Id: i + 1,
-        //                    Email: email
-        //                }
-
-
-        //                list_user_districts.push(item)
-        //                regions.push(item.Id)
-        //            }
-
-
-        //        }
-
-        //        if (list_user_districts.length != 0) {
-        //            let api = "../api/UsersDistrict";
-        //            ajaxCall("POST", api, JSON.stringify(list_user_districts), SuccessInsertDistricts, ErrorInsertDistricts)
-
-        //        }
-        //        else {
-
-        //            alert("העדכון צלח");
-        //            window.open("FavState.html")
-        //            window.close()
-        //        }
-
-
-
-
-        //    }
-
-
-        function SuccessInsertDistricts(data) {
-            alert("העדכון צלח");
-            window.open("FavState.html")
+        function goBack() {
+            window.history.back();
             window.close()
         }
 
-        function ErrorInsertDistricts(data) {
-            alert("בעיה חמורה, אנא פנה למנהל המערכת");
+    </script>
 
-        }
-    </script>-->
+
+   
 </head>
 <body>
+    <button class="button2" ONCLICK="goBack()" style="float:left"> Go Back  </button>
+    <br /><br /><br /><br />
 
-    <h1 style="color:red">בחירת העדפות</h1>
-    <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+    <div class="imgcontainer">
 
-<div class="highlightsDiv">
+        <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo" style="float:left">
+        <br /><br /><br />  <br />
 
-    <h3><label for="region">בחר/י מחוז:</label> </h3>
-
-    <div class="region">
-        <label> <input type="checkbox" id="New England" class="radio" value="1" />New England (CT, ME, MA, NH, RI, VT)  </label><br />
-        <label> <input type="checkbox" id="Mid East" class="radio" value="2" />Mid East (DE, DC, MD, NJ, NY, PA)  </label><br />
-        <label> <input type="checkbox" id="Great Lakes" class="radio" value="3" />Great Lakes (IL, IN, MI, OH, WI)  </label><br />
-        <label> <input type="checkbox" id="Plains" class="radio" value="4" />Plains (IA, KS, MN, MO, NE, ND, SD)  </label><br />
-        <label> <input type="checkbox" id="Southeast" class="radio" value="5" />Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)  </label><br />
-        <label> <input type="checkbox" id="Southwest" class="radio" value="6" />Southwest (AZ, NM, OK, TX)  </label><br />
-        <label> <input type="checkbox" id="Rocky Mountains" class="radio" value="7" />Rocky Mountains (CO, ID, MT, UT, WY)  </label><br />
-        <label> <input type="checkbox" id="Far West" class="radio" value="8" />Far West (AK, CA, HI, NV, OR, WA)  </label><br />
-
+        <div class="topnav">
+            <a class="active" href="#home" onclick="ChangeRegion()">Change Region</a>
+            <a class="active" href="#news" onclick="ChangeStae()">Change Stae</a>
+            <a class="active" href="#news" onclick="ChangeLocale()">Change Locale</a>
+            <a class="active" href="#news" onclick="ChangeOtherFavorites()">Change Other Favorites</a>
+            <a href="#about" onclick="gotowishlist()">Show WishList</a>
+            <a href="#about"  onclick="allprofiles()">All Playres Profiles</a>
+        </div>
     </div>
-</div>
-<div>
-    <button type="submit" class="button button1" ONCLICK="save()">
-        Save!
-    </button>
-</div>
+
+    <!--<h1 style="color:red">בחירת העדפות</h1>-->
+    <!--<img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">-->
+
+    <div class="highlightsDiv">
+
+        <h3><label for="region" style="color:red">בחר/י מחוז:</label> </h3>
+
+        <div class="region">
+            <label> <input type="checkbox" id="New England" class="radio" value="1" />New England (CT, ME, MA, NH, RI, VT)  </label><br />
+            <label> <input type="checkbox" id="Mid East" class="radio" value="2" />Mid East (DE, DC, MD, NJ, NY, PA)  </label><br />
+            <label> <input type="checkbox" id="Great Lakes" class="radio" value="3" />Great Lakes (IL, IN, MI, OH, WI)  </label><br />
+            <label> <input type="checkbox" id="Plains" class="radio" value="4" />Plains (IA, KS, MN, MO, NE, ND, SD)  </label><br />
+            <label> <input type="checkbox" id="Southeast" class="radio" value="5" />Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)  </label><br />
+            <label> <input type="checkbox" id="Southwest" class="radio" value="6" />Southwest (AZ, NM, OK, TX)  </label><br />
+            <label> <input type="checkbox" id="Rocky Mountains" class="radio" value="7" />Rocky Mountains (CO, ID, MT, UT, WY)  </label><br />
+            <label> <input type="checkbox" id="Far West" class="radio" value="8" />Far West (AK, CA, HI, NV, OR, WA)  </label><br />
+
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="button button1" ONCLICK="save()">
+            Save!
+        </button>
+    </div>
 
 
 </body>

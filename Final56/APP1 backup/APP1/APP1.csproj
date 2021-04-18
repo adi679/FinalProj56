@@ -213,7 +213,7 @@
     <Content Include="Pages\Match.html" />
     <Content Include="Pages\NewUserFormForOwner.html" />
     <Content Include="Pages\1NewUserForm.html" />
-    <Content Include="Pages\Profile.html" />
+    <Content Include="Pages\1Profile.html" />
     <Content Include="Pages\1RegistrationForm.html" />
     <Content Include="Pages\1Results.html" />
     <Content Include="Pages\Profile_Show.html" />
