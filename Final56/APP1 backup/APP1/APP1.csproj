@@ -210,6 +210,7 @@
     <Content Include="Pages\FileUpload_Form - Copy.html" />
     <Content Include="Pages\FileUpload_Form.html" />
     <Content Include="Pages\LogIn.html" />
+    <Content Include="Pages\LOGINGMAIL.html" />
     <Content Include="Pages\Match.html" />
     <Content Include="Pages\NewUserFormForOwner.html" />
     <Content Include="Pages\1NewUserForm.html" />
