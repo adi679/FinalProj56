@@ -1,1 +1,0 @@
-﻿select* from[Restaurant&Highlight_2021]  INNER JOIN [Restaurants_2021] on Restaurants_2021.ID=[Restaurant&Highlight_2021].[id.Restaurants] where title in(select title from[CUSTOMER&Highlight_2021] WHERE email='asdasdasd@asd.com' and status = 1)select * from [CUSTOMER&Highlight_2021]
