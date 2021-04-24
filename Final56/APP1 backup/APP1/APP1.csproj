@@ -220,6 +220,7 @@
     <Content Include="Pages\1Results.html" />
     <Content Include="Pages\Profile_Show.html" />
     <Content Include="Pages\Results.html" />
+    <Content Include="Pages\TODO List.html" />
     <Content Include="Pages\WishList.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />
