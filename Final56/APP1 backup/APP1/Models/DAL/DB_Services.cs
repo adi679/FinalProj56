@@ -13,6 +13,66 @@ namespace APP1.Models.DAL
     public class DB_Services
     {
 
+        //======TODO=====//
+
+        public int Insert_ToDoList(ToDoList t)
+        {
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsert_ToDoList(t);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+            return 1;
+
+        }
+
+        private String BuildInsert_ToDoList(ToDoList t)
+        {
+            String command;
+
+            StringBuilder sb = new StringBuilder();
+            // use a string builder to create the dynamic string
+          
+                sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}')", t.Email, t.Task, t.DueDate,"בתהליך");
+           
+            String prefix = "INSERT INTO [UsersToDoList] " + "(Email,Task, DueDate,Status)";
+            command = prefix + sb.ToString();
+            return command;
+
+        }
+
         //===============================University========================
         public void Insert_University_Email(List<University> IUE)
         {

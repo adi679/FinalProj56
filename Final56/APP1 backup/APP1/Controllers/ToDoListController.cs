@@ -36,6 +36,13 @@ namespace APP1.Controllers
 
         // POST api/<controller>
 
+       
+        public int Post(ToDoList Post_ToDoList)
+        {
+            ToDoList todo = new ToDoList();
+            return todo.Insert_ToDoList(Post_ToDoList);
+
+        }
 
         // PUT api/<controller>/5
         public int Put(List<UsersStates> lus)

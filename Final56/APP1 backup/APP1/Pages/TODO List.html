@@ -1,18 +1,22 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <script src="../Scripts/ajaxCalls.js"></script>
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
-    <!--<link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/global/global-e4c9f06437cc06d1dd0d87cf2fc0c330753d8df7c4940ae2e1f0128d83e4fc94.css">
-    <link rel="stylesheet" media="screen" href="https://cpwebassets.codepen.io/assets/packs/css/everypage-a4b4d2b8.css">
-    <link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/editor/editor-064656511422617089367b1571b83ef808cba8376b20a0591a19340a55705de9.css">-->
-    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
     <title></title>
 
     <style>
         body {
             margin: 0;
             min-width: 250px;
-            font-family: Calibri;
         }
 
         a {
@@ -50,9 +54,6 @@
             font-size: 15px;
             cursor: pointer;
         }
-        .jumbotron page-header{
-            
-        }
 
         .close {
             position: absolute;
@@ -75,105 +76,29 @@
         .btn-primary,
         .btn-success {
             width: 100%;
-            color: #fff;
-            background-color: #337ab7;
-            border-color: #2e6da4;
-            width: 20%;
+            border-color: black;
         }
-
-        .btn btn-primary {
-            color: #fff;
-            background-color: #337ab7;
-            border-color: #2e6da4;
-            width: 20%;
-        }
-
 
         .pagination {
             padding-left: 40px !important;
             cursor: pointer !important;
         }
-            .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-                z-index: 3;
-                color: #fff;
-                cursor: default;
-                background-color: #337ab7;
-                border-color: #337ab7;
-            }
 
-            #search-text{
-             
-            }
-
-        .form-control {
-            display: block;
-           /* width: 20%;
-            height: 34px;*/
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #555;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
-            box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
     </style>
     <script>
         var todoList = [{
             'todo': 'Do task 0',
             'id': 'todo0'
-        }, {
-            'todo': 'Do task 1',
-            'id': 'todo1'
-        }, {
-            'todo': 'Do task 2',
-            'id': 'todo2'
-        }, {
-            'todo': 'Do task 3',
-            'id': 'todo3'
-        }, {
-            'todo': 'Do task 4',
-            'id': 'todo4'
-        }, {
-            'todo': 'Do task 5',
-            'id': 'todo5'
-        }, {
-            'todo': 'Do task 6',
-            'id': 'todo6'
-        }, {
-            'todo': 'Do task 7',
-            'id': 'todo7'
-        }, {
-            'todo': 'Do task 8',
-            'id': 'todo8'
-        }, {
-            'todo': 'Do task 9',
-            'id': 'todo9'
-        }, {
-            'todo': 'Do task 10',
-            'id': 'todo10'
-        }, {
-            'todo': 'Do task 11',
-            'id': 'todo11'
-        }, {
-            'todo': 'Do task 12',
-            'id': 'todo12'
-        }, {
-            'todo': 'Do task 13',
-            'id': 'todo13'
-        }, {
-            'todo': 'Do task 14',
-            'id': 'todo14'
         }];
 
         var pageList = new Array();
         var currentPage = 1;
         var numberPerPage = 10;
         var numberOfPages = 0;
-
+        var email = "";
         function newElement() {
+            email = localStorage.getItem("email");
+
             var inputTitle = document.getElementById('title').value,
                 inputUser = document.getElementById('usr').value,
                 inputDate = document.getElementById('due-date').value,
@@ -184,21 +109,43 @@
             } else {
                 todo = inputTitle;
                 if (inputUser != '') {
-                    todo = inputUser + "צריך" + inputTitle;
+                    todo = inputUser + " צריך.ה " + inputTitle;
                 }
                 if (inputDate != '') {
-                    todo = todo + " עד לתאריך" + inputDate
+                    todo = todo + "  עד לתאריך " + inputDate
                 }
             }
             var newTodoId = findNextId(),
                 newTodo = {
-                    'todo': todo,
-                    'id': 'todo' + newTodoId
+                    
                 };
+
+
+            var todoSave = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+                Email: email,
+                Task: $("#title").val(),
+                DueDate: $("#due-date").val()
+
+            }
+            //alert("Todois: " + todoSave);
+            let api = "../api/ToDoList";
+
+            ajaxCall("Post", api, JSON.stringify(todoSave), successtodo, errortodo)
+
             todoList.push(newTodo);
             sortElementsById();
             clearFields();
+            return false;
+
         }
+        function successtodo() {
+            alert("in successtodo");
+        }
+
+        function errortodo() {
+            alert("in errortodo");
+        }
+
 
         function fetchIdFromObj(todo) {
             return parseInt(todo.id.slice(4));
@@ -349,6 +296,9 @@
 </head>
 <body>
     <div class="container">
+        <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+
+
         <div class="jumbotron page-header">
             <h2 style="margin:5px" width="50%">My To Do List</h2>
         </div>
@@ -370,13 +320,13 @@
                     <button type="button" class="btn btn-primary" onclick="newElement()">Add Task</button>
                 </div>
                 <div class="dropdown col-xs-3 pull-left">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" style="background-color:red">
                         Sort
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-list" onclick="sortElementsById()">By ID</li>
-                        <li class="dropdown-list" onclick="sortElementsByName()">By Name</li>
+                        <li class="dropdown-list" onclick="sortElementsById()">Sort By ID</li>
+                        <li class="dropdown-list" onclick="sortElementsByName()">Sort By Name</li>
                     </ul>
                 </div>
                 <div class="col-lg-6 pull-right">
