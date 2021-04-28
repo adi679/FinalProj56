@@ -227,7 +227,7 @@
             for (var i = 0; i < data.length; i = i + 4) {
                 for (var j = 0; j < 4; j++) {
                     date = data[i + j].Register.split('T00:00:00')
-                    str += '<div class="row"><div class="column"><div class="card"  ><h3>Name: ' + data[i + j].FirstName + ' ' + data[i + j].LastName + '</h3><p>Phone:' + data[i + j].Phone + '</p><p>Sex: ' + data[i + j].Sex + '</p><p>Email: ' + data[i + j].Email + '</p><p>Position: ' + data[i + j].Position + '</p><p>Register: ' + date[0] + '</p>     <button onclick="editor(' + (i + j) + ')" >To edit</button> </div></div>'
+                    str += '<div class="row"><div class="column"><div class="card"  ><h3>Name: ' + data[i + j].FirstName + ' ' + data[i + j].LastName + '</h3><p>Phone:' + data[i + j].Phone + '</p><p>Sex: ' + data[i + j].Sex + '</p><p>Email: ' + data[i + j].Email + '</p><p>Position: ' + data[i + j].Position + '</p><p>status: ' + data[i + j].Status + '</p><p>Register: ' + date[0] + '</p>     <button onclick="editor(' + (i + j) + ')" >To edit</button> </div></div>'
                     if (i + j + 1 >= data.length) {
                         j = 4
                     }

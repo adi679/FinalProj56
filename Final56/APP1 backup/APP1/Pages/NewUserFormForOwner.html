@@ -17,6 +17,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <!--<script src="../Scripts/ajaxCalls.js"></script>-->
     <style type="text/css">
 
@@ -51,11 +60,11 @@
         $(document).ready(function () {
             //   $("#dyn").click(dynStaff);
             $("#pForm").submit(f1); // bind the submit event to a function called f1
-           
+
             // activate a custom validation function when the element looses focus.
             //    $("#discountCodeTB").on("blur", checkCode);
         });
-     
+
         function checkCode() {
             if (this.value % 3 != 0) { // an example of validation that the code divides by 3
                 this.validity.valid = false; // must set it to false to prevent the submit to the server
@@ -81,7 +90,7 @@
             localStorage.setItem('password', $("#passwordTB").val())
             window.open("FavRegion.html");
 
-            return false; 
+            return false;
 
         }
 
@@ -101,11 +110,11 @@
 
             alert(date);
 
-             var    sex=document.getElementById('sex')
+            var sex = document.getElementById('sex')
             let u = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
                 FirstName: $("#nameTB").val(),
                 LastName: $("#FnameTB").val(),
-                BirthDay: $("#birthday").val()  ,
+                BirthDay: $("#birthday").val(),
                 Phone: $("#phoneTB").val(),
                 Address: $("#AddressTB").val(),
                 Email: $("#mailTB").val(),
@@ -116,7 +125,7 @@
                 Height: $("#HeightTB").val(),
 
             }
-            
+
             ajaxCall("Put", "../api/Users", JSON.stringify(u), success, error); //נוסיף לשרת את היוזר
 
             function showImages(data) {
