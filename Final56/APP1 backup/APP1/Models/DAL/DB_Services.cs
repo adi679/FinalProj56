@@ -15,6 +15,55 @@ namespace APP1.Models.DAL
 
         //======TODO=====//
 
+        public List<ToDoList> show_ToDoList(string email)
+        {
+            List<ToDoList> list_of_todo = new List<ToDoList>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "select * from UsersToDoList where email='"+ email+ "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+
+                    ToDoList t = new ToDoList();
+                  
+                    t.Email = (string)dr["Email"];
+                    t.Task = (string)dr["task"];
+                    t.DueDate = (DateTime)dr["duedate"];
+                    t.Status = (string)dr["status"];
+
+                   
+                    list_of_todo.Add(t);
+                }
+                ToDoList td = new ToDoList();
+                return list_of_todo;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+        }
+
+
+
+
         public int Insert_ToDoList(ToDoList t)
         {
             SqlConnection con;

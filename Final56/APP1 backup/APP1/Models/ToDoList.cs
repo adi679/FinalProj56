@@ -33,7 +33,9 @@ namespace APP1.Models
         public List<ToDoList> get_User_ToDoList(string email)
         {
             List<ToDoList> t = new List<ToDoList>();
-            return t;
+            DB_Services dbs = new DB_Services();
+
+            return dbs.show_ToDoList(email);
         }
 
         public int Insert_ToDoList(ToDoList t)

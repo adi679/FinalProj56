@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
 
+    <script src="../Scripts/ajaxCalls.js"></script>
     <style>
         body {
             margin: 0;
@@ -144,16 +146,127 @@
             .profilesBtn:hover {
                 opacity: 0.6
             }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: red;
+                    color: white;
+                }
     </style>
+    <script>
+        var str = "";
+        var email = "";
+        var name = '';
+        var email = localStorage.getItem("email");
+        $(document).ready(function () {
+
+            name1 = email.split('@');
+            name = "<h2 style='border: 2px'> Hello " + name1[0] + ", </h2>";
+            document.getElementById("intro").innerHTML = name;
+            //    alert("email is: " + email);
+
+        });
+
+        alert("start todo");
+        let api_todo = "../api/ToDoList/" + email + "/get_all_TODO";
+        ajaxCall("Get", api_todo, email, successTodo, errorTodo)
+
+        function successTodo(data) {
+            alert("in successTodo")
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                str += "Task: " + data[i].task; 
+                str += " Due Date: " +data[i].Duedate;
+                str += " Status: " + data[i].Status+ "<br/>";
+
+            }
+
+            document.getElementById("todo").innerHTML = str;
+
+
+        }
+
+        function errorTodo() {
+            alert("in errorTodo")
+        }
+
+
+        function errorWishlist() {
+            alert("Please Choose school to Save")
+        }
+
+        function successWishlist() {
+            alert("successWishlist")
+        }
+
+        function gotowishlist() {
+            window.open('WishList.html')
+        }
+
+
+        function allprofiles() {
+            window.open('Profile_Show.html')
+        }
+
+        function goBack() {
+            window.history.back();
+            window.close()
+        }
+    </script>
 </head>
 <body>
 
-    <div id="myDIV" class="header">
+    <button class="button2" ONCLICK="goBack()" style="float:left"> Go Back  </button>
+    <br /><br /><br /><br />
+
+
+    <div class="imgcontainer">
+
+        <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+        <div class="topnav">
+            <a href="#home" onclick="rend()" style="background-color:#034f84">Show Results</a>
+            <a class="active" href="#news" onclick="ChangeFavorites()">Change Favorites</a>
+            <a href="#about" onclick="gotowishlist()">Show WishList</a>
+            <a href="#about" onclick="allprofiles()">All Playres Profiles</a>
+           <a href="#" class="btn btn-info btn-lg" onclick="Wishlist()">
+                    <span class="glyphicon glyphicon-heart"></span>Add To WishList</a></div>
+      <div id="todo"> </div>
+        <div id="intro">     </div>
+
+
+
+
+    </div>
+
+    <!--<div id="myDIV" class="header">
         <h2 style="margin:5px">My To Do List</h2>
         <input type="text" id="myInput" placeholder="Title...">
         <span onclick="newElement()" class="addBtn">Add</span>
 
-    </div>
+    </div>-->
     <ul id="myUL">
         <!--<li>Hit the gym</li>
         <li class="checked">Pay bills</li>
@@ -172,70 +285,70 @@
                 <td>
                     <iframe src="https://calendar.google.com/calendar/embed?height=350&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FJerusalem&amp;src=ZXMtNDE5Lmpld2lzaCNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%237986CB&amp;title=%D7%99%D7%95%D7%9E%D7%9F%20%D7%A9%D7%91%D7%95%D7%A2%D7%99&amp;mode=WEEK&amp;showTabs=0&amp;showCalendars=1&amp;showPrint=1&amp;showDate=1&amp;showNav=1&amp;showTz=1" style="border-width:0" width="800" height="350" frameborder="0" scrolling="no"></iframe>
                 </td>
-                <td>
+                <!--<td>
                     <button class="profilesBtn"><a href="Profile_Show.html">Students profiles</a></button>
-                   
-                </td>
+
+                </td>-->
             </tr>
         </table>
 
     </div>
     <script>
-		// Create a "close" button and append it to each list item
-		var myNodelist = document.getElementsByTagName("LI");
-		var i;
-		for (i = 0; i < myNodelist.length; i++) {
-			var span = document.createElement("SPAN");
-			var txt = document.createTextNode("\u00D7");
-			span.className = "close";
-			span.appendChild(txt);
-			myNodelist[i].appendChild(span);
-		}
+        // Create a "close" button and append it to each list item
+        var myNodelist = document.getElementsByTagName("LI");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            myNodelist[i].appendChild(span);
+        }
 
-		// Click on a close button to hide the current list item
-		var close = document.getElementsByClassName("close");
-		var i;
-		for (i = 0; i < close.length; i++) {
-			close[i].onclick = function () {
-				var div = this.parentElement;
-				div.style.display = "none";
-			}
-		}
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
 
-		// Add a "checked" symbol when clicking on a list item
-		var list = document.querySelector('ul');
-		list.addEventListener('click', function (ev) {
-			if (ev.target.tagName === 'LI') {
-				ev.target.classList.toggle('checked');
-			}
-		}, false);
+        // Add a "checked" symbol when clicking on a list item
+        var list = document.querySelector('ul');
+        list.addEventListener('click', function (ev) {
+            if (ev.target.tagName === 'LI') {
+                ev.target.classList.toggle('checked');
+            }
+        }, false);
 
-		// Create a new list item when clicking on the "Add" button
-		function newElement() {
-			var li = document.createElement("li");
-			var inputValue = document.getElementById("myInput").value;
-			var t = document.createTextNode(inputValue);
-			li.appendChild(t);
-			if (inputValue === '') {
-				alert("You must write something!");
-			} else {
-				document.getElementById("myUL").appendChild(li);
-			}
-			document.getElementById("myInput").value = "";
+        // Create a new list item when clicking on the "Add" button
+        function newElement() {
+            var li = document.createElement("li");
+            var inputValue = document.getElementById("myInput").value;
+            var t = document.createTextNode(inputValue);
+            li.appendChild(t);
+            if (inputValue === '') {
+                alert("You must write something!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+            }
+            document.getElementById("myInput").value = "";
 
-			var span = document.createElement("SPAN");
-			var txt = document.createTextNode("\u00D7");
-			span.className = "close";
-			span.appendChild(txt);
-			li.appendChild(span);
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
 
-			for (i = 0; i < close.length; i++) {
-				close[i].onclick = function () {
-					var div = this.parentElement;
-					div.style.display = "none";
-				}
-			}
-		}
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
     </script>
 
 </body>
