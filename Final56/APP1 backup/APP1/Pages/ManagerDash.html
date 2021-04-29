@@ -175,6 +175,80 @@
                     background-color: red;
                     color: white;
                 }
+
+              /*  todo list*/
+
+        table#miyazaki {
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-family: Agenda-Light, sans-serif;
+            font-weight: 100;
+            background: #333;
+            color: #fff;
+            text-rendering: optimizeLegibility;
+            border-radius: 5px;
+            float: right;
+        }
+
+            table#miyazaki caption {
+                font-size: 2rem;
+                color: #444;
+                margin: 1rem;
+              /*  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/miyazaki.png), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/miyazaki2.png);*/
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center left, center right;
+            }
+
+            table#miyazaki thead th {
+                font-weight: 600;
+            }
+
+            table#miyazaki thead th, table#miyazaki tbody td {
+                padding: .8rem;
+                font-size: 1.4rem;
+            }
+
+            table#miyazaki tbody td {
+                padding: .8rem;
+                font-size: 1.4rem;
+                color: #444;
+                background: #eee;
+            }
+
+            table#miyazaki tbody tr:not(:last-child) {
+                border-top: 1px solid #ddd;
+                border-bottom: 1px solid #ddd;
+            }
+
+        @media screen and (max-width: 600px) {
+            table#miyazaki caption {
+                background-image: none;
+            }
+
+            table#miyazaki thead {
+                display: none;
+            }
+
+            table#miyazaki tbody td {
+                display: block;
+                padding: .6rem;
+            }
+
+            table#miyazaki tbody tr td:first-child {
+                background: #666;
+
+                color: #fff;
+            }
+
+            table#miyazaki tbody td:before {
+                content: attr(data-th);
+                font-weight: bold;
+                display: inline-block;
+                width: 6rem;
+            }
+        }
+        /*  todo list*/
     </style>
     <script>
         var str = "";
@@ -197,14 +271,22 @@
         function successTodo(data) {
             alert("in successTodo")
             console.log(data);
+
+            str += "<table id='miyazaki'>";
+            str += "<caption> My To Do List </caption>";
+            str += "<thead>";
+            str += "<tr><th>Task<th>Responisibility<th>Due Date<tbody>"
+
             for (var i = 0; i < data.length; i++) {
-                str += "Task: " + data[i].task; 
-                str += " Due Date: " +data[i].Duedate;
-                str += " Status: " + data[i].Status+ "<br/>";
+                str += "<tr><td>" + data[i].Task;
+                str += "<td>" + data[i].DueDate;
+                str += "<td>" + data[i].Status+ "<tr>";
 
             }
 
+           // str += "<button class='button2' ONCLICK='alltodo()' style='float: left'> My To Do List  </button>";
             document.getElementById("todo").innerHTML = str;
+
 
 
         }
@@ -235,6 +317,17 @@
             window.history.back();
             window.close()
         }
+
+        function Mytodo() {
+            window.open('NewToDo.html')    
+        } 
+
+        function Alltodo() {
+            window.open('TODO List.html')
+        }
+
+
+        
     </script>
 </head>
 <body>
@@ -248,12 +341,19 @@
         <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
         <div class="topnav">
             <a href="#home" onclick="rend()" style="background-color:#034f84">Show Results</a>
-            <a class="active" href="#news" onclick="ChangeFavorites()">Change Favorites</a>
+            <a class="active" href="#news"  onclick="Mytodo()">My To Do List</a>
+            <a class="active" href="#news"  onclick="Alltodo()">All To Do List</a>
+            <!--<a class="active" href="#news" onclick="ChangeFavorites()">Change Favorites</a>-->
             <a href="#about" onclick="gotowishlist()">Show WishList</a>
             <a href="#about" onclick="allprofiles()">All Playres Profiles</a>
            <a href="#" class="btn btn-info btn-lg" onclick="Wishlist()">
                     <span class="glyphicon glyphicon-heart"></span>Add To WishList</a></div>
-      <div id="todo"> </div>
+
+
+
+        <div id="todo">
+           
+        </div>
         <div id="intro">     </div>
 
 

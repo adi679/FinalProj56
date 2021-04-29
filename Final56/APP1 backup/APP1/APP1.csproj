@@ -195,6 +195,8 @@
     <Content Include="Global.asax" />
     <Content Include="MatchCSS.css" />
     <Content Include="Pages\1edit - class Ex solution.html" />
+    <Content Include="Pages\ManagerDash - Copy.html" />
+    <Content Include="Pages\NewToDo.html" />
     <Content Include="Pages\profilss.html" />
     <Content Include="Pages\1DataTableCampaign.html" />
     <Content Include="Pages\1Fav.html" />
