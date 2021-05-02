@@ -36,9 +36,9 @@ namespace APP1.Models.DAL
                     ToDoList t = new ToDoList();
                   
                     t.Email = (string)dr["Email"];
-                    t.Task = (string)dr["task"];
-                    t.DueDate = (DateTime)dr["duedate"];
-                    t.Status = (string)dr["status"];
+                    t.Task = (string)dr["Task"];
+                    t.DueDate = (DateTime)dr["Duedate"];
+                    t.Status = (string)dr["Status"];
 
                    
                     list_of_todo.Add(t);

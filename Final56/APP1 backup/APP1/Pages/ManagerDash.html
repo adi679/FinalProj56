@@ -263,7 +263,9 @@
             //    alert("email is: " + email);
 
         });
-
+        email = 'shdsadsfay@gmail.comdddd'
+        localStorage.setItem("email", email);
+        alert(localStorage.getItem("email"));
         alert("start todo");
         let api_todo = "../api/ToDoList/" + email + "/get_all_TODO";
         ajaxCall("Get", api_todo, email, successTodo, errorTodo)
@@ -279,8 +281,8 @@
 
             for (var i = 0; i < data.length; i++) {
                 str += "<tr><td>" + data[i].Task;
-                str += "<td>" + data[i].DueDate;
-                str += "<td>" + data[i].Status+ "<tr>";
+                str += "<td>" + data[i].Status;
+                str += "<td>" + data[i].DueDate+"<tr>";
 
             }
 
