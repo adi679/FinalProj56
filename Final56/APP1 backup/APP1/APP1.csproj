@@ -199,6 +199,7 @@
     <Content Include="Pages\1edit - class Ex solution.html" />
     <Content Include="Pages\ManagerDash - Copy.html" />
     <Content Include="Pages\NewToDo.html" />
+    <Content Include="Pages\UsarDataQ.html" />
     <Content Include="Pages\profilss.html" />
     <Content Include="Pages\1DataTableCampaign.html" />
     <Content Include="Pages\1Fav.html" />
@@ -230,7 +231,6 @@
     <Content Include="Pages\Results.html" />
     <Content Include="Pages\To Do List New.html" />
     <Content Include="Pages\TODO List.html" />
-    <Content Include="Pages\UsersData.html" />
     <Content Include="Pages\WishList.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />

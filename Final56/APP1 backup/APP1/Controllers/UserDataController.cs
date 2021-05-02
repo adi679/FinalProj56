@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APP1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,8 +23,12 @@ namespace APP1.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody] string value)
+
+        [HttpPost]
+        [Route("api/UserData")]
+        public int Post (UserData u)
         {
+            return u.Insert_New_UserData(u);
         }
 
         // PUT api/<controller>/5

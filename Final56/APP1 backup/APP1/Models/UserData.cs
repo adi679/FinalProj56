@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APP1.Models.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -79,5 +80,16 @@ namespace APP1.Models
         public int Showes { get => showes; set => showes = value; }
 
 
+
+        public int Insert_New_UserData(UserData u)
+        {
+            DB_Services dbs = new DB_Services();
+
+            return dbs.Insert_New_UserData(u);
+        }
+
     }
+
+
+
 }

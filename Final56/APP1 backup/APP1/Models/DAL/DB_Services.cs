@@ -13,6 +13,67 @@ namespace APP1.Models.DAL
     public class DB_Services
     {
 
+
+        public int Insert_New_UserData(UserData u)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertCommandUserData(u);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null) //אם אימייל כבר קיים שגיאה 500
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+
+        // ליצור טבלה
+        private String BuildInsertCommandUserData(UserData u)
+        {
+            String command;
+
+            StringBuilder sb = new StringBuilder();
+            string status = "INSERT INTO [UserData] Values('" + u.Email + u.Gender + u.National + u.Cnational1 + u.League + u.Champions + u.Position + u.Goals + u.Assists + u.Gametime + u.ShootsToGoal + u.Dribel + u.AcuuratePasses + u.Tackels + u.YellowCards + u.RedCards + u.Showes + "' )";
+            // use a string builder to create the dynamic string
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}',{10},'{11}','{12}','{13}','{14}','{15}','{16}')", u.Email , u.Gender , u.National , u.Cnational1 , u.League , u.Champions , u.Position , u.Goals , u.Assists , u.Gametime , u.ShootsToGoal , u.Dribel , u.AcuuratePasses , u.Tackels , u.YellowCards, u.RedCards ,u.Showes);
+           // String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height,Address, EstimatedYear, Active) ";
+            command =  sb.ToString();
+
+            return command + status;
+        }
+
+
+
         //======TODO=====//
 
         public List<ToDoList> show_ToDoList(string email)

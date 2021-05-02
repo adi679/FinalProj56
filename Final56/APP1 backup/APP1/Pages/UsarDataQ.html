@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="https://localhost:44381/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!--<script src="../Scripts/ajaxCalls.js"></script>-->
+    <style type="text/css">
+
+
+        .red-star {
+            color: red;
+        }
+    </style>
+   
+
+    <script>
+        $(document).ready(function () {
+            //   $("#dyn").click(dynStaff);
+            $("#pForm").submit(AddData); // bind the submit event to a function called f1
+
+            // activate a custom validation function when the element looses focus.
+            //    $("#discountCodeTB").on("blur", checkCode);
+        });
+
+        function checkCode() {
+            if (this.value % 3 != 0) { // an example of validation that the code divides by 3
+                this.validity.valid = false; // must set it to false to prevent the submit to the server
+                this.setCustomValidity('Code is not valid, please enter a valid code');
+            }
+            else {
+                this.validity.valid = true;
+                this.setCustomValidity('');
+            }
+        }
+
+
+
+
+        // This function is called in case of a success
+        function successData(data) {
+
+
+
+            alert("Submitted")
+            swal("Submitted to the server!", "Great Job", "success");
+          //  localStorage.setItem('email', $("#mailTB").val())
+           // localStorage.setItem('password', $("#passwordTB").val())
+            //window.open("FavRegion.html");
+
+            return false;
+
+        }
+
+        // This function is called in case of an error
+        function errorData(err) {
+            alert("Error")
+            if (err.status == 500)
+                alert("error- this email already exist");
+            else
+                alert("Please try again");
+        }
+
+
+
+        function AddData() { // הכנסת יוזר חדש
+
+     
+
+        
+            let u = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+               // FirstName: $("#nameTB").val(),
+                Email: $("#email").val(),
+                Gender: $("#Sex").val(),
+                National: $("#NT").val(),
+                Cnational1: $("#CNT").val(),
+                League: $("#league").val(),
+                Champions: $("#champions").val(),
+                Cups: $("#cups").val(),
+                Goals: $("#goals").val(),
+                Assists: $("#assists").val(),
+                Gametime: $("#minutes").val(),
+                ShootsToGoal: $("#ShootsToGoal").val(),
+                Dribel: $("#dribel").val(),
+                AcuuratePasses: $("#acuuratePasses").val(),
+                Tackels: $("#tackels").val(),
+                YellowCards: $("#yellowCards").val(),
+                RedCards: $("#redCards").val(),
+                Showes: $("#showes").val(),
+
+
+            }
+
+            alert(u);
+
+            ajaxCall("POST", "../api/UserData", JSON.stringify(u), successData, errorData); //נוסיף לשרת את היוזר
+
+            function showImages(data) {
+                console.log(data);
+
+
+            }
+
+            function error1(data) {
+                console.log(data);
+            }
+
+
+        }
+
+
+       
+
+    </script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</head>
+<body>
+
+    <a href="LogIn.html">Go Back To Home Page</a>
+    <div class="container">
+        <form id="pForm">
+            <h1 style="color:red">Insert User Data</h1>
+            <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+
+            <!--<div class="form-group">
+        <label for="nameTB"><span class="red-star">★ </span>First Name</label>
+        <input type="text" class="form-control" id="nameTB" pattern="[A-Za-z].{1,10}" required oninvalid="this.setCustomValidity('Format should be max 10 char')"
+               oninput="this.setCustomValidity('')" placeholder="Enter your name">
+    </div>-->
+
+            <div class="form-group">
+                <label for="mailTB"><span class="red-star" required>★ </span>mail</label>
+                <input type="text" class="form-control" id="mailTB" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter the mail. Format should be: XXXX@XXXX." required />
+            </div>
+
+            <div class="form-group">
+                <label for="Sex"><span class="red-star" required>★ </span>Sex</label><br />
+                <select id="Sex" name="leaveCode">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="user"><span class="red-star" required>★ </span>In National Team?</label><br />
+                <select id="NT" name="leaveCode">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="user"><span class="red-star" required>★ </span>In Captain National Team?</label><br />
+                <select id="CNT" name="leaveCode">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="league">Choose a league:</label>
+                <select name="league" id="league">
+                    <option value="0">Choose..</option>
+                    <option value="first">על</option>
+                    <option value="second">לאומית</option>
+                    <option value="alef">א'</option>
+                    <option value="other">אחר</option>
+                </select>
+                <br><br>
+            </div>
+
+            <div>
+                <label for="champions">Champions Num:</label><br>
+                <input type="text" id="champions" name="champions"><br>
+            </div>
+            <div>
+                <label for="cups">Cups Num:</label><br>
+                <input type="text" id="Cups" name="Cups"><br>
+            </div>
+            <div>
+                <label for="goals">Goals Num:</label><br>
+                <input type="text" id="goals" name="goals"><br>
+            </div>
+            <div>
+                <label for="assists">Assists Num:</label><br>
+                <input type="text" id="assists" name="assists"><br>
+            </div>
+            <div>
+                <label for="minutes">Minutes played Num:</label><br>
+                <input type="text" id="minutes" name="minutes"><br>
+            </div>
+            <div>
+                <label for="shootsToGoal">shoots To Goal:</label><br>
+                <input type="text" id="shootsToGoal" name="shootsToGoal"><br>
+            </div>
+            <div>
+                <label for="dribel">dribel:</label><br>
+                <input type="text" id="dribel" name="dribel"><br>
+            </div>
+            <div>
+                <label for="acuuratePasses">acuuratePasses:</label><br>
+                <input type="text" id="acuuratePasses" name="acuuratePasses"><br>
+            </div>
+            <div>
+                <label for="tackels">tackels:</label><br>
+                <input type="text" id="tackels" name="tackels"><br>
+            </div>
+            <div>
+                <label for="yellowCards">yellowCards:</label><br>
+                <input type="text" id="yellowCards" name="yellowCards"><br>
+            </div>
+            <div>
+                <label for="redCards">redCards:</label><br>
+                <input type="text" id="redCards" name="redCards"><br>
+            </div>
+
+            <div>
+                <label for="showes">showes:</label><br>
+                <input type="text" id="showes" name="showes"><br>
+            </div>
+
+
+
+
+
+
+
+            <br />
+
+            <input type="submit" id="buttonUpload" value="Submit BTN" />
+
+        </form>
+
+    </div>
+    <div id="ph">
+
+    </div>
+
+
+</body>
+
+</html>
