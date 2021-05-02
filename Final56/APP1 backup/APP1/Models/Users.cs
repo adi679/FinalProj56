@@ -22,12 +22,14 @@ namespace APP1.Models
         string status;
         int statusId;
         float height;
+        DateTime estimatedYear;
+        int active;
 
         public Users()
         {
 
         }
-        public Users(float height, string status, int statusId,string address , DateTime register, string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex)
+        public Users(float height, string status, int statusId,string address , DateTime register, string position, string email, string password, string firstName, string lastName, string phone, int typeUsers, DateTime birthDay, string sex, DateTime estimatedYear, int active)
         {
             Email = email;
             Password = password;
@@ -43,6 +45,8 @@ namespace APP1.Models
             Status = status;
             StatusId = statusId;
             Height = height;
+            EstimatedYear= estimatedYear;
+            Active = active;
         }
 
         public string Email { get => email; set => email = value; }
@@ -59,6 +63,8 @@ namespace APP1.Models
         public string Status { get => status; set => status = value; }
         public int StatusId { get => statusId; set => statusId = value; }
         public float Height { get => height; set => height = value; }
+        public DateTime EstimatedYear { get => estimatedYear; set => estimatedYear = value; }
+        public int Active { get => active; set => active = value; }
 
         public int update_New_Users(Users u)
         {

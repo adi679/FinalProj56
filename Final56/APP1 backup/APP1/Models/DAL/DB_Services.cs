@@ -914,6 +914,9 @@ namespace APP1.Models.DAL
                     ul.Position = (string)dr["Position"];
                     ul.BirthDay = (DateTime)dr["birthDay"];
                     ul.Register = (DateTime)dr["Register"];
+                    ul.Register = (DateTime)dr["EstimatedYear"];
+                    ul.TypeUsers = Convert.ToInt32(dr["Active"]);
+
 
                     if (dr["Address"].GetType() != typeof(DBNull))
                     ul.Address = (string)dr["Address"];
@@ -995,25 +998,25 @@ namespace APP1.Models.DAL
             StringBuilder sb = new StringBuilder();
             string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}','{10}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"),u.Height);
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height) ";
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}','{10}','{11}','{12}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"),u.Height, u.EstimatedYear, u.Active);
+            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height, EstimatedYear, Active) ";
             command = prefix + sb.ToString();
 
             return command + status;
         }
-        private String BuildInsertCommandUsers(Users u)
-        {
-            String command;
+        //private String BuildInsertCommandUsers(Users u)
+        //{
+        //    String command;
 
-            StringBuilder sb = new StringBuilder();
-            string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
-            // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}',{10},'{11}')", u.Email, u.BirthDay.ToString("MM/dd/yyyy"), u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy"),u.Height,u.Address);
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height,Address) ";
-            command = prefix + sb.ToString();
+        //    StringBuilder sb = new StringBuilder();
+        //    string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
+        //    // use a string builder to create the dynamic string
+        //    sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}',{10},'{11}')", u.Email, u.BirthDay.ToString("MM/dd/yyyy"), u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy"),u.Height,u.Address);
+        //    String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height,Address) ";
+        //    command = prefix + sb.ToString();
 
-            return command + status;
-        }
+        //    return command + status;
+        //}
 
         public int update_New_Users(Users u)
         {
