@@ -123,6 +123,8 @@
                 TypeUsers: document.getElementById('user').value,
                 Sex: document.getElementById('Sex').value,
                 Height: $("#HeightTB").val(),
+                EstimatedYear: $("#EstimatedYear").val(),
+                Active: 1
 
             }
 
@@ -187,49 +189,54 @@
             </div>
             <div class="form-group">
                 <label for="birthday">Birthday:</label>
-                <input type="date"   placeholder="MM-dd-yyyy" id="birthday" name="birthday">
-
-            </div>
-            <div class="form-group">
-                <label for="dealerPhone"><span class="red-star">★ </span>Your Phone (using a pattern validator)</label>
-                <input type="tel" class="form-control" placeholder="Enter the dealer phone ddd-dd-dd" id="phoneTB"
-                       pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" required
-                       oninvalid="this.setCustomValidity('Format should be ddd-dddd-ddd')"
-                       oninput="this.setCustomValidity('')" />
-            </div>
-            <div class="form-group">
-                <label for="AddressTB"><span class="red-star">★ </span>Address</label>
-                <input type="text" class="form-control" id="AddressTB" placeholder="Enter Street,City" required />
+                <input type="date" placeholder="MM-dd-yyyy" id="birthday" name="birthday">
             </div>
 
-            <div class="form-group">
-                <label for="mailTB"><span class="red-star" required>★ </span>mail</label>
-                <input type="text" class="form-control" id="mailTB" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter the mail. Format should be: XXXX@XXXX." required />
-            </div>
+                <div class="form-group">
+                    <label for="dealerPhone"><span class="red-star">★ </span>Your Phone (using a pattern validator)</label>
+                    <input type="tel" class="form-control" placeholder="Enter the dealer phone ddd-dd-dd" id="phoneTB"
+                           pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" required
+                           oninvalid="this.setCustomValidity('Format should be ddd-dddd-ddd')"
+                           oninput="this.setCustomValidity('')" />
+                </div>
+                <div class="form-group">
+                    <label for="AddressTB"><span class="red-star">★ </span>Address</label>
+                    <input type="text" class="form-control" id="AddressTB" placeholder="Enter Street,City" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="mailTB"><span class="red-star" required>★ </span>mail</label>
+                    <input type="text" class="form-control" id="mailTB" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter the mail. Format should be: XXXX@XXXX." required />
+                </div>
 
 
+                <div class="form-group">
+                    <label for="passwordTB"><span class="red-star" required>★ </span>Password</label>
+                    <input type="password" class="form-control" id="passwordTB" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required placeholder="Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                           oninvalid="this.setCustomValidity('Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters')"
+                           oninput="this.setCustomValidity('')" />
+                </div>
+                <div class="form-group">
+                    <label for="passwordTB"><span class="red-star" required>★ </span>Repeat Password</label>
+                    <input type="text" class="form-control" id="password2TB" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required placeholder="Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                           oninvalid="this.setCustomValidity('Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters')"
+                           oninput="this.setCustomValidity('')" />
+                </div>
+           
             <div class="form-group">
-                <label for="passwordTB"><span class="red-star" required>★ </span>Password</label>
-                <input type="password" class="form-control" id="passwordTB" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required placeholder="Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-                       oninvalid="this.setCustomValidity('Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters')"
-                       oninput="this.setCustomValidity('')" />
-            </div>
-            <div class="form-group">
-                <label for="passwordTB"><span class="red-star" required>★ </span>Repeat Password</label>
-                <input type="text" class="form-control" id="password2TB" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required placeholder="Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-                       oninvalid="this.setCustomValidity('Enter Password Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters')"
-                       oninput="this.setCustomValidity('')" />
-            </div>
+                <label for="EstimatedYear">Estimated Year:</label>
+                <input type="date" placeholder="MM-dd-yyyy" id="EstimatedYear" name="EstimatedYear">
 
+            </div>
 
             <div class="form-group">
                 <label for="HeightTB"><span class="red-star" required>★ </span>Height</label>
-                <input type="number" step="0.01" placeholder="CM"  class="form-control"  id="HeightTB" max="3"
+                <input type="number" step="0.01" placeholder="CM" class="form-control" id="HeightTB" max="3"
                        oninvalid="this.setCustomValidity('Enter Your Height')"
                        oninput="this.setCustomValidity('')" required />
 
             </div>
-            
+
             <div class="form-group">
                 <label for="PositionTB"><span class="red-star" required>★ </span>Position</label>
                 <input type="text" class="form-control" id="PositionTB"
@@ -245,7 +252,7 @@
 
                 </select>
 
-               
+
 
             </div>
             <div class="form-group">
@@ -253,12 +260,12 @@
 
                 <label for="Sex"><span class="red-star" required>★ </span>Sex</label><br />
                 <select id="Sex" name="leaveCode">
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
-                <option value="Other">Other</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
 
                 </select>
-                
+
 
 
             </div>

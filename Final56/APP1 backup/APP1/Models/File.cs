@@ -8,6 +8,7 @@ namespace APP1.Models
 {
     public class File
     {
+        string email;
         string filetype;
         string remark ;
         string fileName;
@@ -16,19 +17,22 @@ namespace APP1.Models
         {
 
         }
-        public File(string filetype, string remark, string fileName, int score)
+        public File(string filetype, string remark, string fileName, int score,string email)
         {
             Filetype = filetype;
             Remark = remark;
             FileName = fileName;
             Score = score;
+            Email = email;
         }
 
         public string Filetype { get => filetype; set => filetype = value; }
         public string Remark { get => remark; set => remark = value; }
         public string FileName { get => fileName; set => fileName = value; }
         public int Score { get => score; set => score = value; }
+        public string Email { get => email; set => email = value; }
     }
+    
 
     //public int SaveFiles(List<File> f)
     //{

@@ -142,7 +142,7 @@
             try {
                 tbl = $('#campaignsTable').DataTable({
                     data: list_users,
-                    pageLength: 6,
+                    pageLength: 8,
                     columns: [
                         {
                             render: function (data, type, row, meta) {
@@ -176,6 +176,16 @@
                         },
                         {
                             data: "Status"
+                        },
+                        {
+                            data: function (jsonDate) {
+                                d = jsonDate.EstimatedYear.split('T00:00:00')
+                                if ('0001-01-01' != d[0])
+                                    return d[0]
+                                else {
+                                    return'No Estimated'
+                                }
+                            }
                         },
                     ],
                 });
@@ -220,7 +230,6 @@
     </script>
 </head>
 <body>
-<<<<<<< HEAD
     <div id="card">
         <div class="container">
             <table id="campaignsTable" class="display" style="width:100%">
@@ -233,6 +242,7 @@
                         <th>Position</th>
                         <th>BirthDay</th>
                         <th>Status</th>
+                        <th>EstimatedYear</th>
                     </tr>
                 </thead>
 
@@ -243,27 +253,6 @@
                         <div class="form-group col-sm-3">
 
                         </div>
-=======
-    <div class="container">
-        <table id="campaignsTable" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>   </th>
-                    <th>Full name</th>
-                    <th>Phone</th>
-                    <th>Remain</th>
-                    <th>Clicks</th>
-                    <th>Views</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-
-        </table>
-        <div id="editDiv">
-            <form id="carForm">
-                <div class="form-group row">
-                    <div class="form-group col-sm-3">
->>>>>>> 46743a86f067a3cfe737571f9b1532e4494ac2f1
 
                     </div>
 
