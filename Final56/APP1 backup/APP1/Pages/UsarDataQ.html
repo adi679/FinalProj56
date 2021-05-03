@@ -81,6 +81,9 @@
                 alert("error- this email already exist");
             else
                 alert("Please try again");
+
+            return false;
+
         }
 
 
@@ -92,13 +95,12 @@
         
             let u = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
                // FirstName: $("#nameTB").val(),
-                Email: $("#email").val(),
-                Gender: $("#Sex").val(),
+                Email: $("#mailTB").val(),
                 National: $("#NT").val(),
                 Cnational1: $("#CNT").val(),
                 League: $("#league").val(),
                 Champions: $("#champions").val(),
-                Cups: $("#cups").val(),
+                Cups: $("#Cups").val(),
                 Goals: $("#goals").val(),
                 Assists: $("#assists").val(),
                 Gametime: $("#minutes").val(),
@@ -109,23 +111,13 @@
                 YellowCards: $("#yellowCards").val(),
                 RedCards: $("#redCards").val(),
                 Showes: $("#showes").val(),
-
-
             }
 
-            alert(u);
 
             ajaxCall("POST", "../api/UserData", JSON.stringify(u), successData, errorData); //נוסיף לשרת את היוזר
 
-            function showImages(data) {
-                console.log(data);
+            return false;
 
-
-            }
-
-            function error1(data) {
-                console.log(data);
-            }
 
 
         }
@@ -160,16 +152,7 @@
                 <input type="text" class="form-control" id="mailTB" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter the mail. Format should be: XXXX@XXXX." required />
             </div>
 
-            <div class="form-group">
-                <label for="Sex"><span class="red-star" required>★ </span>Sex</label><br />
-                <select id="Sex" name="leaveCode">
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
-                    <option value="Other">Other</option>
-
-                </select>
-
-            </div>
+          
 
 
             <div class="form-group">
@@ -222,8 +205,8 @@
                 <input type="text" id="minutes" name="minutes"><br>
             </div>
             <div>
-                <label for="shootsToGoal">shoots To Goal:</label><br>
-                <input type="text" id="shootsToGoal" name="shootsToGoal"><br>
+                <label for="ShootsToGoal">shoots To Goal:</label><br>
+                <input type="text" id="ShootsToGoal" name="ShootsToGoal"><br>
             </div>
             <div>
                 <label for="dribel">dribel:</label><br>

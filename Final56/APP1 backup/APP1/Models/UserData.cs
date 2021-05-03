@@ -11,7 +11,7 @@ namespace APP1.Models
         string gender;
         string email;
         int national;
-        int Cnational;
+        int captain;
         int league;
         int champions;
         int cups;
@@ -30,12 +30,12 @@ namespace APP1.Models
         int redCards;
         int showes;
 
-        public UserData(string gender, string email, int national, int cnational1, int league, int champions, int cups, int tofel, int sat, float gpa, string position, int goals, int assists, int gametime, int shootsToGoal, int dribel, int acuuratePasses, int tackels, int yellowCards, int redCards, int showes)
+        public UserData(string gender, string email, int national, int captain, int league, int champions, int cups, int tofel, int sat, float gpa, string position, int goals, int assists, int gametime, int shootsToGoal, int dribel, int acuuratePasses, int tackels, int yellowCards, int redCards, int showes)
         {
             Gender = gender;
             Email = email;
             National = national;
-            Cnational1 = cnational1;
+            Captain = captain;
             League = league;
             Champions = champions;
             Cups = cups;
@@ -60,7 +60,7 @@ namespace APP1.Models
     public string Gender { get => gender; set => gender = value; }
         public string Email { get => email; set => email = value; }
         public int National { get => national; set => national = value; }
-        public int Cnational1 { get => Cnational; set => Cnational = value; }
+        public int Captain { get => captain; set => captain = value; }
         public int League { get => league; set => league = value; }
         public int Champions { get => champions; set => champions = value; }
         public int Cups { get => cups; set => cups = value; }
