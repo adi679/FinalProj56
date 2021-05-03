@@ -52,7 +52,7 @@
                 if (users[i].Register) {
                     Register = users[i].Register.split('T00:00:00')
                 }
-                status_select = '<select id="cars" name="cars"><option value="0">candidate</option><option value="I20">I20</option>                <option value="בניית פרופיל אישי">בניית פרופיל אישי</option>                <option value="חתימה על NLI, LOI">חתימה על NLI, LOI</option>                <option value="שגרירות">שגרירות</option>                <option value="שיחות עם מאמנים">שיחות עם מאמנים</option>                            </select >'
+            status_select = '<select id="Status" name="Status"><option value="0">candidate</option><option value="I20">I20</option>                <option value="בניית פרופיל אישי">בניית פרופיל אישי</option>                <option value="חתימה על NLI, LOI">חתימה על NLI, LOI</option>                <option value="שגרירות">שגרירות</option>                <option value="שיחות עם מאמנים">שיחות עם מאמנים</option>                            </select >'
                 date = ''
                 if (users[i].BirthDay) { date = users[i].Register.split('T00:00:00') }
                 str = '<div class="container">                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">                        <div class="card h-100">                            <div class="card-body">                                <div class="account-settings">                                    <div class="user-profile">                                        <div class="user-avatar">                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">				</div>                                            <h3 class="user-name">' + users[i].LastName + ' ' + users[i].FirstName + '</h3>        <h6 class="user-email">' + 'Registration: ' + Register[0] + '</h6>                                        </div>                                        <div class="about">                                            <h5>About</h5>                                                                       </div>                                    </div>                                </div>                            </div>                        </div>                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">                            <div class="card h-100">                                <div class="card-body">                                    <div class="row gutters">                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">                                            <h6 class="mb-2 text-primary">Personal Details</h6>                                        </div>                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">                                            <div class="form-group">                                                <label for="fullName">Full Name</label>                                                <input type="text" readonly class="form-control" id="fullName" value="' + users[i].LastName + ' ' + users[i].FirstName + '">				</div>                                            </div>                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">                                                <div class="form-group">                                                    <label for="eMail">Email</label>                                                    <input type="email" readonly class="form-control" id="eMail" value="' + users[i].Email + '">				</div>                                                </div>                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">                                                    <div class="form-group">                                                        <label for="phone">Phone</label>                                                        <input type="text" class="form-control" id="phone" placeholder="Enter phone number" value="' + users[i].Phone + '">				</div>                                                    </div>                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">                                                        <div class="form-group">                                                            <label for="password">Password</label>                                                            <input type="url" class="form-control" id="password" placeholder="Password" value="' + users[i].Password + '">				</div>                                                        </div>                                                    </div>                                                    <div class="row gutters">                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">                                                            <h6 class="mt-3 mb-2 text-primary"></h6>                                                        </div>                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">                                                            <div class="form-group">                                                                <label for="Street">Address</label>                                                                <input type="name" class="form-control" id="Address" placeholder="Enter Address" value="' + users[i].Address + '">				</div>                                                            </div>                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">                                                                <div class="form-group">                                                                    <label for="Birthday">Birthday</label>                                                                    <input type="date" class="form-control" id="birthday" placeholder="Enter Birthay" value="' + date[0] + '">				</div>                                                                </div>                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">                                                                    <div class="form-group">                                                                        <label for="sTate">Status</label>                                                                     ' + status_select + '   				</div>                                                                    </div>                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">                                                                        <div class="form-group">                                                                            <label for="Position">Position</label>                                                                            <input type="text" class="form-control" id="Position" placeholder="Position" value="' + users[i].Position + '">				</div>                                                                        </div>                                                                    </div>                                                                    <div class="row gutters">                                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">                                                                            <div class="text-right">                                                                                <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>                                                                                <button type="button" id="submit" name="submit" class="btn btn-primary"  onclick="Update(' + i + ')"  >Update</button></div></div></div>         </div>             </div>        </div>           </div></div>'
@@ -64,10 +64,10 @@
 
 
 
-        function a() {
-            let api = "../api/campaign/" + i + '/' + b;
-            ajaxCall("GET", api, "", success1, errorr1)
-        }
+        //function a() {
+        //    let api = "../api/campaign/" + i + '/' + b;
+        //    ajaxCall("GET", api, "", success1, errorr1)
+        //}
         $(document).ready(function () {
             str = "users_show"
             let api = "../api/Users/" + str + "/Show_all_users";
@@ -195,7 +195,35 @@
                 alert(err);
             }
         }
+        function Update(i) {
+            let u = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+                FirstName: users[i].FirstName,
+                LastName: users[i].LastName,
+                BirthDay: $("#birthday").val(),
+                Phone: $("#phone").val(),
+                Address: $("#Address").val(),
+                Email: users[i].Email,
+                Password: $("#password").val(),
+                Position: $("#Position").val(),
+                TypeUsers: 0,
+                Sex: users[i].Sex,
+                Height: users[i].Height,
+                EstimatedYear: users[i].EstimatedYear,
+                Active: 1,
+                Status: $("#Status").val(),
 
+
+                //  Myfile: $("#mailTB").val(),
+            }
+            if (u.Status == 0) {
+
+                u.Status = users[i].Status
+            }
+            console.log(u)
+            //console.log(u)
+            //let x = $("#files").get(0).files[0].name
+            ajaxCall("POST", "../api/Users/update", JSON.stringify(u), success_update, error_update); //נוסיף לשרת את היוזר
+        }
 
         function Updateb() {
 
@@ -212,15 +240,25 @@
 
 
         }
+        function success_update(data) {
 
-        function success1(data) {
 
-            alert("success! campaign for rest: " + id_edit + " with budget:  " + newb + " is Updated ")
+
+            alert("Submitted")
+
+            return false;
+
+        } function error_update(data) {
+
+
+
+            alert("error_update")
+
+            return false;
+
         }
 
-        function errorr1(err) {
-            alert("Sorry, please try again");
-        }
+        
         function cancelf() {
             $("#editDiv").hide();
             document.getElementById("Budget").value = " ";

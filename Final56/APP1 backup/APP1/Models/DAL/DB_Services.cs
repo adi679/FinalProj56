@@ -1060,11 +1060,10 @@ namespace APP1.Models.DAL
             String command;
 
             StringBuilder sb = new StringBuilder();
-            string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
+            string status = "UPDATE UsersStatus SET  Status='"+u.Status+"'WHERE Email = '"+ u.Email+"'" ;;
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}','{10}','{11}','{12}')", u.Email, u.BirthDay, u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy HH:mm"),u.Height, u.EstimatedYear, u.Active);
-            String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height, EstimatedYear, Active) ";
-            command = prefix + sb.ToString();
+            String prefix = "UPDATE Users SET BirthDay = '"+u.BirthDay.ToString("MM/dd/yyyy") + "',Phone = "+u.Phone+", Address = '"+u.Address+"',Password = '"+u.Password+"', Position= '"+u.Position+"',EstimatedYear = '"+u.EstimatedYear.ToString("MM/dd/yyyy") + "' WHERE Email='"+ u.Email+"'" ;
+            command = prefix ;
 
             return command + status;
         }
