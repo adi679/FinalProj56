@@ -93,5 +93,13 @@ namespace APP1.Models
             return dbs.Login_User(email, password); ;
 
         }
+        public int Delete_Users(string email)
+        {
+            DB_Services dbs = new DB_Services();
+
+            return dbs.Delete_Users(email); ;
+
+        }
+        
     }
 }

@@ -55,8 +55,12 @@ namespace APP1.Controllers
         //}
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("api/Users/Delete")]
+        public int Delete(Users u)
         {
+        
+            return u.Delete_Users(u.Email);
         }
     }
 }

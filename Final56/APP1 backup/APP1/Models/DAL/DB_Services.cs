@@ -963,7 +963,7 @@ namespace APP1.Models.DAL
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email ORDER BY Users.Email ASC ";
+                String selectSTR = "SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email   WHERE  Users.Active IS NULL or Users.Active=1";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
@@ -1170,6 +1170,55 @@ namespace APP1.Models.DAL
             }
 
         }
+        public String BuilDeleteCommandUsers(string email)
+        {
+            String prefix = " UPDATE Users SET Active = -1WHERE Email='" + email + "'";
+
+            return prefix;
+        }
+        public int Delete_Users(string email)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuilDeleteCommandUsers(email);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null) //אם אימייל כבר קיים שגיאה 500
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+
 
 
         //======================================================================
