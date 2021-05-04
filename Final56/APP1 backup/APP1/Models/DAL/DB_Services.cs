@@ -963,7 +963,7 @@ namespace APP1.Models.DAL
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email ";
+                String selectSTR = "SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email ORDER BY Users.Email ASC ";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
@@ -985,6 +985,7 @@ namespace APP1.Models.DAL
 
                     if (dr["EstimatedYear"].GetType() != typeof(DBNull))
                     ul.EstimatedYear = (DateTime)dr["EstimatedYear"];
+
                     if (dr["Active"].GetType() != typeof(DBNull))
                         ul.Active = Convert.ToInt32(dr["Active"]);
 
@@ -998,9 +999,7 @@ namespace APP1.Models.DAL
                     if (dr["Status"].GetType() != typeof(DBNull))
                      ul.Status = (string)dr["Status"];
 
-                    if (dr["Id"].GetType() != typeof(DBNull))
-                        ul.StatusId = Convert.ToInt32(dr["Id"]);
-
+                   
                     if (dr["Height"].GetType() != typeof(DBNull))
                         ul.Height = (float)(double)dr["Height"];
                    
@@ -1067,19 +1066,20 @@ namespace APP1.Models.DAL
             String command;
 
             StringBuilder sb = new StringBuilder();
-            string status = "UPDATE UsersStatus SET  Status='"+u.Status+"'WHERE Email = '"+ u.Email+"'" ;;
+            string s = " IF EXISTS(SELECT * FROM UsersStatus WHERE Email = '" + u.Email + "') BEGIN  DELETE FROM UsersStatus WHERE Email = '" + u.Email + "'end";
+            string status = " INSERT INTO UsersStatus (Email, Status)Values('" + u.Email + "', '"+u.Status+"')";
             // use a string builder to create the dynamic string
-            String prefix = "UPDATE Users SET BirthDay = '"+u.BirthDay.ToString("MM/dd/yyyy") + "',Phone = "+u.Phone+", Address = '"+u.Address+"',Password = '"+u.Password+"', Position= '"+u.Position+"',EstimatedYear = '"+u.EstimatedYear.ToString("MM/dd/yyyy") + "' WHERE Email='"+ u.Email+"'" ;
+            String prefix = " UPDATE Users SET BirthDay = '" + u.BirthDay.ToString("MM/dd/yyyy") + "',FirstName = '" + u.FirstName + "',LastName = '" + u.LastName + "',Phone = '" + u.Phone+"', Address = '"+u.Address+"',Password = '"+u.Password+"', Position= '"+u.Position+"',EstimatedYear = '"+u.EstimatedYear.ToString("MM/dd/yyyy") + "' WHERE Email='"+ u.Email+"'" ;
             command = prefix ;
 
-            return command + status;
+            return s+command + status;
         }
         private String BuildInsertCommandUsers(Users u)
         {
             String command;
 
             StringBuilder sb = new StringBuilder();
-            string status = "INSERT INTO UsersStatus (Email, Status, ID)Values('" + u.Email + "', 'candidate', 0)";
+            string status = "INSERT INTO UsersStatus (Email, Status)Values('" + u.Email + "', 'candidate')";
             // use a string builder to create the dynamic string
             sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}',{10},'{11}','{12}','{13}')", u.Email, u.BirthDay.ToString("MM/dd/yyyy"), u.Sex, u.Phone, u.Password, u.LastName, u.FirstName, u.TypeUsers, u.Position, DateTime.Now.ToString("MM/dd/yyyy"), u.Height, u.Address, u.EstimatedYear.ToString("MM/dd/yyyy"), u.Active);
             String prefix = "INSERT INTO Users " + "( Email , BirthDay , Sex ,Phone ,Password ,LastName ,FirstName, TypeUsers,Position,Register,Height,Address, EstimatedYear, Active) ";

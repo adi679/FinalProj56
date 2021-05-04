@@ -200,7 +200,7 @@
     <Content Include="Pages\ManagerDash - Copy.html" />
     <Content Include="Pages\NewToDo.html" />
     <Content Include="Pages\UsarDataQ.html" />
-    <Content Include="Pages\profilss.html" />
+    <Content Include="Pages\profile.html" />
     <Content Include="Pages\1DataTableCampaign.html" />
     <Content Include="Pages\1Fav.html" />
     <Content Include="Pages\1Highlights.html" />
