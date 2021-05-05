@@ -14,6 +14,56 @@ namespace APP1.Models.DAL
     {
 
 
+        public List<File> show_UF()
+        {
+            File uf1 = new File();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "select u.FirstName, u.LastName, uf.FileType, uf.FileName, uf.Score, uf.Remark from users u inner join UsersFile uf on u.email= uf.Email" ;
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+                    uf1.Email = (string)dr["Email"];
+                    uf1.Filetype = (string)dr["Filetype"];
+                    uf1.Remark = (string)dr["Remark"];
+                    uf1.FileName = (string)dr["FileName"];
+                    uf1.Score = Convert.ToInt32(dr["Score"]);
+                }
+                return uf1;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
         public int Insert_New_UserData(UserData u)
         {
 

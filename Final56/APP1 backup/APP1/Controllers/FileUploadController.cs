@@ -45,7 +45,21 @@ namespace APP1.Controllers
             // Return status code  
             return Request.CreateResponse(HttpStatusCode.Created, imageLinks);
         }
+
+        [HttpGet]
+        [Route("api/File/get_all_UF")]
+        public List<File> Get()
+        {
+            File f = new File();
+            return u.get_UF();
+        }
+
+
+
+
     }
+
+
 
 
 

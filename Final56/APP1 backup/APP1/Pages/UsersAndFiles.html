@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <title></title>
+
+
+    <script>
+
+        $(document).ready(function () {
+            let email = localStorage.getItem("email");
+            //email = "adi@gmail.com";
+            let api_UF = "../api/FileUpload/get_all_UF";
+            ajaxCall("Get", api_UF, "", successFiles, errorFiles)
+
+
+
+        });
+
+        function successFiles() {
+            alert("successFiles")
+        }
+
+        function errorFiles() {
+            alert("errorFiles")
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

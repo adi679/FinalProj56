@@ -31,8 +31,22 @@ namespace APP1.Models
         public string FileName { get => fileName; set => fileName = value; }
         public int Score { get => score; set => score = value; }
         public string Email { get => email; set => email = value; }
+
+
+
+        public List<File> get_UF()
+        {
+            List<File> t = new List<File>();
+            DB_Services dbs = new DB_Services();
+
+            return dbs.show_UF();
+        }
+
+
+
+
     }
-    
+
 
     //public int SaveFiles(List<File> f)
     //{
