@@ -9,21 +9,25 @@ namespace APP1.Models
     public class File
     {
         string email;
+        int isnull;
         string filetype;
         string remark ;
         string fileName;
         int score;
+        string full_Name;
         public File()
         {
 
         }
-        public File(string filetype, string remark, string fileName, int score,string email)
+        public File(string filetype, string remark, string fileName, int score,string email, int isnull, string full_Name)
         {
+            Isnull = isnull;
             Filetype = filetype;
             Remark = remark;
             FileName = fileName;
             Score = score;
             Email = email;
+            Full_Name = full_Name;
         }
 
         public string Filetype { get => filetype; set => filetype = value; }
@@ -31,8 +35,8 @@ namespace APP1.Models
         public string FileName { get => fileName; set => fileName = value; }
         public int Score { get => score; set => score = value; }
         public string Email { get => email; set => email = value; }
-
-
+        public int Isnull { get => isnull; set => isnull = value; }
+        public string Full_Name { get => full_Name; set => full_Name = value; }
 
         public List<File> get_UF()
         {

@@ -16,14 +16,14 @@ namespace APP1.Models.DAL
 
         public List<File> show_UF()
         {
-            File uf1 = new File();
+           List<File> uf1 = new List<File>();
             SqlConnection con = null;
 
             try
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "select u.FirstName, u.LastName, uf.FileType, uf.FileName, uf.Score, uf.Remark from users u inner join UsersFile uf on u.email= uf.Email" ;
+                String selectSTR = "select *,uf.Email  as 'EmailFile' ,u.email as 'UEmail' from users u left join UsersFile uf on u.email= uf.Email";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
@@ -31,11 +31,35 @@ namespace APP1.Models.DAL
 
                 while (dr.Read())
                 {
-                    uf1.Email = (string)dr["Email"];
-                    uf1.Filetype = (string)dr["Filetype"];
-                    uf1.Remark = (string)dr["Remark"];
-                    uf1.FileName = (string)dr["FileName"];
-                    uf1.Score = Convert.ToInt32(dr["Score"]);
+                    File f = new File();
+                    if (dr["EmailFile"].GetType() != typeof(DBNull))
+                    {
+                    
+                        f.Email = (string)dr["Email"];
+                        f.Full_Name = (string)dr["LastName"] + ' ' + (string)dr["FirstName"];
+                        if (dr["Filetype"].GetType() != typeof(DBNull))
+                            f.Filetype = (string)dr["Filetype"];
+
+                        if (dr["Remark"].GetType() != typeof(DBNull))
+                            f.Remark = (string)dr["Remark"];
+
+                        if (dr["FileName"].GetType() != typeof(DBNull))
+                            f.FileName = (string)dr["FileName"];
+
+                        if (dr["Score"].GetType() != typeof(DBNull))
+                            f.Score = Convert.ToInt32(dr["Score"]);
+
+                        f.Isnull = 1;
+                    }
+                    else
+                    {
+                        f.Full_Name = (string)dr["LastName"] + ' ' + (string)dr["FirstName"];
+                        f.Email = (string)dr["UEmail"];
+                        f.Isnull = 0;
+
+                    }
+
+                    uf1.Add(f);
                 }
                 return uf1;
 
@@ -55,14 +79,6 @@ namespace APP1.Models.DAL
 
 
         }
-
-
-
-
-
-
-
-
 
         public int Insert_New_UserData(UserData u)
         {

@@ -160,6 +160,7 @@
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\ToDoListController.cs" />
     <Compile Include="Controllers\UserDataController.cs" />
+    <Compile Include="Controllers\UsersFileController.cs" />
     <Compile Include="Controllers\UsersLocaleController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UniversityController.cs" />

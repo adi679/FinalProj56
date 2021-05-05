@@ -2,28 +2,42 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <title></title>
 
 
     <script>
-
         $(document).ready(function () {
             let email = localStorage.getItem("email");
             //email = "adi@gmail.com";
-            let api_UF = "../api/FileUpload/get_all_UF";
-            ajaxCall("Get", api_UF, "", successFiles, errorFiles)
-
-
+            let api = "../api/UsersFile/get_all_UF";
+            ajaxCall("Get", api, "", successFiles, errorFiles)
 
         });
 
-        function successFiles() {
+        function successFiles(data) {
             alert("successFiles")
+            console.log(data)
+            isnull ='\n'
+            nonull ='\n'
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].Isnull==0) {
+                    isnull += data[i].Full_Name + '\n'
+                }
+                else {
+                    nonull += data[i].Full_Name + ' ' + data[i].Filetype + '\n'
+
+                }
+            }
+            alert('קבצים של יוזרים:'  + nonull);
+            alert('יוזרים ללא קבצים:'  + isnull);
+
+
         }
 
-        function errorFiles() {
+        function errorFiles(data) {
+            console.log(data)
             alert("errorFiles")
         }
 
