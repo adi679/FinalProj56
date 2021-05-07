@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Grpc.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace APP1.Controllers
 {
     public class FileUploadController : ApiController
     {
+        //up to date-- new
         [HttpPost]
         public HttpResponseMessage Post()
         {
@@ -27,14 +29,15 @@ namespace APP1.Controllers
                     HttpPostedFile httpPostedFile = httpContext.Request.Files[i];
 
                     // this is an example of how you can extract addional values from the Ajax call
-                    string name = httpContext.Request.Form["name21312131asd12"];
+                    string name = httpContext.Request.Form["name"];
 
                     if (httpPostedFile != null)
                     {
                         // Construct file save path  
                         //var fileSavePath = Path.Combine(HostingEnvironment.MapPath(ConfigurationManager.AppSettings["fileUploadFolder"]), httpPostedFile.FileName);
                         string fname = httpPostedFile.FileName.Split('\\').Last();
-                        var fileSavePath = Path.Combine(HostingEnvironment.MapPath("~/uploadedFiles"), name + httpPostedFile.FileName.Split('\\').Last());
+                        var fileSavePath = Path.Combine(HostingEnvironment.MapPath("~/uploadedFiles"), fname);
+
                         // Save the uploaded file  
                         httpPostedFile.SaveAs(fileSavePath);
                         imageLinks.Add("uploadedFiles/" + fname);
@@ -46,32 +49,5 @@ namespace APP1.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, imageLinks);
         }
 
-     
-
-
-
-
     }
-
-
-
-
-
-
-    //[HttpPost]
-    //[Route("api/api/FileUpload/savefile")]
-    //public int Post(List<File> fileU)
-    //{
-    //    File f = new File();
-
-    //    return f.SaveFiles(fileU);
-    //}
-
-
-
-
-
-
 }
-
-

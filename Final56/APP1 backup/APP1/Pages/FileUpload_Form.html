@@ -1,50 +1,38 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<title>Files Upload Example</title>
 	<meta charset="utf-8" />
-	<title></title>
-	<script src="../Scripts/jquery-3.4.1.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../Scripts/ajaxCalls.js"></script>
-	<style>
-		body {
-			text-align: center;
-		}
 
-		table {
-			font-family: arial, sans-serif;
-			border-collapse: collapse;
-			width: 100%;
-		}
 
-		td, th {
-			border: 1px solid #dddddd;
-			text-align: center;
-			padding: 8px;
-		}
+	<style type="text/css">
 
-		tr:nth-child(even) {
-			background-color: aliceblue;
-		}
-
-		.imgcontainer {
-			text-align: center;
-			margin: 24px 0 12px 0;
+		img {
+			height: 100px;
 		}
 	</style>
+
 	<script>
+		//up to date--- new
 		$(document).ready(function () {
-			$("#save-file").click(search)
+
 			$('#buttonUpload').on('click', function () {
 				var data = new FormData();
 				var files = $("#files").get(0).files;
-				var email = localStorage.getItem('email');
 
 				// Add the uploaded file to the form data collection
 				if (files.length > 0) {
 					for (f = 0; f < files.length; f++) {
-						data.append("UploadedImage", files[f]);
+						data.append("UploadedFiles", files[f]);
 					}
 					data.append("name", "benny"); // append what ever data you want to send along with the files. See how you extract it in the controller.
+
 				}
 
 				// Ajax upload
@@ -64,108 +52,60 @@
 		});
 
 
-		function search() {
-			alert("in search")
-			//var filepath = $("#file").value
-			//alert("file is: "+ filepath);
-            //api = "../api/FileUpload"
-            //ajaxCall("GET", "../api/FileUpload", "", successCB1campign, errorCB1campign)
-
-		    //var	score
-		//	var remark
-			var score
-			var remark
-            var FileType
-			var email = localStorage.getItem('email')
-			let fileU = {
-                Score: document.getElementById("score").value,
-                Remark:  $("#remark").val(),
-				Email: email,
-				Filename: "Path",
-                FileType: document.getElementById("files")
-
-			}
-			//alert(fileU.FileType)
-   //         alert(fileU.Score)
-			//api = "../api/FileUpload/savefile/" + fileU;
-   //         ajaxCall("POST", api, JSON.stringify(fileU), successCB1, errorCB1);
-
-		}
-        function successCB1() {
-			alert("success")
-		}
-        function errorCB1() {
-			alert("error")
-		}
 		function showImages(data) {
 			console.log(data);
 
-			var imgStr = "";
 
-			if (Array.isArray(data)) {
+			//let filec = {
 
-				for (var i = 0; i < data.length; i++) {
-					imgStr += "<img src='../" + data[i] + "'/>";
-				}
+			//Email: $("#email").val(),
+			//   FileType:$("#fileType").val(),
+			//Score: $("#score").val(),
+			//Remark: $("#remark").val(),
+			//FileName: $("#filename").val(),
 
-			}
+			//}
+			///upload files with normal ajax post
 
-			else {
-				imgStr = "<img src='../" + data + "'/>";
-			}
-
-			document.getElementById("ph").innerHTML = imgStr;
+			ajaxCall("POST", "../api/UsersFile", JSON.stringify(UploadedFiles), success, error);
 		}
 
 		function error(data) {
 			console.log(data);
 		}
+		function success(data) {
+			alert(data);
+			alert("success");
+		}
 
 	</script>
+
 </head>
 <body>
+
 	<form method="post" enctype="multipart/form-data" id="formUpload">
-		<div class="imgcontainer">
-			<img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+		<div>
+			<label for="files">Files</label>
+			<input type="file" id="files" name="files" multiple="multiple" />
 		</div>
-		<h2>לחץ על הכפתור "בחירת קובץ" על מנת להעלות קובץ למערכת</h2>
-		<table>
-			<tr>
-				<th>אחר</th>
-				<th>מקצועי</th>
-				<th>אקדמי</th>
-			</tr>
-			<tr>
-				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td> <input type="file" id="files" name="files">  סרט ביצועים <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-
-				<td><input type="file" id="files"  value="TOFEL" name="files">  טופס TOFEL    <br /><input type="text" id="score" name="score">	<label for="score">ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-			</tr>
-			<tr>
-
-				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td><input type="file" id="files" name="files">תמונה  <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td><input type="file" id="files" name="files">ויזה לארה"ב <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-			</tr>
-			<tr>
-				<td><input type="file" id="myFile" name="filename"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td><input type="file" id="myFile" name="filename">אחר- מקצועי  <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td><input type="file" id="myFile" name="filename"> תעודת בגרות   <br /><input type="text" id="score" name="score">	<label for="score">    ציון</label><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-			</tr>
-			<tr>
-				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td><input type="file" id="files" name="files">אחר- מקצועי <br /> <input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td><input type="file" id="files" name="files">תעודת זהות <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-			</tr>
-			<tr>
-				<td><input type="file" id="files" name="files"><br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td><input type="file" id="files" name="files">אחר- מקצועי <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label></td>
-				<td><input type="file" id="files" name="files">אחר- אקדמי  <br /><input type="text" id="remark" name="remark">	<label for="remark">הערות </label> </td>
-			</tr>
-		</table>
-		<button id="buttonUpload">buttonupload</button>
-		<button id="save-file">שמור את הקבצים שלך</button>
+		<!--<div class="form-group">
+			<label for="email"><span class="red-star">★ </span>email</label>
+			<input type="text" class="form-control" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter the mail" required />
+			<label for="fileType">fileType</label>
+			<input type="text" id="fileType" name="fileType" />
+			<label for="score">score</label>
+			<input type="number" id="score" name="score" />
+			<label for="remark">remark</label>
+			<input type="text" id="remark" name="remark" />
+			<label for="filename">filename</label>
+			<input type="text" id="filename" name="filename" />
+		</div>-->
+		<br />
+		<button type="button" id="buttonUpload">Upload files</button>
 	</form>
+
 	<div id="ph"></div>
+
+
 </body>
 </html>
