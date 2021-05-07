@@ -1,4 +1,4 @@
-Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,City,State,State_id
+ï»¿Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,City,State,State_id
 1,University of Virginia,Virginia,Southeast,5,1,1,Mens,Charlottesville,Virginia,51
 2,Georgetown University,Georgetown,,0,2,1,Mens,Washington,District of Columbia,11
 3,University of Central Florida,UCF,Southeast,5,3,1,Mens,Orlando,Florida,12
@@ -104,7 +104,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 103,University of Connecticut,UConn,New England ,1,103,1,Mens,Storrs,Connecticut,9
 104,Marist College,Marist,Mid East ,2,104,1,Mens,Poughkeepsie,New York,36
 105,,Saint Francis (PA),,0,105,1,Mens,,,0
-106,J. F. Drake State Community and Technical Colleg,Drake,Plains ,4,106,1,Mens,Des Moines,Iowa,19
+106,Drake University,Drake,Plains ,4,106,1,Mens,Des Moines,Iowa,19
 107,Dartmouth College,Dartmouth,New England ,1,107,1,Mens,Hanover,New Hampshire,33
 108,University of the Pacific,Pacific,Far West ,8,108,1,Mens,Stockton,California,6
 109,Colgate University,Colgate,Mid East ,2,109,1,Mens,Hamilton,New York,36
@@ -115,7 +115,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 114,,Northern Ill.,,0,114,1,Mens,,,0
 115,University of North Florida,North Florida,Southeast,5,115,1,Mens,Jacksonville,Florida,12
 116,Fairleigh Dickinson University,Fairleigh Dickinson,Mid East ,2,116,1,Mens,Hackensack,New Jersey,34
-117,University of Wisconsin–Madison,Wisconsin,Great Lakes ,3,117,1,Mens,Madison,Wisconsin,55
+117,University of Wisconsinâ€“Madison,Wisconsin,Great Lakes ,3,117,1,Mens,Madison,Wisconsin,55
 118,,Cleveland St.,,0,118,1,Mens,,,0
 119,La Salle University,La Salle,Mid East ,2,119,1,Mens,Philadelphia,Pennsylvania,42
 120,Santa Clara University,Santa Clara,Far West ,8,120,1,Mens,Santa Clara,California,6
@@ -126,7 +126,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 125,Elon University,Elon,Southeast,5,125,1,Mens,Elon,North Carolina,37
 126,Virginia Commonwealth University,VCU,Southeast,5,126,1,Mens,Richmond,Virginia,51
 127,,CSU Bakersfield,,0,127,1,Mens,,,0
-128,Jacksonville State University,Jacksonville,Southeast,5,128,1,Mens,Jacksonville,Florida,12
+128,Jacksonville University,Jacksonville,Southeast,5,128,1,Mens,Jacksonville,Florida,12
 129,,Ga. Southern,,0,129,1,Mens,,,0
 130,,ETSU,,0,130,1,Mens,,,0
 131,,St. Francis Brooklyn,,0,131,1,Mens,,,0
@@ -196,7 +196,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 195,Wofford College,Wofford,Southeast,5,195,1,Mens,Spartanburg,South Carolina,45
 196,Robert Morris University,Robert Morris,Mid East ,2,196,1,Mens,Moon Township,Pennsylvania,42
 197,George Mason University,George Mason,Southeast,5,197,1,Mens,Fairfax,Virginia,51
-198,Indiana University – Purdue University Indianapolis,IUPUI,Great Lakes ,3,198,1,Mens,Indianapolis,Indiana,18
+198,Indiana University â€“ Purdue University Indianapolis,IUPUI,Great Lakes ,3,198,1,Mens,Indianapolis,Indiana,18
 199,University of North Carolina at Asheville,UNC Asheville,Southeast,5,199,1,Mens,Asheville,North Carolina,37
 200,,Eastern Ill.,,0,200,1,Mens,,,0
 201,Belmont University,Belmont,Southeast,5,201,1,Mens,Nashville,Tennessee,47
@@ -216,7 +216,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 215,,Washington St.,,0,9,1,Women,,,0
 216,University of Arkansas,Arkansas,Southeast,5,10,1,Women,Fayetteville,Arkansas,5
 217,University of Kansas,Kansas,Plains ,4,11,1,Women,Lawrence,Kansas,20
-218,University of Wisconsin–Madison,Wisconsin,Great Lakes ,3,12,1,Women,Madison,Wisconsin,55
+218,University of Wisconsinâ€“Madison,Wisconsin,Great Lakes ,3,12,1,Women,Madison,Wisconsin,55
 219,Hofstra University,Hofstra,Mid East ,2,13,1,Women,Hempstead,New York,36
 220,Brown University,Brown,New England ,1,14,1,Women,Providence,Rhode Island,44
 221,North Carolina State University,NC State,Southeast,5,15,1,Women,Raleigh,North Carolina,37
@@ -248,7 +248,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 247,Harvard University,Harvard,New England ,1,41,1,Women,Cambridge[A 12],Massachusetts,25
 248,Georgetown University,Georgetown,,0,42,1,Women,Washington,District of Columbia,11
 249,Pepperdine University,Pepperdine,Far West ,8,43,1,Women,Malibu,California,6
-250,The University of Alabama,Alabama,Southeast,5,44,1,Women,Tuscaloosa,Alabama,1
+250,University of Alabama,Alabama,Southeast,5,44,1,Women,Tuscaloosa,Alabama,1
 251,Saint Louis University,Saint Louis,Plains ,4,45,1,Women,St. Louis,Missouri,29
 252,University of Iowa,Iowa,Plains ,4,46,1,Women,Iowa City,Iowa,19
 253,University of North Texas,North Texas,Southwest ,6,47,1,Women,Denton,Texas,48
@@ -275,7 +275,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 274,University of Portland,Portland,Far West ,8,68,1,Women,Portland,Oregon,41
 275,,Ball St.,,0,69,1,Women,,,0
 276,Rice University,Rice,Southwest ,6,70,1,Women,Houston,Texas,48
-277,University of Illinois at Urbana–Champaign,Illinois,Great Lakes ,3,71,1,Women,Urbana–Champaign,Illinois,17
+277,University of Illinois at Urbanaâ€“Champaign,Illinois,Great Lakes ,3,71,1,Women,Urbanaâ€“Champaign,Illinois,17
 278,Villanova University,Villanova,Mid East ,2,72,1,Women,Radnor Township,Pennsylvania,42
 279,University of San Francisco,San Francisco,Far West ,8,73,1,Women,San Francisco,California,6
 280,Princeton University,Princeton,Mid East ,2,74,1,Women,Princeton,New Jersey,34
@@ -342,10 +342,10 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 341,,San Jose St.,,0,135,1,Women,,,0
 342,University of North Florida,North Florida,Southeast,5,136,1,Women,Jacksonville,Florida,12
 343,University of Texas at San Antonio,UTSA,Southwest ,6,137,1,Women,San Antonio,Texas,48
-344,Eastern Arizona College,Arizona St.,,0,138,1,Women,,,0
+344,,Arizona St.,,0,138,1,Women,,,0
 345,,Colorado Col.,,0,139,1,Women,,,0
 346,United States Air Force Academy,Air Force,Rocky Mountains ,7,140,1,Women,Colorado Springs,Colorado,8
-347,University of Nebraska–Lincoln,Nebraska,Plains ,4,141,1,Women,Lincoln,Nebraska,31
+347,University of Nebraskaâ€“Lincoln,Nebraska,Plains ,4,141,1,Women,Lincoln,Nebraska,31
 348,Troy University,Troy,Southeast,5,142,1,Women,Troy,Alabama,1
 349,Northwestern University,Northwestern,Great Lakes ,3,143,1,Women,Evanston,Illinois,17
 350,University of Tennessee at Chattanooga,Chattanooga,Southeast,5,144,1,Women,Chattanooga,Tennessee,47
@@ -366,12 +366,12 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 365,College of William & Mary,William & Mary,Southeast,5,159,1,Women,Williamsburg,Virginia,51
 366,,Western Mich.,,0,160,1,Women,,,0
 367,Louisiana State University,LSU,Southeast,5,161,1,Women,Baton Rouge,Louisiana,22
-368,University of Minnesota,Minnesota,Plains ,4,162,1,Women,Minneapolis–Saint Paul,Minnesota,27
+368,University of Minnesota,Minnesota,Plains ,4,162,1,Women,Minneapolisâ€“Saint Paul,Minnesota,27
 369,,Albany (NY),,0,163,1,Women,,,0
 370,,Sacramento St.,,0,164,1,Women,,,0
 371,University of New Hampshire,New Hampshire,New England ,1,165,1,Women,Durham,New Hampshire,33
 372,Fairleigh Dickinson University,Fairleigh Dickinson,Mid East ,2,166,1,Women,Hackensack,New Jersey,34
-373,Indiana University – Purdue University Indianapolis,IUPUI,Great Lakes ,3,167,1,Women,Indianapolis,Indiana,18
+373,Indiana University â€“ Purdue University Indianapolis,IUPUI,Great Lakes ,3,167,1,Women,Indianapolis,Indiana,18
 374,,Army West Point,,0,168,1,Women,,,0
 375,,McNeese,,0,169,1,Women,,,0
 376,,Saint Joseph's,,0,170,1,Women,,,0
@@ -483,7 +483,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 482,,Wilmington (DE),,0,70,2,Mens,,,0
 483,Christian Brothers University,Christian Brothers,Southeast,5,71,2,Mens,Memphis,Tennessee,47
 484,,MSU Denver,,0,72,2,Mens,,,0
-485,Embry-Riddle Aeronautical University-Prescott,Embry-Riddle (FL),,0,73,2,Mens,,,0
+485,,Embry-Riddle (FL),,0,73,2,Mens,,,0
 486,Drury University,Drury,Plains ,4,74,2,Mens,Springfield,Missouri,29
 487,Post University,Post,New England ,1,75,2,Mens,Waterbury,Connecticut,9
 488,,Jefferson,,0,76,2,Mens,,,0
@@ -530,7 +530,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 529,Eckerd College,Eckerd,Southeast,5,117,2,Mens,St. Petersburg,Florida,12
 530,,Urbana,,0,118,2,Mens,,,0
 531,,Goldey-Beacom,,0,119,2,Mens,,,0
-532,Marion Military Institut,marion institut,Southeast,5,120,2,Mens,Florence,South Carolina,45
+532,Francis Marion University,Francis Marion,Southeast,5,120,2,Mens,Florence,South Carolina,45
 533,,New York Tech,,0,121,2,Mens,,,0
 534,,Lindenwood (MO),,0,122,2,Mens,,,0
 535,Chowan University,Chowan,Southeast,5,123,2,Mens,Murfreesboro,North Carolina,37
@@ -700,7 +700,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 699,,West Tex. A&M,,0,75,2,Women,,,0
 700,,Ill. Springfield,,0,76,2,Women,,,0
 701,,Bemidji St.,,0,77,2,Women,,,0
-702,Texas A&M University–Commerce,Tex. A&M-Commerce,Southwest ,6,78,2,Women,Commerce,Texas,48
+702,Texas A&M Universityâ€“Commerce,Tex. A&M-Commerce,Southwest ,6,78,2,Women,Commerce,Texas,48
 703,,USC Aiken,,0,79,2,Women,,,0
 704,,Cal St. San B'dino,,0,80,2,Women,,,0
 705,Lewis University,Lewis,Great Lakes ,3,81,2,Women,Romeoville,Illinois,17
@@ -810,7 +810,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 809,University of Findlay,Findlay,Great Lakes ,3,185,2,Women,Findlay,Ohio,39
 810,Caldwell University,Caldwell,Mid East ,2,186,2,Women,Caldwell,New Jersey,34
 811,,Tex. A&M Int'l,,0,187,2,Women,,,0
-812,Spring Hill Colleg,Spring Hill,Southeast,5,188,2,Women,Mobile,Alabama,1
+812,Spring Hill College,Spring Hill,Southeast,5,188,2,Women,Mobile,Alabama,1
 813,,Mont. St. Billings,,0,189,2,Women,,,0
 814,St. Thomas Aquinas College,St. Thomas Aquinas,Mid East ,2,190,2,Women,Sparkill,New York,36
 815,Southwest Baptist University,Southwest Baptist,Plains ,4,191,2,Women,Bolivar,Missouri,29
