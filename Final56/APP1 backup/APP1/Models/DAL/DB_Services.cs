@@ -1029,7 +1029,7 @@ namespace APP1.Models.DAL
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email   WHERE  Users.Active IS NULL or Users.Active=1";
+                String selectSTR = "SELECT * FROM Users left JOIN UsersStatus ON Users.Email = UsersStatus.Email ";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
 
                 // get a reader
@@ -1065,10 +1065,16 @@ namespace APP1.Models.DAL
                     if (dr["Status"].GetType() != typeof(DBNull))
                      ul.Status = (string)dr["Status"];
 
-                   
+
                     if (dr["Height"].GetType() != typeof(DBNull))
                         ul.Height = (float)(double)dr["Height"];
-                   
+
+
+                    if (dr["Active"].GetType() == typeof(DBNull)|| Convert.ToInt32(dr["Active"]) !=-1)
+                        ul.Active = 1;
+                    else
+                        ul.Active = 0;
+
 
                     list_of_user.Add(ul);
                 }
