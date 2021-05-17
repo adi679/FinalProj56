@@ -1,10 +1,10 @@
 Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,City,State,State_id
 1,University of Virginia,Virginia,Southeast,5,1,1,Mens,Charlottesville,Virginia,51
-2,Georgetown University,Georgetown,,0,2,1,Mens,Washington,District of Columbia,11
+Y,Georgetown College,Georgetown,,0,2,1,Mens,Washington,District of Columbia,11
 3,University of Central Florida,UCF,Southeast,5,3,1,Mens,Orlando,Florida,12
 4,Southern Methodist University,SMU,Southwest ,6,4,1,Mens,University Park,Texas,48
 5,Clemson University,Clemson,Southeast,5,5,1,Mens,Clemson,South Carolina,45
-6,Wake Forest University,Wake Forest,Southeast,5,6,1,Mens,Winston-Salem,North Carolina,37
+Y,Wake Forest University,Wake Forest,Southeast,5,6,1,Mens,Winston-Salem,North Carolina,37
 7,University of Washington,Washington,Far West ,8,7,1,Mens,Seattle,Washington,53
 8,St. John's College,St. John's (NY),,0,8,1,Mens,,,0
 9,Virginia Tech[A 53],Virginia Tech,Southeast,5,9,1,Mens,Blacksburg,Virginia,51
@@ -27,11 +27,11 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 26,University of Louisville,Louisville,Southeast,5,26,1,Mens,Louisville,Kentucky,21
 27,Butler University,Butler,Great Lakes ,3,27,1,Mens,Indianapolis,Indiana,18
 28,,Central Ark.,,0,28,1,Mens,,,0
-29,Boston College,Boston College,New England ,1,29,1,Mens,Chestnut Hill,Massachusetts,25
-30,Syracuse University,Syracuse,Mid East ,2,30,1,Mens,Syracuse,New York,36
+y,Boston College,Boston College,New England ,1,29,1,Mens,Chestnut Hill,Massachusetts,25
+y,Syracuse University,Syracuse,Mid East ,2,30,1,Mens,Syracuse,New York,36
 31,,Loyola Chicago,,0,31,1,Mens,,,0
 32,,South Fla.,,0,32,1,Mens,,,0
-33,Campbell University,Campbell,Southeast,5,33,1,Mens,Buies Creek,North Carolina,37
+y,Campbell University,Campbell,Southeast,5,33,1,Mens,Buies Creek,North Carolina,37
 34,James Madison University,James Madison,Southeast,5,34,1,Mens,Harrisonburg,Virginia,51
 35,,Seattle U,,0,35,1,Mens,,,0
 36,North Carolina State University,NC State,Southeast,5,36,1,Mens,Raleigh,North Carolina,37
@@ -44,25 +44,25 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 43,Temple University,Temple,Mid East ,2,43,1,Mens,Philadelphia,Pennsylvania,42
 44,"University of California, Irvine",UC Irvine,Far West ,8,44,1,Mens,Irvine,California,6
 45,Yale University,Yale,New England ,1,45,1,Mens,New Haven,Connecticut,9
-46,Iona College,Iona,Mid East ,2,46,1,Mens,New Rochelle,New York,36
-47,High Point University,High Point,Southeast,5,47,1,Mens,High Point,North Carolina,37
-48,Lehigh University,Lehigh,Mid East ,2,48,1,Mens,Bethlehem,Pennsylvania,42
+y,Iona College,Iona,Mid East ,2,46,1,Mens,New Rochelle,New York,36
+y,High Point University,High Point,Southeast,5,47,1,Mens,High Point,North Carolina,37
+y,Lehigh University,Lehigh,Mid East ,2,48,1,Mens,Bethlehem,Pennsylvania,42
 49,,Albany (NY),,0,49,1,Mens,,,0
 50,Saint Louis University,Saint Louis,Plains ,4,50,1,Mens,St. Louis,Missouri,29
 51,University of North Carolina at Chapel Hill,North Carolina,Southeast,5,51,1,Mens,Chapel Hill,North Carolina,37
 52,Creighton University,Creighton,Plains ,4,52,1,Mens,Omaha,Nebraska,31
 53,,Oregon St.,,0,53,1,Mens,,,0
 54,,UIC,,0,54,1,Mens,,,0
-55,Villanova University,Villanova,Mid East ,2,55,1,Mens,Radnor Township,Pennsylvania,42
+y,Villanova University,Villanova,Mid East ,2,55,1,Mens,Radnor Township,Pennsylvania,42
 56,"University of California, Los Angeles",UCLA,Far West ,8,56,1,Mens,Los Angeles,California,6
-57,,Loyola Maryland,,0,57,1,Mens,,,0
+y,Loyola University Maryland,Loyola Maryland,,0,57,1,Mens,,,0
 58,,California,,0,58,1,Mens,,,0
-59,Duke University,Duke,Southeast,5,59,1,Mens,Durham,North Carolina,37
+y,Duke University,Duke,Southeast,5,59,1,Mens,Durham,North Carolina,37
 60,University of Vermont,Vermont,New England ,1,60,1,Mens,Burlington,Vermont,50
 61,Coastal Carolina University,Coastal Carolina,Southeast,5,61,1,Mens,Conway,South Carolina,45
-62,Merrimack College,Merrimack,New England ,1,62,1,Mens,North Andover,Massachusetts,25
+y,Merrimack College,Merrimack,New England ,1,62,1,Mens,North Andover,Massachusetts,25
 63,Marquette University,Marquette,Great Lakes ,3,63,1,Mens,Milwaukee,Wisconsin,55
-64,,UNCW,,0,64,1,Mens,,,0
+y,North Carolina Wesleyan College,UNCW,,0,64,1,Mens,,,0
 65,University of Rhode Island,Rhode Island,New England ,1,65,1,Mens,Kingston,Rhode Island,44
 66,,Georgia St.,,0,66,1,Mens,,,0
 67,Florida Gulf Coast University,FGCU,Southeast,5,67,1,Mens,Fort Myers,Florida,12
@@ -70,7 +70,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 69,,CSUN,,0,69,1,Mens,,,0
 70,University of Dayton,Dayton,Great Lakes ,3,70,1,Mens,Dayton,Ohio,39
 71,University of Portland,Portland,Far West ,8,71,1,Mens,Portland,Oregon,41
-72,Princeton University,Princeton,Mid East ,2,72,1,Mens,Princeton,New Jersey,34
+y,Princeton University,Princeton,Mid East ,2,72,1,Mens,Princeton,New Jersey,34
 73,,Fla. Atlantic,,0,73,1,Mens,,,0
 74,Xavier University,Xavier,Great Lakes ,3,74,1,Mens,Cincinnati,Ohio,39
 75,DePaul University,DePaul,Great Lakes ,3,75,1,Mens,Chicago,Illinois,17
@@ -84,26 +84,26 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 83,Utah Valley University,Utah Valley,Rocky Mountains ,7,83,1,Mens,Orem,Utah,49
 84,University of Akron,Akron,Great Lakes ,3,84,1,Mens,Akron,Ohio,39
 85,,Sacramento St.,,0,85,1,Mens,,,0
-86,Cornell University,Cornell,Mid East ,2,86,1,Mens,Ithaca,New York,36
+y,Cornell University,Cornell,Mid East ,2,86,1,Mens,Ithaca,New York,36
 87,Rutgers University,Rutgers,Mid East ,2,87,1,Mens,New Brunswick,New Jersey,34
 88,United States Naval Academy,Navy,Mid East ,2,88,1,Mens,Annapolis,Maryland,24
-89,University of Pennsylvania,Penn,Mid East ,2,89,1,Mens,Philadelphia,Pennsylvania,42
+y,University of Pennsylvania,Penn,Mid East ,2,89,1,Mens,Philadelphia,Pennsylvania,42
 90,University of Texas Rio Grande Valley,UTRGV,Southwest ,6,90,1,Mens,Edinburg[A 48],Texas,48
-91,Seton Hall University,Seton Hall,Mid East ,2,91,1,Mens,South Orange,New Jersey,34
+y,Seton Hall University,Seton Hall,Mid East ,2,91,1,Mens,South Orange,New Jersey,34
 92,"University of California, Riverside",UC Riverside,Far West ,8,92,1,Mens,Riverside,California,6
 93,,SIUE,,0,93,1,Mens,,,0
-94,Saint Peter's University,Saint Peter's,Mid East ,2,94,1,Mens,Jersey City,New Jersey,34
+y,Saint Peter's University,Saint Peter's,Mid East ,2,94,1,Mens,Jersey City,New Jersey,34
 95,Bowling Green State University,Bowling Green,Great Lakes ,3,95,1,Mens,Bowling Green,Ohio,39
 96,Quinnipiac University,Quinnipiac,New England ,1,96,1,Mens,Hamden,Connecticut,9
-97,Mercer University,Mercer,Southeast,5,97,1,Mens,Macon,Georgia,13
+y,Mercer University,Mercer,Southeast,5,97,1,Mens,Macon,Georgia,13
 98,University of Denver,Denver,Rocky Mountains ,7,98,1,Mens,Denver,Colorado,8
 99,University of Massachusetts Lowell,UMass Lowell,New England ,1,99,1,Mens,Lowell,Massachusetts,25
 100,Hofstra University,Hofstra,Mid East ,2,100,1,Mens,Hempstead,New York,36
 101,California Polytechnic State University,Cal Poly,Far West ,8,101,1,Mens,San Luis Obispo,California,6
-102,Stetson University,Stetson,Southeast,5,102,1,Mens,DeLand,Florida,12
+y,Stetson University,Stetson,Southeast,5,102,1,Mens,DeLand,Florida,12
 103,University of Connecticut,UConn,New England ,1,103,1,Mens,Storrs,Connecticut,9
 104,Marist College,Marist,Mid East ,2,104,1,Mens,Poughkeepsie,New York,36
-105,,Saint Francis (PA),,0,105,1,Mens,,,0
+y,Saint Francis University,Saint Francis (PA),,0,105,1,Mens,,,0
 106,J. F. Drake State Community and Technical Colleg,Drake,Plains ,4,106,1,Mens,Des Moines,Iowa,19
 107,Dartmouth College,Dartmouth,New England ,1,107,1,Mens,Hanover,New Hampshire,33
 108,University of the Pacific,Pacific,Far West ,8,108,1,Mens,Stockton,California,6
@@ -114,10 +114,10 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 113,,Milwaukee,,0,113,1,Mens,,,0
 114,,Northern Ill.,,0,114,1,Mens,,,0
 115,University of North Florida,North Florida,Southeast,5,115,1,Mens,Jacksonville,Florida,12
-116,Fairleigh Dickinson University,Fairleigh Dickinson,Mid East ,2,116,1,Mens,Hackensack,New Jersey,34
+y,Fairleigh Dickinson University-Metropolitan Campus,Fairleigh Dickinson,Mid East ,2,116,1,Mens,Hackensack,New Jersey,34
 117,University of Wisconsin–Madison,Wisconsin,Great Lakes ,3,117,1,Mens,Madison,Wisconsin,55
 118,,Cleveland St.,,0,118,1,Mens,,,0
-119,La Salle University,La Salle,Mid East ,2,119,1,Mens,Philadelphia,Pennsylvania,42
+y,La Salle University,La Salle,Mid East ,2,119,1,Mens,Philadelphia,Pennsylvania,42
 120,Santa Clara University,Santa Clara,Far West ,8,120,1,Mens,Santa Clara,California,6
 121,College of William & Mary,William & Mary,Southeast,5,121,1,Mens,Williamsburg,Virginia,51
 122,Furman University,Furman,Southeast,5,122,1,Mens,Greenville,South Carolina,45
@@ -132,7 +132,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 131,,St. Francis Brooklyn,,0,131,1,Mens,,,0
 132,,Michigan St.,,0,132,1,Mens,,,0
 133,University of Cincinnati,Cincinnati,Great Lakes ,3,133,1,Mens,Cincinnati,Ohio,39
-134,Rider University,Rider,Mid East ,2,134,1,Mens,Lawrenceville,New Jersey,34
+y,Rider University,Rider,Mid East ,2,134,1,Mens,Lawrenceville,New Jersey,34
 135,Binghamton University,Binghamton,Mid East ,2,135,1,Mens,Vestal,New York,36
 136,,UNC Greensboro,,0,136,1,Mens,,,0
 137,Gonzaga University,Gonzaga,Far West ,8,137,1,Mens,Spokane,Washington,53
