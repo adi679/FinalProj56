@@ -169,7 +169,7 @@
                                 let dataCampaign = "data-campaignId='" + row.Email + "'";
                                 ids = meta.row;
                                 editBtn = "<button type='button'  class = 'editBtn btn btn-success'  " + list_users + " id='" + ids + "' onclick='editBtn_Function(id)'> Edit </button>";
-                                deleteBtn = "<button type='button' class = 'deleteBtn btn btn-danger' " + list_users + " id='" + ids + "' onclick='del(id)'> Delete </button>";
+                                deleteBtn = "<button type='button' class = 'deleteBtn btn btn-danger' " + list_users + " id='" + ids + "' onclick='del(id)'> Active </button>";
                                 return editBtn + deleteBtn;
                             }
                         },
@@ -207,7 +207,7 @@
                             }
                         }, {
                             data: function (jsonDate) {
-                    if (jsonDate.Active==0)
+                    if (jsonDate.Active==-1)
                                     return 'No'
                                 else {
                                     return 'Yes'

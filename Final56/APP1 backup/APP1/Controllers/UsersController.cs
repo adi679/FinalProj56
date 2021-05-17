@@ -60,7 +60,7 @@ namespace APP1.Controllers
         public int Delete(Users u)
         {
         
-            return u.Delete_Users(u.Email);
+            return u.Delete_Users(u);
         }
     }
 }

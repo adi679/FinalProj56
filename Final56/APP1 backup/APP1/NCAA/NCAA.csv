@@ -6,7 +6,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 5,Clemson University,Clemson,Southeast,5,5,1,Mens,Clemson,South Carolina,45
 6,Wake Forest University,Wake Forest,Southeast,5,6,1,Mens,Winston-Salem,North Carolina,37
 7,University of Washington,Washington,Far West ,8,7,1,Mens,Seattle,Washington,53
-8,,St. John's (NY),,0,8,1,Mens,,,0
+8,St. John's College,St. John's (NY),,0,8,1,Mens,,,0
 9,Virginia Tech[A 53],Virginia Tech,Southeast,5,9,1,Mens,Blacksburg,Virginia,51
 10,,Missouri St.,,0,10,1,Mens,,,0
 11,,Saint Mary's (CA),,0,11,1,Mens,,,0
@@ -174,7 +174,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 173,Niagara University,Niagara,Mid East ,2,173,1,Mens,Lewiston,New York,36
 174,"University of Nevada, Las Vegas",UNLV,Far West ,8,174,1,Mens,Paradise,Nevada,32
 175,,Army West Point,,0,175,1,Mens,,,0
-176,,Boston U.,,0,176,1,Mens,,,0
+176,Boston University,Boston U.,,0,176,1,Mens,,,0
 177,Longwood University,Longwood,Southeast,5,177,1,Mens,Farmville,Virginia,51
 178,Presbyterian College,Presbyterian,Southeast,5,178,1,Mens,Clinton,South Carolina,45
 179,American University,American,,0,179,1,Mens,Washington,District of Columbia,11
@@ -440,7 +440,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 439,Young Harris College,Young Harris,Southeast,5,27,2,Mens,Young Harris,Georgia,13
 440,Wingate University,Wingate University,Southeast,5,28,2,Mens,Wingate,North Carolina,37
 441,,Cal State LA,,0,29,2,Mens,,,0
-442,Assumption University,Assumption,New England ,1,30,2,Mens,Worcester,Massachusetts,25
+442,Assumption College,Assumption,New England ,1,30,2,Mens,Worcester,Massachusetts,25
 443,,Southern Ind.,,0,31,2,Mens,,,0
 444,,Colo. Sch. of Mines,,0,32,2,Mens,,,0
 445,University of Alabama in Huntsville,Alabama Huntsville,Southeast,5,33,2,Mens,Huntsville,Alabama,1
@@ -567,7 +567,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 566,Mars Hill University,Mars Hill,Southeast,5,154,2,Mens,Mars Hill,North Carolina,37
 567,Northwest Nazarene University,Northwest Nazarene,Rocky Mountains ,7,155,2,Mens,Nampa,Idaho,16
 568,Coker University,Coker,Southeast,5,156,2,Mens,Hartsville,South Carolina,45
-569,,American Int'l,,0,157,2,Mens,,,0
+569,American International College,American Int'l,,0,157,2,Mens,,,0
 570,,Saginaw Valley,,0,158,2,Mens,,,0
 571,Felician University,Felician,Mid East ,2,159,2,Mens,Rutherford,New Jersey,34
 572,,Oakland City,,0,160,2,Mens,,,0
@@ -611,7 +611,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 610,,Queens (NY),,0,198,2,Mens,,,0
 611,,DBU,,0,199,2,Mens,,,0
 612,University of Montevallo,Montevallo,Southeast,5,200,2,Mens,Montevallo,Alabama,1
-613,Daemen College,Daemen,Mid East ,2,201,2,Mens,Amherst,New York,36
+613,Amherst College,Daemen,Mid East ,2,201,2,Mens,Amherst,New York,36
 614,Nyack College,Nyack,Mid East ,2,202,2,Mens,Nyack,New York,36
 615,Erskine College,Erskine,Southeast,5,203,2,Mens,Due West,South Carolina,45
 616,Limestone University,Limestone,Southeast,5,203,2,Mens,Gaffney,South Carolina,45
@@ -737,7 +737,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 736,Lynn University,Lynn,Southeast,5,112,2,Women,Boca Raton,Florida,12
 737,,Michigan Tech,,0,113,2,Women,,,0
 738,Chaminade University of Honolulu,Chaminade,,0,114,2,Women,Honolulu,Hawai'i,
-739,Assumption University,Assumption,New England ,1,115,2,Women,Worcester,Massachusetts,25
+739,Assumption College,Assumption,New England ,1,115,2,Women,Worcester,Massachusetts,25
 740,Shepherd University,Shepherd,Southeast,5,116,2,Women,Shepherdstown,West Virginia,54
 741,,Hawaii Hilo,,0,117,2,Women,,,0
 742,,West Va. Wesleyan,,0,118,2,Women,,,0
@@ -789,7 +789,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 788,,Delta St.,,0,164,2,Women,,,0
 789,Drury University,Drury,Plains ,4,165,2,Women,Springfield,Missouri,29
 790,William Jewell College,William Jewell,Plains ,4,166,2,Women,Liberty,Missouri,29
-791,,American Int'l,,0,167,2,Women,,,0
+791,American International College,American Int'l,,0,167,2,Women,,,0
 792,Bloomfield College,Bloomfield,Mid East ,2,168,2,Women,Bloomfield,New Jersey,34
 793,,St. Anselm,,0,169,2,Women,,,0
 794,Alderson Broaddus University,Alderson Broaddus,Southeast,5,170,2,Women,Philippi,West Virginia,54
@@ -824,7 +824,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 823,Lubbock Christian University,Lubbock Christian,Southwest ,6,199,2,Women,Lubbock,Texas,48
 824,Mars Hill University,Mars Hill,Southeast,5,200,2,Women,Mars Hill,North Carolina,37
 825,Gannon University,Gannon,Mid East ,2,201,2,Women,Erie,Pennsylvania,42
-826,Daemen College,Daemen,Mid East ,2,202,2,Women,Amherst,New York,36
+826,Amherst College,Daemen,Mid East ,2,202,2,Women,Amherst,New York,36
 827,,Notre Dame de Namur,,0,203,2,Women,,,0
 828,,Dominican (NY),,0,204,2,Women,,,0
 829,Coker University,Coker,Southeast,5,205,2,Women,Hartsville,South Carolina,45
@@ -843,7 +843,7 @@ Id,Full_School_Name,School,Full_Conference,Conference_id,Adj. RPI,Division,Type,
 842,Shorter University,Shorter,Southeast,5,218,2,Women,Rome,Georgia,13
 843,,Purdue Northwest,,0,219,2,Women,,,0
 844,,San Fran. St.,,0,220,2,Women,,,0
-845,,Lincoln (PA),,0,221,2,Women,,,0
+845,Lincoln Technical Institute-Somerville,Lincoln (PA),,0,221,2,Women,,,0
 846,,St. Mary's (TX),,0,222,2,Women,,,0
 847,,Minnesota St.,,0,223,2,Women,,,0
 848,,Urbana,,0,224,2,Women,,,0

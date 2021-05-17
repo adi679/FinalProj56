@@ -1073,7 +1073,7 @@ namespace APP1.Models.DAL
                     if (dr["Active"].GetType() == typeof(DBNull)|| Convert.ToInt32(dr["Active"]) !=-1)
                         ul.Active = 1;
                     else
-                        ul.Active = 0;
+                        ul.Active = -1;
 
 
                     list_of_user.Add(ul);
@@ -1242,13 +1242,22 @@ namespace APP1.Models.DAL
             }
 
         }
-        public String BuilDeleteCommandUsers(string email)
+        public String BuilDeleteCommandUsers(Users u)
         {
-            String prefix = " UPDATE Users SET Active = -1WHERE Email='" + email + "'";
+            string active;
+            if (u.Active == -1)
+            {
+                active = "1";
+            }
+            else
+            {
+                active = "-1";
+            }
+            String prefix = " UPDATE Users SET Active = "+active+" WHERE Email='" + u.Email + "'";
 
             return prefix;
         }
-        public int Delete_Users(string email)
+        public int Delete_Users(Users u)
         {
 
             SqlConnection con;
@@ -1264,7 +1273,7 @@ namespace APP1.Models.DAL
                 throw (ex);
             }
 
-            String cStr = BuilDeleteCommandUsers(email);      // helper method to build the insert string
+            String cStr = BuilDeleteCommandUsers(u);      // helper method to build the insert string
 
             cmd = CreateCommand(cStr, con);             // create the command
 
