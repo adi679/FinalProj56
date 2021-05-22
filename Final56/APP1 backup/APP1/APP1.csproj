@@ -201,7 +201,7 @@
     <Content Include="Pages\Calculat.html" />
     <Content Include="Pages\ManagerDash - Copy.html" />
     <Content Include="Pages\Match - Copy.html" />
-    <Content Include="Pages\NewToDo.html" />
+    <Content Include="Pages\1NewToDo.html" />
     <Content Include="Pages\UsarDataQ.html" />
     <Content Include="Pages\profile.html" />
     <Content Include="Pages\1DataTableCampaign.html" />
@@ -231,7 +231,7 @@
     <Content Include="Pages\1RegistrationForm.html" />
     <Content Include="Pages\1Results.html" />
     <Content Include="Pages\11Profile_Show.html" />
-    <Content Include="Pages\To Do List New.html" />
+    <Content Include="Pages\1To Do List New.html" />
     <Content Include="Pages\TODO List.html" />
     <Content Include="Pages\UsersAndFiles.html" />
     <Content Include="Pages\WishList.html" />
