@@ -230,8 +230,7 @@
     <Content Include="Pages\1Profile.html" />
     <Content Include="Pages\1RegistrationForm.html" />
     <Content Include="Pages\1Results.html" />
-    <Content Include="Pages\Profile_Show.html" />
-    <Content Include="Pages\Results.html" />
+    <Content Include="Pages\11Profile_Show.html" />
     <Content Include="Pages\To Do List New.html" />
     <Content Include="Pages\TODO List.html" />
     <Content Include="Pages\UsersAndFiles.html" />
