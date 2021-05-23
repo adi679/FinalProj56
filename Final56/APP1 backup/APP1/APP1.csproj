@@ -200,6 +200,8 @@
     <Content Include="Pages\1edit - class Ex solution.html" />
     <Content Include="Pages\Calculat.html" />
     <Content Include="Pages\ManagerDash - Copy.html" />
+    <Content Include="Pages\Algo.html" />
+    <Content Include="Pages\Teamplate.html" />
     <Content Include="Pages\Match - Copy.html" />
     <Content Include="Pages\1NewToDo.html" />
     <Content Include="Pages\UsarDataQ.html" />

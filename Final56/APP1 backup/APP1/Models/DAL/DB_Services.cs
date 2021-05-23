@@ -137,8 +137,8 @@ namespace APP1.Models.DAL
             string EXISTS = " IF EXISTS(SELECT * FROM[UserData] WHERE Email = '" + u.Email + "') ";
 
             // use a string builder to create the dynamic string
-                sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}',{10},'{11}','{12}','{13}','{14}','{15}')", u.Email, u.National, u.Captain, u.League, u.Champions, u.Position, u.Goals, u.Assists, u.Gametime, u.ShootsToGoal, u.Dribel, u.AcuuratePasses, u.Tackels, u.YellowCards, u.RedCards, u.Showes);
-            String prefix = "insert INTO[UserData] (Email,[National], Captain, League, Champions, Goals, Assists, Gametime, ShootsToGoal, Dribel, AcuuratePasses, Tackels, YellowCards, RedCards,[Showes],[Cups])";
+                sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.National, u.Captain, u.League, u.Champions,u.Cups, u.Position, u.Tofel, u.Sat, u.Gpa);
+            String prefix = "insert INTO[UserData] (Email,[National], Captain, League, Champions,[Cups], Position, Tofel, Sat, Gpa )";
             String delete = " DELETE FROM [UserData] WHERE Email='" + u.Email + " '";
             command = EXISTS +delete  + prefix + sb.ToString();
        return command ;
@@ -1014,6 +1014,72 @@ namespace APP1.Models.DAL
 
 
         }
+
+
+
+
+        //======================================================================
+        //===============================ALGO========================
+        //======================================================================
+
+
+        public List<UserData> Show_Users_Data(string email)
+        {
+            List<UserData> Users_data_list = new List<UserData>();
+            SqlConnection con = null;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "select * from UserData where email='"+ email+ "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {
+
+                    UserData ul = new UserData();
+            
+                    ul.National = Convert.ToInt32(dr["National"]);
+                    ul.Captain = Convert.ToInt32(dr["Captain"]);
+                    ul.League = Convert.ToInt32(dr["League"]);
+                    ul.Champions = Convert.ToInt32(dr["Champions"]);
+                    ul.Cups = Convert.ToInt32(dr["Cups"]);
+                    ul.Gpa = Convert.ToInt32(dr["Gpa"]);
+                    ul.Tofel = Convert.ToInt32(dr["Tofel"]);
+                    ul.Sat = Convert.ToInt32(dr["Sat"]);
+                    ul.Position =(string)dr["Position"];
+
+
+                    Users_data_list.Add(ul);
+                }
+                Users ule = new Users();
+                return Users_data_list;
+
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+        }
+
+
+
+
+
+
+
 
 
         //======================================================================

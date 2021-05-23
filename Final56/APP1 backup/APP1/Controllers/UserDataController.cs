@@ -11,16 +11,26 @@ namespace APP1.Controllers
     public class UserDataController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET api/<controller>/5
-        public string Get(int id)
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
+
+
+        [HttpGet]
+        [Route("api/UserData/all_data")]
+        public List<UserData> Get(UserData ud)
         {
-            return "value";
+            UserData u = new UserData();
+            return u.Show_Users_Data(ud.Email);
         }
+
 
         // POST api/<controller>
 
@@ -31,14 +41,17 @@ namespace APP1.Controllers
             return u.Insert_New_UserData(u);
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("api/UserData")]
+        public List<UserData>  Put(UserData ud)
         {
+            UserData u = new UserData();
+            return u.Show_Users_Data(ud.Email);
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<controller>/5
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
