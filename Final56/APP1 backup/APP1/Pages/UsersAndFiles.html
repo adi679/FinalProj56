@@ -21,46 +21,36 @@
             console.log(data)
             isnull ='\n'
             nonull = '\n'
-            emails=[]
+            emails = []
+
            let Files = []
 
             for (var i = 0; i < data.length; i++) {
                 if (emails.includes(data[i].Email) == false) {
+                    let File = []
                     emails.push(data[i].Email)
-                   let File = {
-                        name: data[i].Full_Name,
-                        taypfile1: 'No',
-                        taypfile2: 'No',
-                        taypfile3: 'No',
-                        taypfile4: 'No',
-                        taypfile5: 'No',
-                        taypfile6: 'No',
+                    File[0] = data[i].Full_Name
+                    for (var j = 1; j < 8; j++) {
+                         File[j]='no'
 
                     }
-                    if (data[i].Isnull != 0) {
-                        for (var j = 0; j < data.length; j++) {
+                    if (data[i].Isnull == 1) {
+                        for (var j = i; j < data.length; j++) {
                             if (data[i].Email == data[j].Email) {
-                                File = {
-                                    name: data[i].Full_Name,
-                                    taypfile1: 'yes',
-                                }
+                                File[data[i].Id]='yes'
                             }
                         }
                     }
                     Files.push(File)
                 }
-               
-               
             }
             console.log(Files)
-            alert('קבצים של יוזרים:'  + nonull);
-            alert('יוזרים ללא קבצים:'  + isnull);
-
+           
 
         }
 
         function errorFiles(data) {
-            console.log(data)
+            +console.log(data)
             alert("errorFiles")
         }
 

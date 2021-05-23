@@ -48,6 +48,8 @@ namespace APP1.Models.DAL
 
                         if (dr["Score"].GetType() != typeof(DBNull))
                             f.Score = Convert.ToInt32(dr["Score"]);
+                        if (dr["id"].GetType() != typeof(DBNull))
+                            f.Id = Convert.ToInt32(dr["id"]);
 
                         f.Isnull = 1;
                     }
