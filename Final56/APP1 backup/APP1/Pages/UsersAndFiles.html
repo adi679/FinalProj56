@@ -20,16 +20,39 @@
             alert("successFiles")
             console.log(data)
             isnull ='\n'
-            nonull ='\n'
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].Isnull==0) {
-                    isnull += data[i].Full_Name + '\n';
-                }
-                else {
-                    nonull += data[i].Full_Name + ' ' + data[i].Filetype + '\n';
+            nonull = '\n'
+            emails=[]
+           let Files = []
 
+            for (var i = 0; i < data.length; i++) {
+                if (emails.includes(data[i].Email) == false) {
+                    emails.push(data[i].Email)
+                   let File = {
+                        name: data[i].Full_Name,
+                        taypfile1: 'No',
+                        taypfile2: 'No',
+                        taypfile3: 'No',
+                        taypfile4: 'No',
+                        taypfile5: 'No',
+                        taypfile6: 'No',
+
+                    }
+                    if (data[i].Isnull != 0) {
+                        for (var j = 0; j < data.length; j++) {
+                            if (data[i].Email == data[j].Email) {
+                                File = {
+                                    name: data[i].Full_Name,
+                                    taypfile1: 'yes',
+                                }
+                            }
+                        }
+                    }
+                    Files.push(File)
                 }
+               
+               
             }
+            console.log(Files)
             alert('קבצים של יוזרים:'  + nonull);
             alert('יוזרים ללא קבצים:'  + isnull);
 
