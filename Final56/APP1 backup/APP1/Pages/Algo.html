@@ -154,8 +154,9 @@
         $(document).ready(function () {
             var name = "";
             //var email = email = localStorage.getItem("email");
-
-            var email = "adi@gmail.com";
+            var email = localStorage.getItem("email")
+           // alert(email);
+           // var email = "adi@gmail.com";
             let u = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
                 // FirstName: $("#nameTB").val(),
                 Email: email,
@@ -164,7 +165,7 @@
             name1 = email.split('@');
             name = "<h2 style='border: 2px'> Hello " + name1[0] + ", </h2>";
             document.getElementById("intro").innerHTML = name;
-            //    alert("email is: " + email);
+            //   alert("email is: " + email);
             GetUserDate()
 
         });
@@ -179,7 +180,45 @@
         function successData(data) {
             console.log(data)
             alert("successData")
+            rend(data)
         }
+
+
+        var str = "";
+        function rend(data) {
+            str += "<h3> Your Data is: </h3>";
+            str += "Gender: " + data[0].Gender + "</br>"; 
+            str += "National: " + data[0].National + "</br>"; 
+            str += "Captain: " + data[0].Captain + "</br>"; 
+            str += "League: " + data[0].League + "</br>"; 
+            str += "Championships: " + data[0].Champions + "</br>"; 
+            str += "Cups: " + data[0].Cups + "</br>"; 
+            str += "Position: " + data[0].Position + "</br>"; 
+            str += "TOFEL: " + data[0].Tofel + "</br>"; 
+            str += "SAT: " + data[0].Sat + "</br>"; 
+            str += "GPA: " + data[0].GPA + "</br>"; 
+            
+            document.getElementById("data").innerHTML = str;
+
+            calculateAlgo()
+        }
+
+
+        var arr = "";
+        function calculateAlgo() {
+           
+            document.getElementById("calculate").innerHTML= "Number TBD"
+
+
+
+        }
+
+
+
+
+
+
+
 
         function errorData(data) {
             alert("errorData")
@@ -228,8 +267,8 @@
 
 </head>
 <body>
-    <button class="button2" ONCLICK="goBack()" style="float:left"> Go Back  </button>
-    <br /><br /><br /><br />
+    <button class="button2" ONCLICK="goBack()" style="float:left">Go Back</button>
+    <br /><br />
 
 
     <div class="imgcontainer">
@@ -249,6 +288,11 @@
         </div>
       
         <div id="intro">     </div>
+        <div id="data" ></div>
+        <br /><br /><br />
+        <div id="calculate" style="background-color:red" >
+        
+        </div>
 
 
     </div>
