@@ -146,14 +146,14 @@
                     let File = []
                     emails.push(data[i].Email)
                     File[0] = data[i].Full_Name
-                    for (var j = 1; j < 8; j++) {
+                    for (var j = 1; j < 9; j++) {
                         File[j] = 'no'
 
                     }
                     if (data[i].Isnull == 1) {
-                        for (var j = i; j < data.length; j++) {
+                        for (var j = 0; j < data.length; j++) {
                             if (data[i].Email == data[j].Email) {
-                                File[data[i].Id] = 'yes'
+                                File[data[j].Id] = 'yes'
                             }
                         }
                     }
@@ -168,18 +168,18 @@
             try {
                 tbl = $('#campaignsTable').DataTable({
                     data: Files,
-                    pageLength: 7,
+                    pageLength: 10,
                     columns: [
-                        {
-                            render: function (data, type, row, meta) {
+                        //{
+                            //render: function (data, type, row, meta) {
                               
-                                let dataCampaign = "data-campaignId='" + row[0] + "'";
-                                ids = row[0];
-                                editBtn = "<button type='button'  class = 'editBtn btn btn-success'  " + Files + " id='"+ids+"' onclick='editBtn_Function(id)'> Edit </button>";
-                                deleteBtn = "<button type='button' class = 'deleteBtn btn btn-danger' " + Files + " id='" + ids + "' onclick='del(id)'> Delete </button>";
-                                return editBtn +deleteBtn;
-                            }
-                        }, 
+                        //        let dataCampaign = "data-campaignId='" + row[0] + "'";
+                        //        ids = row[0];
+                        //        editBtn = "<button type='button'  class = 'editBtn btn btn-success'  " + Files + " id='"+ids+"' onclick='editBtn_Function(id)'> Edit </button>";
+                        //        deleteBtn = "<button type='button' class = 'deleteBtn btn btn-danger' " + Files + " id='" + ids + "' onclick='del(id)'> Delete </button>";
+                        //        return editBtn +deleteBtn;
+                        //    }
+                        //}, 
                         {
                             data: function (jsonDate) {
                                 return jsonDate[0]
@@ -220,7 +220,19 @@
                                 return jsonDate[6]
 
                             }
+                        }, {
+                            data: function (jsonDate) {
+                                return jsonDate[7]
+
+                            }
                         },
+                        {
+                            data: function (jsonDate) {
+                                return jsonDate[8]
+
+                            }
+                        },
+                      
 
                     ],
                 });
@@ -272,7 +284,7 @@
         <table id="campaignsTable" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>   </th>
+
                     <th>name</th>
                     <th>file1</th>
                     <th>file2</th>
@@ -280,6 +292,10 @@
                     <th>file4</th>
                     <th>file5</th>
                     <th>file6</th>
+                    <th>file7</th>
+                    <th>file8</th>
+
+
                 </tr>
             </thead>
 
