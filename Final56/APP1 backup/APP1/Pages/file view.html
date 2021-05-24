@@ -1,8 +1,205 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--  -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .btn-group button {
+            background-color: #04AA6D; /* Green background */
+            border: 1px solid green; /* Green border */
+            color: white; /* White text */
+            padding: 10px 24px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+            float: left; /* Float the buttons side by side */
+        }
+
+        /* Clear floats (clearfix hack) */
+        .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .btn-group button:not(:last-child) {
+            border-right: none; /* Prevent double borders */
+        }
+
+        /* Add a background color on hover */
+        .btn-group button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+    <style>
 
 
+        .button2 {
+            background-color: white;
+            border: none;
+            color: darkblue;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            float: left;
+        }
+
+
+        /*כותרת*/
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: red;
+                    color: white;
+                }
+
+
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            /*#customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }*/
+
+            /*#customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: center;
+                background-color: black;
+                color: white;
+            }*/
+
+        #header {
+            background-color: red;
+        }
+
+        /*table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            margin: 0px auto;
+            width: 100%;
+            height: 100%;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+            text-align: center;
+        }*/
+
+        /*button {
+            width: 100px;
+            height: 60px;
+            color: white;
+            width: 180px;
+            float: left;
+        }*/
+
+        .btn-info {
+            color: #fff;
+            background-color: #f13333;
+            border-color: #f13333;
+        }
+    </style>
+
+
+    <script>
+        var email = '';
+        var name = "";
+
+        $(document).ready(function () {
+
+            name1 = email.split('@');
+            name = "<h2 style='border: 2px'> Hello " + name1[0] + ", </h2>";
+            document.getElementById("intro").innerHTML = name;
+            //    alert("email is: " + email);
+
+        });
+
+
+        function ChangeFavorites() {
+
+            window.open('FavRegion.html');
+
+        }
+
+
+
+        function errorWishlist() {
+            alert("Please Choose school to Save")
+        }
+
+        function successWishlist() {
+            alert("successWishlist")
+        }
+
+
+
+
+        function gotowishlist() {
+            window.open('WishList.html')
+        }
+        function Algo() {
+            window.open('Algo.html')
+        }
+
+
+        function PlyersQ() {
+            window.open('UsarDataQ.html')
+        }
+
+        function goBack() {
+            window.history.back();
+            window.close()
+        }
+
+    </script>
+
+    <!--  -->
     <title>DataTable Campaign</title>
 
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -42,24 +239,26 @@
 
 
     <script>
-        var id_edit; 
-        function editBtn_Function(cam_id) {
-            id_edit=''
-            $("#editDiv").show(); 
-            id_edit = cam_id
+        var id_edit;
+        function editBtn_Function(email) {
+            window.open("FileUpload_Form.HTML");
+            localStorage.setItem("fileemail", email);
+            //id_edit=''
+            //$("#editDiv").show();
+            //id_edit = cam_id
             
         }
 
-        
 
-        function a(){
+
+        function a() {
             let api = "../api/campaign/" + i + '/' + b;
             ajaxCall("GET", api, "", success1, errorr1)
         }
         $(document).ready(function () {
 
             let email = localStorage.getItem("email");
-            //email = "adi@gmail.com";
+            email = "adi@gmail.com";
             let api = "../api/UsersFile/get_all_UF";
             ajaxCall("Get", api, "", successFiles, errorFiles)
 
@@ -86,7 +285,7 @@
             });
 
 
-         
+
 
         }
         function del(cam_id) {
@@ -112,9 +311,9 @@
                 location.reload();
 
             }
-               
-            
-           
+
+
+
 
 
         }
@@ -126,7 +325,7 @@
         function delerrorr(err) {
             alert("Sorry, please try again");
         }
-       
+
         function errorFiles(campaigndata) {
             alert("erroradd_list_r");
         }
@@ -145,8 +344,9 @@
                 if (emails.includes(data[i].Email) == false) {
                     let File = []
                     emails.push(data[i].Email)
-                    File[0] = data[i].Full_Name
-                    for (var j = 1; j < 9; j++) {
+                    File[1] = data[i].Full_Name
+                    File[0] = data[i].Email
+                    for (var j = 2; j < 10; j++) {
                         File[j] = 'no'
 
                     }
@@ -164,28 +364,22 @@
 
 
             files12 = Files;
-        
+
             try {
                 tbl = $('#campaignsTable').DataTable({
                     data: Files,
-                    pageLength: 10,
+                    pageLength: 7,
                     columns: [
-                        //{
-                            //render: function (data, type, row, meta) {
-                              
-                        //        let dataCampaign = "data-campaignId='" + row[0] + "'";
-                        //        ids = row[0];
-                        //        editBtn = "<button type='button'  class = 'editBtn btn btn-success'  " + Files + " id='"+ids+"' onclick='editBtn_Function(id)'> Edit </button>";
-                        //        deleteBtn = "<button type='button' class = 'deleteBtn btn btn-danger' " + Files + " id='" + ids + "' onclick='del(id)'> Delete </button>";
-                        //        return editBtn +deleteBtn;
-                        //    }
-                        //}, 
                         {
-                            data: function (jsonDate) {
-                                return jsonDate[0]
+                            render: function (data, type, row, meta) {
 
+                                //let dataCampaign = "data-campaignId='" + data + "'";
+                                ids = row[0];
+                                editBtn = "<button type='button'  class = 'editBtn btn btn-success'    id='" + ids + "' onclick='editBtn_Function(id)'> Edit </button>";
+                                return editBtn;
                             }
                         },
+
                         {
                             data: function (jsonDate) {
                                 return jsonDate[1]
@@ -232,7 +426,12 @@
 
                             }
                         },
-                      
+                        {
+                            data: function (jsonDate) {
+                                return jsonDate[9]
+
+                            }
+                        },
 
                     ],
                 });
@@ -254,7 +453,7 @@
 
 
             swal("Submitted to the server!", "Great Job", "success");
-            id_edit=''
+            id_edit = ''
             return false;
 
 
@@ -270,21 +469,50 @@
         }
         function cancelf() {
             $("#editDiv").hide();
-           document.getElementById("Budget").value=" ";
+            document.getElementById("Budget").value = " ";
 
         }
-     
+
     </script>
 </head>
 <body>
-    <button>
-        <h1 href="start.html" >Go Back to home page</h1>
-    </button>
+
+    <button class="button2" ONCLICK="goBack()" style="float:left"> Go Back  </button>
+    <br /><br />
+
+
+    <div class="imgcontainer" ONCLICK="goBack()">
+
+        <img src="https://static.wixstatic.com/media/8e2f85_921a5cb67d12433aaa378ae195ffe667~mv2.png/v1/fill/w_446,h_63,al_c,q_85,usm_0.66_1.00_0.01/shutterstock_7439920422-11.webp" alt="logo" class="logo">
+        <div class="topnav">
+            <a href="#home" onclick="Algo()" style="background-color:#034f84">Smart Algo</a>
+            <a href="#home" onclick="rend()" style="background-color:#034f84">Show Results</a>
+            <a class="active" href="#news" onclick="ChangeFavorites()">Change Favorites</a>
+            <!--<a href="#contact" onclick="Wishlist()">Add to WishList</a>-->
+            <a href="#about" onclick="gotowishlist()">Show WishList</a>
+            <a href="#about" onclick="PlyersQ()">Predict your scholarship %</a>
+            <p>
+                Add To WishList  <a href="#" class="btn btn-info btn-lg" onclick="Wishlist()">
+                    <span class="glyphicon glyphicon-heart"></span> Add To WishList
+                </a>
+            </p>
+        </div>
+
+        <div id="intro">     </div>
+
+
+    </div>
+    <div>
+
+
+    </div>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
     <div class="container">
         <table id="campaignsTable" class="display" style="width:100%">
             <thead>
                 <tr>
-
+                    <th>     </th>
                     <th>name</th>
                     <th>file1</th>
                     <th>file2</th>
@@ -309,12 +537,12 @@
                     <input type="text" class="form-control" id="Budget" placeholder="Enter the new budget" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg" id="saveBTN" onclick="Updateb()">Save</button>
-                <input type="button" class="btn btn-warning btn-lg" id="cancelSaveBTN"  onclick="cancelf()" value="Cancel" />
+                <input type="button" class="btn btn-warning btn-lg" id="cancelSaveBTN" onclick="cancelf()" value="Cancel" />
 
             </div>
 
         </form>
     </div>
-    
+
 </body>
 </html>
