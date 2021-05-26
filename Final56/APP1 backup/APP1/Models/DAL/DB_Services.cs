@@ -139,7 +139,7 @@ namespace APP1.Models.DAL
             string EXISTS = " IF EXISTS(SELECT * FROM[UserData] WHERE Email = '" + u.Email + "') ";
 
             // use a string builder to create the dynamic string
-                sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.National, u.Captain, u.League, u.Champions,u.Cups, u.Position, u.Tofel, u.Sat, u.Gpa);
+            sb.AppendFormat("Values('{0}','{1}', '{2}', '{3}', '{4}', '{5}', '{6}','{7}','{8}','{9}')", u.Email, u.National, u.Captain, u.League, u.Champions,u.Cups, u.Position, u.Tofel, u.Sat, u.Gpa);
             String prefix = "insert INTO[UserData] (Email,[National], Captain, League, Champions,[Cups], Position, Tofel, Sat, Gpa )";
             String delete = " DELETE FROM [UserData] WHERE Email='" + u.Email + " '";
             command = EXISTS +delete  + prefix + sb.ToString();
