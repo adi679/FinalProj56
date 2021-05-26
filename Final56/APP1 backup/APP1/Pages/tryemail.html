@@ -189,9 +189,68 @@
             name = "<h2 style='border: 2px'> Hello " + name1[0] + ", </h2>";
             document.getElementById("intro").innerHTML = name;
             //    alert("email is: " + email);
+            alert("start")
+            sendMail();
         });
 
+        //src = "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" >
 
+        function sendMail() {
+            alert("in");
+
+            //var params = {
+            //    name: 'John',
+            //    reply_email: 'adivaturi95@gmail.com',
+            //    message: 'This is awesome!'
+            //};
+            //emailjs.send('gmail', 'feedback', params);
+
+
+            //    Email.send({
+
+            //        Host: "smtp.mailtrap.io",
+            //        Username: "<199b04f2a659cb>",
+            //        Password: "<6125fe2ffbc308>",
+            //    To: 'adivaturi95@gmail.com',
+            //    From: "shaniaaroch@gmail.com",
+            //    Subject: "Test email",
+            //    Body: "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>"
+            //}).then(
+            //    message => alert(message)
+            //);
+
+
+          
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://mandrillapp.com/api/1.0/messages/send.json',
+                    data: {
+                        'key': 'ElVm4L8kFJpof9f7f0uqXQ',
+                        'message': {
+                            'from_email': 'firstteamusauser@gmail.com',
+                            'to': [
+                                {
+                                    'email': 'adivaturi95@gmail.com',
+                                    'name': 'adi',
+                                    'type': 'to'
+                                }
+                            ],
+                            'autotext': 'true',
+                            'subject': 'YOUR SUBJECT HERE!',
+                            'html': 'YOUR EMAIL CONTENT HERE! YOU CAN USE HTML!'
+                        }
+                    }
+                }).done(function (response) {
+                    console.log(response); // if you're into that sorta thing
+                    alert("response is: " + response);
+                });
+            
+
+            alert("out")
+
+            //}
+
+        }
 
 
         function ChangeFavorites() {
@@ -202,13 +261,13 @@
 
 
 
-        function errorWishlist() {
-            alert("Please Choose school to Save")
-        }
+        //function errorWishlist() {
+        //    alert("Please Choose school to Save")
+        //}
 
-        function successWishlist() {
-            alert("successWishlist")
-        }
+        //function successWishlist() {
+        //    alert("successWishlist")
+        //}
 
 
 
