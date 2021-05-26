@@ -2,16 +2,82 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>
-
-    </title>
+    <title>    </title>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
 
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
 
-        var subject="fgbg";
-        var body = "Heyyyy";
-        window.open('mailto:adivaturi95@gmail.com?subject='+subject+'&body=' + body);
+       
+        $(document).ready(function () {
+            str = "users_show"
+            let api = "../api/Users/" + str + "/Show_all_users";
+            ajaxCall("GET", api, str, getSuccess, erroradd_list_r)
+
+
+
+        });
+
+        function getSuccess(data) {
+          
+            console.log(data);
+            rendusers(data);
+        }
+
+        function erroradd_list_r() {
+            alert("erroradd_list_r")
+        }
+
+        var arr = "";
+        function rendusers(data) {
+            arr += "<form>";
+            arr += "<label for='players'> Choose a Player:</label>";
+            arr += "<select id = 'players' >";
+            for (var i = 0; i < data.length; i++) {
+
+                arr += "<option value='" + data[i].Email + "' onclick='gemail(this.id)'>" + data[i].FirstName + " " + data[i].LastName + "</option>";
+
+            }
+
+            arr += "</select >";
+            arr += "<form>";
+            document.getElementById("Show").innerHTML = arr;
+
+
+
+        }
+
+
+
+        var obj = "";
+        function gemail(obj) {
+            alert("obj is: " +obj);
+        }
+
+        function send() {
+
+            var e = document.getElementById("players");
+            var email = e.value;
+
+            var s = document.getElementById("subject");
+            var subject = s.value;
+
+            var b = document.getElementById("body");
+            var body = b.value;
+            
+
+            console.log(email);
+            console.log(subject);
+            console.log(body);
+
+          window.open('mailto:'+email+'?subject=' + subject + '&body=' + body);
+
+        }
+
+
+       
+
 
 
         //const mandrill = require('node-mandrill')('ElVm4L8kFJpof9f7f0uqXQ');
@@ -55,22 +121,33 @@
 
     </form>-->
     <!--<script type="text/javascript">-->
-        <!--//function sendEmail() {
-        //    Email.send({
-        //        Host: "smtp.gmail.com",
-        //        Username: "firstteamusauser@gmail.com",
-        //        Password: "adiamir12",
-        //        To: 'adivaturi95@gmail.com',
-        //        From: "firstteamusauser@gmail.com",
-        //        Subject: "This is the subject",
-        //        Body: "And this is the body"
-        //    }).then(
-        //        message => alert(message)
-        //    );
-        //}-->
+    <!--//function sendEmail() {
+    //    Email.send({
+    //        Host: "smtp.gmail.com",
+    //        Username: "firstteamusauser@gmail.com",
+    //        Password: "adiamir12",
+    //        To: 'adivaturi95@gmail.com',
+    //        From: "firstteamusauser@gmail.com",
+    //        Subject: "This is the subject",
+    //        Body: "And this is the body"
+    //    }).then(
+    //        message => alert(message)
+    //    );
+    //}-->
     <!--</script>-->
 
 
+    <div id="Show"> </div>
+
+
+    <label for="subject">Subject: </label>
+    <input type="text" id="subject" name="subject"><br><br>
+
+    <label for="body">Body: </label>
+    <input type="text" id="body" name="body"><br><br>
+
+    <!--<input type="text" id="send" name="send"><br><br>-->
+    <input type="submit" value="send" onclick="send()" >
 
 
 
