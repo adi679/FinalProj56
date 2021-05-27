@@ -196,11 +196,20 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="IMAGE\PASSPORT.jpg" />
+    <Content Include="IMAGE\PASSPORT.png" />
+    <Content Include="IMAGE\SAT.png" />
+    <Content Include="IMAGE\TOEFL.png" />
     <Content Include="MatchCSS.css" />
+<<<<<<< Updated upstream
     <Content Include="Pages\email.html" />
+=======
+    <Content Include="Pages\add-file.html" />
+>>>>>>> Stashed changes
     <Content Include="Pages\file view.html" />
     <Content Include="Pages\1edit - class Ex solution.html" />
     <Content Include="Pages\Calculat.html" />
+    <Content Include="Pages\files maneger.html" />
     <Content Include="Pages\ManagerDash - Copy.html" />
     <Content Include="Pages\Algo.html" />
     <Content Include="Pages\tryemail.html" />
